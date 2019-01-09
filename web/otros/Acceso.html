@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es">
+    <head>
+        <title>Acceso a la plataforma</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+    	<div class="contenedor-acceso">
+    		<div class="registro">  
+	    		<form action="ControladorAcceso" method="post">
+	    			<h1>Registro de Usuario</h1>
+                                <input type="hidden" name="llamada" value="registro" class="registro-input">
+	    			<input type="text" name="nombre_usuario" class="registro-input" placeholder="Nombre de usuario">
+	    			<input type="password" name="clave" class="registro-input" placeholder="Contraseña">
+	    			<input type="password" name="clave" class="registro-input" placeholder="Repita la constraseña">
+	    			<input type="email" name="email" class="registro-input" placeholder="Correo electrónico">
+	    			<input type="text" name="nombre" class="registro-input" placeholder="Nombre">
+	    			<input type="text" name="apellidos" class="registro-input" placeholder="Apellidos">
+	    			<input type="submit" value="Registrar" class="btn-input">
+	    		</form>	
+    		</div>
+    		<div class="acceso">	
+    			<form action="ControladorAcceso" method="post">
+    				<h1>Acceso de usuario</h1>
+                                <input type="hidden" name="llamada" value="acceso" class="registro-input">
+	    			<input type="text" name="nombre_usuario" class="registro-input" placeholder="Nombre de usuario">
+	    			<input type="password" name="clave" class="registro-input" placeholder="Contraseña">
+	    			<input type="submit" value="Acceder" class="btn-input">
+	    		</form>	
+    		</div>
+    </div>
+    </body>
+</html>

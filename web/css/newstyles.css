@@ -1,0 +1,162 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09-ene-2019, 9:34:50
+    Author     : amunguia
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:rgb(255, 255, 255);
+}
+.contenedor-index, .contenedor-pujas{
+    width: 70%;
+    margin: 0 auto;
+}
+.contenedor-index header{
+    height: 100px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    background-color: #B1F1FC;
+}
+.contenedor-index .insertar,
+.contenedor-index nav {
+    padding: 20px 80px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+    background-color: #5995DA;
+}
+.insertar{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav-elemento a{
+    color:white;
+    text-decoration: none;
+}
+.login{
+    display: inline-block;
+    margin: 0 20px;
+}
+.nav-elemento a:hover{
+  text-decoration: underline;
+}
+.contenedor-index .box{
+    height: 100%;
+    width: 200px;
+}
+#contenedor-panel,
+.contenedor-index main{
+    display:flex;
+    justify-content: center;
+    padding: 80px;
+    background-color: #DAE4FF;
+}
+.contenedor-index section{
+    height: 300px;
+    width: 1800px;
+    display:flex;
+    justify-content: center;
+}
+.bloque-grid{
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+.bloque{
+    height: 300px;
+    width: 300px;
+    margin: 10px 20px;
+    padding: 20px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    color:white;
+    background-color:grey;
+}
+
+.puja  .formulario >h1 {
+    position:relative;
+    left: 70px;
+}
+.texto-subasta{
+    margin-left:10px;
+}
+.contenedor-index footer{
+    height:50px;
+    background-color: #5995DA;
+}
+.contenedor-index #primero{
+    background-color: #7CA4FF;
+}
+.contenedor-index #segundo{
+   background-color: #48B0BD;
+}
+.contenedor-index #tercero {
+   background-color: #D584F1;
+}
+.contenedor-acceso,
+.contenedor-registro{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(177,241,252,0.4);
+}
+.acceso,
+.registro{
+    position:relative;
+    width:350px;
+    display:flex;
+    justify-content: center;
+    background-color: grey;
+    padding: 10px;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.insertar .formulario{
+    flex-direction: row;
+}
+.formulario h1{
+    width:100%;
+    color:white;  
+}
+.formulario input{
+    width:100%;
+    border-radius: 4px;
+    padding: 0 4px;
+    margin: 5px 0;
+    text-align: left;  
+}
+.btn-input {
+    display: flex;
+    justify-content: center;
+}
+
+footer{
+    
+}
+
