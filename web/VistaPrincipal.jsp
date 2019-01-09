@@ -37,7 +37,10 @@
 				<div class="col">
 					<h2>Productos</h2>
 					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<a class="link" href="#">Acceder</a>
+					<form action="ControladorAccesoSubasta" method="get">
+                                            <input type="hidden" name="tipo" value="Billetes">
+                                            <input class="link" type="submit" value="Acceder">
+                                        </form>	
 				</div>
 				<div class="col last">
 					<h2>Tus Pujas</h2>
@@ -65,35 +68,7 @@
 				<p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
 			</div>
             </div>
-            <main>
-                <section>
-                    <article class="bloque" id ="primero">   
-                        <div class="informacion-subasta">
-                            <h3>Subastas de monedas</h3>
-                            <img src="./res/monedas.jpg" alt="monedas" width="240px" height="160px">
-                        </div>
-                        <div class="puja"> 
-                            <form action="ControladorAccesoSubasta" method="get" class="formulario">
-                                <input type="hidden" name="tipo" value="Monedas" class="btn-input">
-                                <input type="submit"  value="Acceder" class="btn-input">
-                            </form>	
-                        </div>
-                    </article>
-                    <article class="bloque" id ="segundo">
-                        <div class="informacion-subasta">
-                            <h3>Subastas de billetes</h3>
-                            <img src="./res/billete.jpg" alt="billete" width="240px" height="160px">
-                        </div>
-                        <div class="puja">
-                            <form action="ControladorAccesoSubasta" method="get" class="formulario">
-                                <input type="hidden" name="tipo" value="Billetes" class="btn-input">
-                                <input type="submit" value="Acceder" class="btn-input">
-                            </form>	
-                        </div>
-                    </article>
-                </section>
-            </main>
-            
+      
         </div>
     </body>
 </html>
