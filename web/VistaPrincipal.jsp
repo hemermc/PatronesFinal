@@ -16,59 +16,64 @@
         <title>Numismática UAH</title>
     </head>
     <body>
-        <div class="contenedor-index">   
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
-            <div id="content">
+        <!--div class="contenedor-index"-->   
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
+        
+        <div id="content" class="contenedor-index">
             <div class="line"></div>
-		<div id="pitch">
-			<h1>Nosotros somos una empresa seria de subastas y antiguedades<br /></h1>
-                        <p><em>sabemos que necesitas algo mas, el servicio atento de la compañia, conócenos.</em></p>
-		</div>
             
-		<div class="col">
-					<h2>Subastas Activas</h2>
-					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<form action="ControladorAccesoSubasta" method="get">
-                                            <input type="hidden" name="tipo" value="Monedas">
-                                            <input class="link" type="submit"  value="Acceder" >
-                                        </form>
-                                        
-				</div>
-				<div class="col">
-					<h2>Productos</h2>
-					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<form action="ControladorAccesoSubasta" method="get">
-                                            <input type="hidden" name="tipo" value="Billetes">
-                                            <input class="link" type="submit" value="Acceder">
-                                        </form>	
-				</div>
-				<div class="col last">
-					<h2>Tus Pujas</h2>
-					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<a class="link" href="#">Acceder</a>
-				</div>
-				<div class="clr"></div>
-			</div>
-			
-			<div class="clr"></div>
-			</div>
-			<div id="footer">
-				<p id="links">
-					<a href="#">Politica de privacidad</a>
-					<a href="#">Terminos de uso</a>
-				</p>
-				<p>
-					<a href="#">Inicio</a>
-					<a href="#">Subastas</a>
-					<a href="#">Productos subastados</a>
-					<a href="#">Contactanos</a>
-					<a href="#">acerca de nosotros</a>
-			
-				</p>
-				<p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
-			</div>
+            <div id="pitch">
+                    <h1>Nosotros somos una empresa seria de subastas y antiguedades<br /></h1>
+                    <p><em>sabemos que necesitas algo mas, el servicio atento de la compañia, conócenos.</em></p>
             </div>
-      
+            <div id="main">
+	<div class="shell">
+		
+		<!-- Cols -->
+		<div class="cols">
+            <div class="col">
+                <h2>Subastas Activas</h2>
+                <p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
+                <form action="ControladorAccesoSubasta" method="get">
+                    <input type="hidden" name="tipo" value="Monedas">
+                    <input class="link" type="submit"  value="Acceder" >
+                </form>
+
+            </div>
+            <div class="col">
+                    <h2>Productos</h2>
+                    <p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
+                    <form action="ControladorAccesoSubasta" method="get">
+                        <input type="hidden" name="tipo" value="Billetes">
+                        <input class="link" type="submit" value="Acceder">
+                    </form>	
+            </div>
+            <div class="col last">
+                <h2>Tus Pujas</h2>
+                <p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
+                <a class="link" href="#">Acceder</a>
+            </div>
+            </div>
+            <div class="clr"></div>
         </div>
+            </div></div>
+			
+        <div class="clr"></div>
+        <!--/div-->
+        <div id="footer">
+            <p id="links">
+                <a href="#">Politica de privacidad</a>
+                <a href="#">Terminos de uso</a>
+            </p>
+            <p>
+                <a href="#">Inicio</a>
+                <a href="#">Subastas</a>
+                <a href="#">Productos subastados</a>
+                <a href="#">Contactanos</a>
+                <a href="#">acerca de nosotros</a>
+            </p>
+            <p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
+        </div>
+    
     </body>
 </html>
