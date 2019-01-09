@@ -24,7 +24,7 @@ public class GestionBBDDLocalhost {
 
     private GestionBBDDLocalhost() {
         driver = "org.apache.derby.jdbc.ClientDriver";
-        urlConexion = "jdbc:derby://localhost:1527/peclfinal";
+        urlConexion = "jdbc:derby://localhost:1527/finalPatrones";
         conexion = null;
     }
 
@@ -38,7 +38,7 @@ public class GestionBBDDLocalhost {
     public Connection establecerConexion() {
         try {
             Class.forName(driver);
-            conexion = DriverManager.getConnection(urlConexion,"grupo11","grupo11");
+            conexion = DriverManager.getConnection(urlConexion,"","");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GestionBBDDLocalhost.class.getName()).log(Level.SEVERE, "Error al conectar con la BBDD", ex);
         }
