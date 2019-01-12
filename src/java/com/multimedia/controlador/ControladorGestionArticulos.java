@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
+import com.multimedia.modelo.Articulo;
 import com.multimedia.modelo.GestionBBDDLocalhost;
-import com.multimedia.modelo.Moneda;
-import com.multimedia.modelo.crud.CRUDMoneda;
+import com.multimedia.modelo.crud.CRUDArticulo;
 import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +17,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
-@WebServlet(name = "ControladorGestionMonedas", urlPatterns = {"/ControladorGestionMonedas"})
-public class ControladorGestionMonedas extends HttpServlet {
+@WebServlet(name = "ControladorGestionArticulos", urlPatterns = {"/ControladorGestionArticulos"})
+public class ControladorGestionArticulos extends HttpServlet {
+
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,13 +33,12 @@ public class ControladorGestionMonedas extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Queremos mostrar las monedas 
         GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
-        CRUDMoneda usoMoneda = new CRUDMoneda(conexion);
-        session.setAttribute("monedas", usoMoneda.obtenerTodos());
-        response.sendRedirect("VistaMonedasAdmin.jsp");
+        CRUDArticulo usoBilletes = new CRUDArticulo(conexion);
+        session.setAttribute("articulos", usoBilletes.obtenerTodos());
+        response.sendRedirect("VistaArticulosAdmin.jsp");
     }
 
     /**
@@ -58,39 +55,40 @@ public class ControladorGestionMonedas extends HttpServlet {
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         String accion = request.getParameter("accion");
+        CRUDArticulo gestionArticulos = new CRUDArticulo(conexion);
 
-        CRUDMoneda usoMoneda = new CRUDMoneda(conexion);
         switch (accion) {
             case "insertar": {
-                usoMoneda.insertar(new Moneda(
-                        request.getParameter("valor"),
+                gestionArticulos.insertar(new Articulo(
+                        request.getParameter("nombre"),
+                        request.getParameter("descripcion"),
                         Integer.parseInt(request.getParameter("anio")),
-                        request.getParameter("estrellas"),
-                        request.getParameter("lugar_emision"),
-                        request.getParameter("conservacion"),
+                        request.getParameter("estado_conservacion"),
                         Float.parseFloat(request.getParameter("precio")),
-                        request.getParameter("foto")));
+                        request.getParameter("foto"),
+                        request.getParameter("categoria")));
                 break;
             }
             case "actualizar": {
-                usoMoneda.insertar(new Moneda(
-                        request.getParameter("valor"),
+                gestionArticulos.actualizar(new Articulo(
+                        Integer.parseInt(request.getParameter("id_articulo")),
+                        request.getParameter("nombre"),
+                        request.getParameter("descripcion"),
                         Integer.parseInt(request.getParameter("anio")),
-                        request.getParameter("estrellas"),
-                        request.getParameter("lugar_emision"),
-                        request.getParameter("conservacion"),
+                        request.getParameter("estado_conservacion"),
                         Float.parseFloat(request.getParameter("precio")),
-                        request.getParameter("foto")));
+                        request.getParameter("foto"),
+                        request.getParameter("categoria")));
                 break;
             }
-            case "eliminar": {
-                usoMoneda.eliminar(request.getParameter("lote"));
+            case "eliminar":{
+                gestionArticulos.eliminar(request.getParameter("id_articulo"));
                 break;
             }
         }
-        ArrayList<Moneda> monedas = usoMoneda.obtenerTodos();
-        session.setAttribute("monedas", monedas);
-        response.sendRedirect("VistaMonedasAdmin.jsp");
+        ArrayList<Articulo> listaArticulos = (ArrayList<Articulo>)gestionArticulos.obtenerTodos();
+        session.setAttribute("articulos", listaArticulos);
+        response.sendRedirect("VistaArticulosAdmin.jsp");
     }
 
     /**

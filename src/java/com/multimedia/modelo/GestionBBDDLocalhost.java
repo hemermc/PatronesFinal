@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo;
 
 import java.sql.Connection;
@@ -13,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 public class GestionBBDDLocalhost {
 
@@ -23,8 +19,8 @@ public class GestionBBDDLocalhost {
     private Connection conexion;
 
     private GestionBBDDLocalhost() {
-        driver = "org.apache.derby.jdbc.ClientDriver";
-        urlConexion = "jdbc:derby://localhost:1527/finalPatrones";
+        driver = "com.mysql.cj.jdbc.Driver";
+        urlConexion = "jdbc:mysql://mysqlpatrones.cve0d1ffdtii.eu-west-3.rds.amazonaws.com:3306/mydb";
         conexion = null;
     }
 
@@ -38,7 +34,7 @@ public class GestionBBDDLocalhost {
     public Connection establecerConexion() {
         try {
             Class.forName(driver);
-            conexion = DriverManager.getConnection(urlConexion,"","");
+            conexion = DriverManager.getConnection(urlConexion,"patrones2018","patrones2018");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GestionBBDDLocalhost.class.getName()).log(Level.SEVERE, "Error al conectar con la BBDD", ex);
         }
@@ -46,11 +42,11 @@ public class GestionBBDDLocalhost {
     }
 
     public void cerrarBBDD() {
-        try {
+        /*try {
             DriverManager.getConnection("jdbc:derby:;shutdown=true");
         } catch (SQLException ex) {
             Logger.getLogger(GestionBBDDLocalhost.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 }
 

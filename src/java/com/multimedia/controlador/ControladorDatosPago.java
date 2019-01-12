@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
-import com.multimedia.modelo.Billete;
 import com.multimedia.modelo.GestionBBDDLocalhost;
-import com.multimedia.modelo.Moneda;
-import com.multimedia.modelo.Tarjeta;
-import com.multimedia.modelo.crud.CRUDBillete;
-import com.multimedia.modelo.crud.CRUDMoneda;
+import com.multimedia.modelo.TarjetaCredito;
 import com.multimedia.modelo.crud.CRUDTarjeta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 
 @WebServlet(name = "ControladorDatosPago", urlPatterns = {"/ControladorDatosPago"})
@@ -89,7 +79,7 @@ public class ControladorDatosPago extends HttpServlet {
         HttpSession session = request.getSession(true);
         
                 CRUDTarjeta usoTarjeta= new CRUDTarjeta(conexion);
-                usoTarjeta.insertar(new Tarjeta(
+                usoTarjeta.insertar(new TarjetaCredito(
                         Integer.parseInt(request.getParameter("numero_tarjeta")),
                         request.getParameter("nombre_usuario"),
                         Integer.parseInt(request.getParameter("mes")),

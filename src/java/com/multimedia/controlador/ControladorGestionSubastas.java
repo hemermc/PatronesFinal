@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
 import com.multimedia.modelo.GestionBBDDLocalhost;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 @WebServlet(name = "ControladorGestionSubastas", urlPatterns = {"/ControladorGestionSubastas"})
 public class ControladorGestionSubastas extends HttpServlet {
@@ -72,8 +68,9 @@ public class ControladorGestionSubastas extends HttpServlet {
                         request.getParameter("Nombre"),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
-                        LocalDate.parse(request.getParameter("Fecha")),
-                        false,
+                        LocalDate.parse(request.getParameter("FechaAlta")),
+                        LocalDate.parse(request.getParameter("FechaCierre")),
+                        request.getParameter("estado"),
                         Integer.parseInt(request.getParameter("Lote"))));
             }
             case "actualizar": {
@@ -81,8 +78,9 @@ public class ControladorGestionSubastas extends HttpServlet {
                         request.getParameter("Nombre"),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
-                        LocalDate.parse(request.getParameter("Fecha")),
-                        false,
+                        LocalDate.parse(request.getParameter("FechaAlta")),
+                        LocalDate.parse(request.getParameter("FechaCierre")),
+                        request.getParameter("estado"),
                         Integer.parseInt(request.getParameter("Lote"))));
             }
             case "eliminar": {

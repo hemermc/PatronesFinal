@@ -30,7 +30,9 @@ public abstract class CRUDCompras implements ICRUDGeneral<Compras>{
     @Override   
     public void insertar(Compras compras) throws ExceptionManager {
        
-        String consulta = "INSERT INTO Compras(id_compra, importe, id_subasta, nombre_usuario) VALUES (?, ?, ?, ?)";
+        String consulta = "INSERT INTO Compras"
+                + "(id_compra, importe, id_subasta, nombre_usuario) "
+                + "VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setInt(1, compras.getId_compra());
             ps.setFloat(2, compras.getImporte());
@@ -55,7 +57,9 @@ public abstract class CRUDCompras implements ICRUDGeneral<Compras>{
 
     @Override
     public void actualizar(Compras compras) throws ExceptionManager {
-        String consulta = "UPDATE Compras SET importe = ?, id_subasta = ?, nombre_usuario = ? WHERE id_compra = ?";
+        String consulta = "UPDATE Compras "
+                + "SET importe = ?, id_subasta = ?, nombre_usuario = ? "
+                + "WHERE id_compra = ?";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setFloat(1, compras.getImporte());
             ps.setInt(2, compras.getId_subasta());

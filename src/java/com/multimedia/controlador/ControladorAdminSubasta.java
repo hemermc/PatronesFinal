@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
 import com.multimedia.modelo.GestionBBDDLocalhost;
@@ -19,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 @WebServlet(name = "ControladorAdminSubasta", urlPatterns = {"/ControladorAdminSubasta"})
 public class ControladorAdminSubasta extends HttpServlet {
@@ -62,8 +58,6 @@ public class ControladorAdminSubasta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-
     }
 
     /**
@@ -82,15 +76,15 @@ public class ControladorAdminSubasta extends HttpServlet {
         if (session.getAttribute("usuario") != null) {//Existe un usuario logueado
             GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
             Connection conexion = gestionDB.establecerConexion();
-            String tipo = request.getParameter("tipo");
+            String categoria = request.getParameter("tipo");
             
-            if (tipo.equalsIgnoreCase("Monedas")) {//Se accede a una subasta de Monedas
-                session.setAttribute("tipo-subasta", "Monedas");
-            } else if (tipo.equalsIgnoreCase("Billetes")) {//Se acceder a una subasta de Billetes
-                session.setAttribute("tipo-subasta", "Billetes");
+            if (categoria.equals("Mobiliario") || categoria.equals("Arte") 
+                    || categoria.equals("Numismatica")) {
+                session.setAttribute("tipo-subasta", categoria);
+                
+                CRUDSubasta subastas = new CRUDSubasta(conexion);
+                session.setAttribute("lista-subastas", subastas.obtenerCategoria(categoria));
             }
-            CRUDSubasta subastas = new CRUDSubasta(conexion);
-            session.setAttribute("lista-subastas", subastas.obtenerTipo(tipo));
             response.sendRedirect("./VistaSubastasCliente.jsp");
         } else {//Si el cliente no ha iniciado sesión
             response.sendRedirect("./VistaInicioSesion.jsp");

@@ -4,8 +4,10 @@
     Author     : amunguia
 --%>
 
-<%@page import="com.multimedia.modelo.Billete"%>
-<%@page import="com.multimedia.modelo.Moneda"%>
+<%@page import="com.multimedia.modelo.Articulo"%>
+<%@page import="com.multimedia.modelo.Mobiliario"%>
+<%@page import="com.multimedia.modelo.Arte"%>
+<%@page import="com.multimedia.modelo.Numismatica"%>
 <%@page import="com.multimedia.modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.multimedia.modelo.Subasta"%>
@@ -28,36 +30,54 @@
                 <div class="contenedor-pujas">
                     <%
                         ArrayList<Subasta> listaSubastas = (ArrayList) session.getAttribute("lista-subastas");
-                        String tiposubasta = (String) session.getAttribute("tipo-subasta");
-                        ArrayList<Moneda> monedas = null;
-                        ArrayList<Billete> billetes = null;
-                        if(tiposubasta.equalsIgnoreCase("Monedas")){ monedas = (ArrayList) session.getAttribute("listalote");}
-                        else {billetes = (ArrayList) session.getAttribute("listalote");}
-                        out.println("<h1> Subastas de " + tiposubasta + "</h1>");
+                        String categoriaSubasta = (String) session.getAttribute("categoria-subasta");
+                        ArrayList<Articulo> listaArticulos = null;
+                       
                         if (listaSubastas != null) {//Si hay subastas activas de ese tipo
+                            if(categoriaSubasta.equalsIgnoreCase("Mobiliario")){
+                                listaArticulos = (ArrayList) session.getAttribute("lista-articulos");
+                            }
+                            else if(categoriaSubasta.equalsIgnoreCase("Arte")){ 
+                                listaArticulos = (ArrayList) session.getAttribute("lista-articulos");
+                            } else if(categoriaSubasta.equalsIgnoreCase("Numismatica")){ 
+                                listaArticulos = (ArrayList) session.getAttribute("lista-articulos");
+                            }
+                            out.println("<h1> Subastas de " + categoriaSubasta + "</h1>");
                             out.println("<h3>Número de subastas activas:" + listaSubastas.size() + "</h3>");
+                            
                             for (int i = 0; i < listaSubastas.size(); i++) {
                                 out.println("<div class=\"subasta-elemento\">");
                                 out.println("<p>Nombre subasta: " + listaSubastas.get(i).getNombre() + "</p>"
-                                        + "<p>Precio: " + listaSubastas.get(i).getPrecioFinal() + "</p>"
-                                        + "<p>Fecha: " + listaSubastas.get(i).getFecha() + "</p>");
-                               if(tiposubasta.equalsIgnoreCase("Monedas")){ //Si es monedas imprimimos una información
-                                        
-                                        out.println("<p>Lote: " + monedas.get(i).getLote() + " </p>");
-                                        out.println("<p>Conservación: " + monedas.get(i).getConservacion() + " </p>");
-                                        out.println("<p>Valor: " + monedas.get(i).getValor() + " </p>");
-                                        out.println("<p>Emisión: " + monedas.get(i).getLugar_emision() + " </p>");
-                                        out.println("<p>Año: " + monedas.get(i).getAnio() + " </p>");
-                               }else{ //Billetes
-                                   out.println("<p>Lote: " + billetes.get(i).getLote() + " </p>");
-                                    out.println("<p>Conservación: " + billetes.get(i).getConservacion() + " </p>");
-                                    out.println("<p>Valor: " + billetes.get(i).getValor() + " </p>");
-                                    out.println("<p>Emisión: " + billetes.get(i).getLugar_emision() + " </p>");
-                                    out.println("<p>Año: " + billetes.get(i).getAnio() + " </p>");
+                                        + "<p>Precio: " + listaSubastas.get(i).getPrecio_final()+ "</p>"
+                                        + "<p>Fecha: " + listaSubastas.get(i).getPrecio_inicial()+ "</p>");
+                               if(categoriaSubasta.equalsIgnoreCase("Mobiliario")){
+                                    out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
+                                    out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
+                                    out.println("<p>Año: " + listaArticulos.get(i).getAnio()+ " </p>");
+                                    out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
+                                    out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
+                                    out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
+                                    //out.println("<p>Dimensiones " + listaArticulos.get(i).getDimensiones()+ " </p>");
+                               } else if(categoriaSubasta.equalsIgnoreCase("Arte")){
+                                    out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
+                                    out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
+                                    out.println("<p>Año: " + listaArticulos.get(i).getAnio()+ " </p>");
+                                    out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
+                                    out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
+                                    out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
+                                    //out.println("<p>Autor " + listaArticulos.get(i).getAutor()+ " </p>");
+                               } else if(categoriaSubasta.equalsIgnoreCase("Numismatica")){
+                                    out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
+                                    out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
+                                    out.println("<p>Año: " + listaArticulos.get(i).getAnio()+ " </p>");
+                                    out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
+                                    out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
+                                    out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
+                                    //out.println("<p>Procedencia " + listaArticulos.get(i).getProcedencia()+ " </p>");
                                }
                                 out.println(" <form action=\"ControladorSubastas\" method=\"Post\" class=\"formulario\">"
                                         + "<input type=\"hidden\" name=\"id-subasta\" value=\"" + listaSubastas.get(i).getId_subasta() + "\" class=\"btn-input\">"
-                                        + "<input type=\"hidden\" name=\"tipo\" value=\"" + tiposubasta + "\" class=\"btn-input\">"
+                                        + "<input type=\"hidden\" name=\"categoria\" value=\"" + categoriaSubasta + "\" class=\"btn-input\">"
                                         + "<input type=\"text\" name=\"puja\" class=\"btn-input\" placeholder=\"Precio\" required>"
                                         + "<input type=\"submit\" value=\"Pujar\" class=\"btn-input\">"
                                         + "</form>"

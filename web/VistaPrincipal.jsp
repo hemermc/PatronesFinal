@@ -1,7 +1,6 @@
 <%-- 
     Document   : VistaPrincipal
-    Created on : 09-ene-2019, 12:28:15
-    Author     : amunguia
+    Author     : Grupo_12
 --%>
 
 <%@page import="com.multimedia.modelo.*"%>
@@ -10,7 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="Página de subastas - Práctica final Multimedia" content="">
+        <meta name="Página de subastas" content="">
         <link rel="icon" href="#"><!-- Favicon -->
         <link rel="stylesheet" href="./css/newstyles.css"/>
         <title>Numismática UAH</title>
@@ -19,56 +18,59 @@
         <div class="contenedor-index">   
             <jsp:include page="ComponenteHeaderNav.jsp"/>
             <div id="content">
-            <div class="line"></div>
+                <div class="line"></div>
 		<div id="pitch">
-			<h1>Nosotros somos una empresa seria de subastas y antiguedades<br /></h1>
-                        <p><em>sabemos que necesitas algo mas, el servicio atento de la compañia, conócenos.</em></p>
+                    <h1>Somos una empresa seria de subastas y antigüedades. <br /></h1>
+                    <p><em>Sabemos que necesitas algo más, el servicio atento de la compañia, conócenos.</em></p>
 		</div>
-            
 		<div class="col">
-					<h2>Subastas Activas</h2>
-					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<form action="ControladorAccesoSubasta" method="get">
-                                            <input type="hidden" name="tipo" value="Monedas">
-                                            <input class="link" type="submit"  value="Acceder" >
-                                        </form>
-                                        
-				</div>
-				<div class="col">
-					<h2>Productos</h2>
-					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<form action="ControladorAccesoSubasta" method="get">
-                                            <input type="hidden" name="tipo" value="Billetes">
-                                            <input class="link" type="submit" value="Acceder">
-                                        </form>	
-				</div>
-				<div class="col last">
-					<h2>Tus Pujas</h2>
-					<p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-					<a class="link" href="#">Acceder</a>
-				</div>
-				<div class="clr"></div>
-			</div>
-			
-			<div class="clr"></div>
-			</div>
-			<div id="footer">
-				<p id="links">
-					<a href="#">Politica de privacidad</a>
-					<a href="#">Terminos de uso</a>
-				</p>
-				<p>
-					<a href="#">Inicio</a>
-					<a href="#">Subastas</a>
-					<a href="#">Productos subastados</a>
-					<a href="#">Contactanos</a>
-					<a href="#">acerca de nosotros</a>
-			
-				</p>
-				<p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
-			</div>
+                    <h2>Mobiliario</h2>
+                    <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Mobiliario.</p>
+                    <form action="ControladorAccesoSubasta" method="get">
+                        <input type="hidden" name="categoria" value="Mobiliario">
+                        <input class="link" type="submit"  value="Acceder" >
+                    </form>                               
+                </div>
+                <div class="col">
+                    <h2>Arte</h2>
+                    <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Arte.</p>
+                    <form action="ControladorAccesoSubasta" method="get">
+                        <input type="hidden" name="categoria" value="Arte">
+                        <input class="link" type="submit" value="Acceder">
+                    </form>	
+                </div>
+                <div class="col">
+                    <h2>Numismática</h2>
+                    <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Numismática.</p>
+                    <form action="ControladorAccesoSubasta" method="get">
+                        <input type="hidden" name="categoria" value="Numismatica">
+                        <input class="link" type="submit" value="Acceder">
+                    </form>	
+                </div>
+                <div class="col last">
+                    <h2>Tus Pujas</h2>
+                    <p>Gestiona tus pujas.</p>
+                    <form action="ControladorPujas" method="get">
+                        <input class="link" type="submit" value="Acceder">
+                    </form>    
+                </div>
+                <div class="clr"></div>
             </div>
-      
+            <div class="clr"></div>
         </div>
+        <div id="footer">
+            <p id="links">
+                <a href="#">Politica de privacidad</a>
+                <a href="#">Terminos de uso</a>
+            </p>
+            <p>
+                <a href="#">Inicio</a>
+                <a href="#">Subastas</a>
+                <a href="#">Productos subastados</a>
+                <a href="#">Contactanos</a>
+                <a href="#">acerca de nosotros</a>
+            </p>
+            <p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
+        </div>   
     </body>
 </html>

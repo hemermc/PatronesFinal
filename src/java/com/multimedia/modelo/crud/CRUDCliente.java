@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo.crud;
 
 import com.multimedia.modelo.Cliente;
@@ -18,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 public class CRUDCliente implements ICRUDGeneral<Cliente>, ICRUDUsuario {
 
@@ -33,7 +29,7 @@ public class CRUDCliente implements ICRUDGeneral<Cliente>, ICRUDUsuario {
     }
 
     /**
-     * Inserta un registro en la tabla Usuarios.
+     * Inserta un registro en la tabla Clientes
      *
      * @param cliente
      */
@@ -152,14 +148,14 @@ public class CRUDCliente implements ICRUDGeneral<Cliente>, ICRUDUsuario {
     public Cliente formatearResultado(ResultSet rs) {
         Cliente cliente = null;
         try {
-            cliente = new Cliente(rs.getString("nombre_usuario"),
-                    rs.getString("clave"),
-                    rs.getString("email"),
-                    rs.getString("nombre"),
+            cliente = new Cliente(rs.getString("nombre"),
                     rs.getString("apellidos"),
                     rs.getString("dni"),
                     rs.getString("direccion_entrega"),
-                    rs.getInt("telefono"));
+                    rs.getInt("telefono"),
+                    rs.getString("email"),
+                    rs.getString("nombre_usuario"),
+                    rs.getString("clave"));
         } catch (SQLException ex) {
             Logger.getLogger(CRUDCliente.class.getName()).log(Level.SEVERE, "No se ha podido formatear la información procedente de la tabla CLIENTES", ex);
         }

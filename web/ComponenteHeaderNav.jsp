@@ -16,7 +16,7 @@ Contiene la cabecera y la barra de navegación
             Boolean administrador = (Boolean) session.getAttribute("administrador");
             if (usuario != null) {//Si el usuario no ha iniciado sesion se muestran los botones de inicio
                 if (administrador) {
-                    out.println(" <li<a href =\"VistaPanelAdmin.jsp\">Panel</a></li>");
+                    out.println("<li><a href =\"VistaPanelAdmin.jsp\">Panel</a></li>");
                 } else {
                     out.println("<li><a href=\"" + request.getContextPath() + "/ControladorPujas\">Mis pujas</a></li>");
                 }
@@ -28,7 +28,6 @@ Contiene la cabecera y la barra de navegación
                 out.println("<li><a href=\"VistaInicioSesion.jsp\">Inicio de Sesion</a></li>");
                 out.println("<li><a href=\"VistaRegistroCliente.jsp\">Registrarse</a></li>");
             } else {
-               // out.println("<i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"></i>");
                 out.println("<li>" + usuario.getNombre_usuario() + "</li>");
                 out.println("<li><a href=\"" + request.getContextPath() + "/ControladorLogout\">Cerrar Sesión</a></li>");
             }

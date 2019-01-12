@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo;
+
+import lombok.Data;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
+@Data
 public class Compras {
     private final Integer id_compra;
     private final float importe;
@@ -16,27 +15,20 @@ public class Compras {
     private final String nombre_usuario;
     
     
+    //Constructor usado para cuando se obtiene una compra de la BBDD
     public Compras(Integer id_compra,float importe,Integer id_subasta,String nombre_usuario){
-        this.id_compra=id_compra;
-        this.importe=importe;
-        this.id_subasta=id_subasta;
-        this.nombre_usuario=nombre_usuario;    
+        this.id_compra = id_compra;
+        this.importe = importe;
+        this.id_subasta = id_subasta;
+        this.nombre_usuario = nombre_usuario;    
     }
 
-    public Integer getId_compra() {
-        return id_compra;
+    // Constructor usado cuando se inserta una compra en la BBDD
+    public Compras(float importe, Integer id_subasta, String nombre_usuario) {
+        this.id_compra = null;
+        this.importe = importe;
+        this.id_subasta = id_subasta;
+        this.nombre_usuario = nombre_usuario;
     }
 
-    public float getImporte() {
-        return importe;
-    }
-
-    public Integer getId_subasta() {
-        return id_subasta;
-    }
-
-    public String getNombre_usuario() {
-        return nombre_usuario;
-    }
-    
 }

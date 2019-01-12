@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
 import com.multimedia.modelo.Cliente;
@@ -24,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 @WebServlet(name = "ControladorInicio", urlPatterns = {"/ControladorInicio"})
 public class ControladorInicio extends HttpServlet {
@@ -64,14 +60,14 @@ public class ControladorInicio extends HttpServlet {
         HttpSession session = request.getSession(); 
             switch (tipoAcceso) {
                 case "registro": {//Solo los clientes se podran registrar desde aqui
-                    Cliente cliente = new Cliente(request.getParameter("nombre_usuario"),
-                            request.getParameter("clave"),
-                            request.getParameter("email"),
-                            request.getParameter("nombre"),
+                    Cliente cliente = new Cliente(request.getParameter("nombre"),
                             request.getParameter("apellidos"),
                             request.getParameter("dni"),
                             request.getParameter("direccion_entrega"),
-                            Integer.parseInt(request.getParameter("telefono")));
+                            Integer.parseInt(request.getParameter("telefono")),
+                            request.getParameter("email"),
+                            request.getParameter("nombre_usuario"),
+                            request.getParameter("clave"));
 
                     CRUDAdministrador crudAdministrador = new CRUDAdministrador(conexion);
 

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo.crud;
 
 import com.multimedia.modelo.Administrador;
@@ -18,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 public class CRUDAdministrador implements ICRUDGeneral<Administrador>, ICRUDUsuario {
 
@@ -34,7 +30,7 @@ public class CRUDAdministrador implements ICRUDGeneral<Administrador>, ICRUDUsua
     }
 
     /**
-     * Inserta un registro en la tabla Usuarios.
+     * Inserta un registro en la tabla Usuarios
      *
      * @param administrador
      */
@@ -76,7 +72,8 @@ public class CRUDAdministrador implements ICRUDGeneral<Administrador>, ICRUDUsua
      */
     @Override
     public void actualizar(Administrador administrador) {
-        String consulta = "UPDATE Administradores SET clave = ?, nivel_permisos = ? WHERE nombre_usuario = ?";
+        String consulta = "UPDATE Administradores "
+                + "SET clave = ?, nivel_permisos = ? WHERE nombre_usuario = ?";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setString(1, administrador.getClave());
             ps.setInt(2, administrador.getNivel_permisos());

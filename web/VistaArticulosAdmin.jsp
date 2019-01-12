@@ -5,8 +5,7 @@
 --%>
 
 <%@page import="com.multimedia.modelo.Usuario"%>
-<%@page import="com.multimedia.modelo.Billete"%>
-<%@page import="com.multimedia.modelo.Billete"%>
+<%@page import="com.multimedia.modelo.Articulo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,75 +22,75 @@
     <body>
         <div class="contenedor-index">
             <jsp:include page="ComponenteHeaderNav.jsp"/>
-            <h1>Gestión de billetes</h1>
+            <h1>Gestión de artículos</h1>
             <div class="insertar">
-                <h2>Añadir Billete</h2>
-                <form action="ControladorGestionBilletes" method="post" class ='formulario'>
+                <h2>Añadir Artículo</h2>
+                <form action="ControladorGestionArticulos" method="post" class ='formulario'>
                     <input type="hidden" name="accion" value="insertar" class="registro-input" required>
-                    <input type="text" name="valor" class="registro-input" placeholder="Valor" required>
+                    <input type="text" name="nombre" class="registro-input" placeholder="Nombre" required>
+                    <input type="text" name="descripcion" class="registro-input" placeholder="Descripción" required>
                     <input type="text" name="anio" class="registro-input" placeholder="Año" required>
-                    <input type="text" name="lugar_emision" class="registro-input" placeholder="Lugar Emisión" required>
-                    <input type="date" name="fecha" class="registro-input" placeholder="Fecha" required>
-                    <input type="text" name="serie" class="registro-input" placeholder="Serie" required>
-                    <select name="conservacion" class="registro-input" required>
+                    <input type="date" name="categoria" class="registro-input" placeholder="Categoria" required>
+                    <input type="date" name="precio" class="registro-input" placeholder="Precio" required>
+                    <select name="estado_conservacion" class="registro-input" required>
                         <option value="" selected disabled>Estado Conservación</option> 
-                        <option value="BC">Buena conservación</option>
-                        <option value="MBC">Muy buena conservación</option>
-                        <option value="EBC">Excelente buena conservación</option>
-                        <option value="SC">Sin circular</option>
+                        <option value="*">Mal estado</option>
+                        <option value="**">Buena conservación</option>
+                        <option value="***">Muy buena conservación</option>
+                        <option value="****">Excelente conservación</option>
+                        <option value="*****">Sin uso</option>
                     </select>
-                    <input type="text" name="precio" class="registro-input" placeholder="Precio" required>
                     <input type="text" name="foto" class="registro-input" placeholder="Foto" required>
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
             <div class="insertar">
-                <h2>Modificar Billete</h2>
-                <form action="ControladorGestionBilletes" method="post" class ='formulario'>
+                <h2>Modificar Artículo</h2>
+                <form action="ControladorGestionArticulos" method="post" class ='formulario'>
                     <input type="hidden" name="accion" value="actualizar" class="registro-input" required>
-                    <input type="text" name="valor" class="registro-input" placeholder="Valor" required>
+                    <input type="text" name="nombre" class="registro-input" placeholder="Nombre" required>
+                    <input type="text" name="descripcion" class="registro-input" placeholder="Descripción" required>
                     <input type="text" name="anio" class="registro-input" placeholder="Año" required>
-                    <input type="text" name="lugar_emision" class="registro-input" placeholder="Lugar Emisión" required>
-                    <input type="date" name="fecha" class="registro-input" placeholder="Fecha" required>
-                    <input type="text" name="serie" class="registro-input" placeholder="Serie" required>
-                    <select name="conservacion" class="registro-input" required>
+                    <input type="date" name="categoria" class="registro-input" placeholder="Categoria" required>
+                    <input type="date" name="precio" class="registro-input" placeholder="Precio" required>
+                    <select name="estado_conservacion" class="registro-input" required>
                         <option value="" selected disabled>Estado Conservación</option> 
-                        <option value="BC">Buena conservación</option>
-                        <option value="MBC">Muy buena conservación</option>
-                        <option value="EBC">Excelente buena conservación</option>
-                        <option value="SC">Sin circular</option>
+                        <option value="*">Mal estado</option>
+                        <option value="**">Buena conservación</option>
+                        <option value="***">Muy buena conservación</option>
+                        <option value="****">Excelente conservación</option>
+                        <option value="*****">Sin uso</option>
                     </select>
-                    <input type="text" name="precio" class="registro-input" placeholder="Precio" required>
                     <input type="text" name="foto" class="registro-input" placeholder="Foto" required>
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
             <div class="insertar">
-                <h2>Eliminar Billete</h2>
-                <form action="ControladorGestionBilletes" method="post" class ='formulario'>
+                <h2>Eliminar Artículo</h2>
+                <form action="ControladorGestionArticulos" method="post" class ='formulario'>
                     <input type="hidden" name="accion" value="eliminar" class="registro-input">
-                    <input type="text" name="lote" class="registro-input" placeholder="lote" required>
+                    <input type="text" name="id_articulo" class="registro-input" placeholder="Articulo" required>
 
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
-            <h2>Billetes registrados</h2>	
+            <h2>Artículos registrados</h2>	
             <div id ="contenedor-panel">
                 <%
-                    ArrayList<Billete> billetes = (ArrayList<Billete>) session.getAttribute("billetes");
+                    ArrayList<Articulo> listaArticulos = (ArrayList<Articulo>) session.getAttribute("articulos");
                     out.println("<div class =\"bloque-grid\">");
-                    if (billetes != null) {
-                        for (Billete billete : billetes) {
+                    if (listaArticulos != null) {
+                        for (Articulo articulo : listaArticulos) {
                             out.println("<div class =\"bloque\">");
                             out.println("<div class=\"informacion-subasta\">");
                             out.println("<img src=\"./res/monedas.jpg\" alt=\"monedas\" width=\"150px\" height=\"100px\">");
                             out.println("</div>");
                             out.println("<div class=\"puja\">");
-                            out.println("<p>Lote: " + billete.getLote() + " </p>");
-                            out.println("<p>Conservación: " + billete.getConservacion() + " </p>");
-                            out.println("<p>Valor: " + billete.getValor() + " </p>");
-                            out.println("<p>Emisión: " + billete.getLugar_emision() + " </p>");
-                            out.println("<p>Año: " + billete.getAnio() + " </p>");
+                            out.println("<p>Lote: " + articulo.getLote() + " </p>");
+                            out.println("<p>Conservación: " + articulo.getConservacion() + " </p>");
+                            out.println("<p>Valor: " + articulo.getValor() + " </p>");
+                            out.println("<p>Emisión: " + articulo.getLugar_emision() + " </p>");
+                            out.println("<p>Año: " + articulo.getAnio() + " </p>");
                             out.println("</div>");
                             out.println("</div>");
                         }

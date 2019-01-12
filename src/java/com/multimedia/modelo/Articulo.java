@@ -1,73 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo;
+
+import lombok.Data;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
+@Data
 public class Articulo {
-
-    protected final Integer lote;
-    protected final String valor;
+    
+    protected final Integer id_articulo;
+    protected final String nombre;
+    protected final String descripcion;
     protected final int anio;
-    protected final String lugar_emision;
-    protected final String conservacion;
+    protected final String estado_conservacion;
     protected final float precio;
+    protected final String categoria;
     protected final String foto;
 
 
-    //Constructor usado para cuando se obtiene un articulo de la BBDD.
-    public Articulo(Integer lote, String valor, int anio, String lugar_emision, String conservacion, float precio, String foto) {
-        this.lote = lote;
-        this.valor = valor;
+    //Constructor usado para cuando se obtiene un articulo de la BBDD
+    public Articulo(Integer id_articulo, String nombre, String descripcion, int anio, String estado_conservacion, float precio, String foto, String categoria) {    
+        this.id_articulo = id_articulo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.anio = anio;
-        this.lugar_emision = lugar_emision;
-        this.conservacion = conservacion;
+        this.estado_conservacion = estado_conservacion;
         this.precio = precio;
         this.foto = foto;
+        this.categoria = categoria;
     }
 
-    // Constructor usado cuando se inserta un articulo en la BBDD.
-    public Articulo(String valor, int anio, String lugar_emision, String conservacion, float precio, String foto) {
-        this.lote = null;
-        this.valor = valor;
+    // Constructor usado cuando se inserta un articulo en la BBDD
+    public Articulo(String nombre, String descripcion, int anio, String estado_conservacion, float precio, String foto, String categoria) {
+        this.id_articulo = null;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.anio = anio;
-        this.lugar_emision = lugar_emision;
-        this.conservacion = conservacion;
+        this.estado_conservacion = estado_conservacion;
         this.precio = precio;
         this.foto = foto;
-    }
-
-    public Integer getLote() {
-        return lote;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public int getAnio() {
-        return anio;
-    }
-
-    public String getLugar_emision() {
-        return lugar_emision;
-    }
-
-    public String getConservacion() {
-        return conservacion;
-    }
-
-    public float getPrecio() {
-        return precio;
-    }
-
-    public String getFoto() {
-        return foto;
+        this.categoria = categoria;
     }
     
 }

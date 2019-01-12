@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
 import com.multimedia.modelo.GestionBBDDLocalhost;
@@ -20,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 @WebServlet(name = "ControladorActivarSubasta", urlPatterns = {"/ControladorActivarSubasta"})
 public class ControladorActivarSubasta extends HttpServlet {
@@ -84,8 +80,11 @@ public class ControladorActivarSubasta extends HttpServlet {
             String id = request.getParameter("id-subasta");
             CRUDSubasta subastas = new CRUDSubasta(conexion);
             Subasta subasta = subastas.obtenerEspecifico(id);
-            subasta.setActiva(!subasta.isActiva());
-            subastas.actualizar(subasta);
+            
+            if(subasta.getEstado().equals("Inactiva")){
+                subasta.setEstado("Activa");
+                subastas.actualizar(subasta);
+            }
             response.sendRedirect(request.getContextPath()+"/ControladorGestionSubastas");
         } else {//Si el cliente no ha iniciado sesión
             response.sendRedirect("./VistaInicioSesion.jsp");

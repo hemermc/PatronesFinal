@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
 import com.multimedia.modelo.GestionBBDDLocalhost;
@@ -22,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 @WebServlet(name = "ControladorSubastas", urlPatterns = {"/ControladorSubastas"})
 public class ControladorSubastas extends HttpServlet {
@@ -54,12 +50,13 @@ public class ControladorSubastas extends HttpServlet {
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         Usuario user = (Usuario) session.getAttribute("usuario");
+        
         CRUDSubasta usoSubasta = new CRUDSubasta(conexion);
         String idsubasta = request.getParameter("id-subasta");
         Subasta subasta = usoSubasta.obtenerEspecifico(idsubasta);
-        String tipo = request.getParameter("tipo");
+        String categoria = request.getParameter("categoria");
 
-        if (Float.parseFloat(request.getParameter("puja")) > subasta.getPrecioFinal()) {
+        if (Float.parseFloat(request.getParameter("puja")) > subasta.getPrecio_final()) {
             CRUDPujas usoPuja = new CRUDPujas(conexion);
             Puja puja = new Puja(
                     Integer.parseInt(request.getParameter("id-subasta")),
@@ -71,12 +68,11 @@ public class ControladorSubastas extends HttpServlet {
             } else {//Si no existe la puja se crea
                 usoPuja.insertar(puja);
             }
-            subasta.setPrecioFinal(Float.parseFloat(request.getParameter("puja")));
+            subasta.setPrecio_final(Float.parseFloat(request.getParameter("puja")));
             usoSubasta.actualizar(subasta);//Se actualiza la puja más alta
         }
-        
        
-        session.setAttribute("lista-subastas", usoSubasta.obtenerTipo(tipo));
+        session.setAttribute("lista-subastas", usoSubasta.obtenerCategoria(categoria));
         /*DEVUELVE TAMBIEN LOS DATOS DEL ARTICULO
         if (tipo.equalsIgnoreCase("Monedas")) {
             CRUDMoneda usoMoneda = new CRUDMoneda(conexion);

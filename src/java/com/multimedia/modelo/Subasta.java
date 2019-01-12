@@ -1,84 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
+import lombok.Data;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
+@Data
 public class Subasta {
 
     private final Integer id_subasta;
     private final String nombre;
-    private final float precioInicial;
-    private float precioFinal;
-    private final LocalDate fecha;
-    private boolean activa;
-    private final int lote;
+    private final float precio_inicial;
+    private float precio_final;
+    private final LocalDate fecha_alta;
+    private final LocalDate fecha_cierre;
+    private String estado;
+    private final int id_articulo;
 
-    public void setActiva(boolean activa) {
-        this.activa = activa;
-    }
-
-    //Constructor para almacenar los datos procedentes de la BBDD
-    public Subasta(Integer id_subasta, String nombre, float precioInicial, float precioFinal, LocalDate fecha, boolean activa, int lote) {
+    
+    //Constructor usado para cuando se obtiene una subasta de la BBDD
+    public Subasta(Integer id_subasta, String nombre, float precio_inicial, float precio_final, LocalDate fecha_alta, LocalDate fecha_cierre, String estado, int id_articulo) {
         this.id_subasta = id_subasta;
         this.nombre = nombre;
-        this.precioInicial = precioInicial;
-        this.precioFinal = precioFinal;
-        this.fecha = fecha;
-        this.activa = activa;
-        this.lote = lote;
-    }
-
-    //Constructor para añadir una subasta
-    public Subasta(String nombre, float precioInicial, float precioFinal, LocalDate fecha, boolean activa, int lote) {
-        this.id_subasta = null;
-        this.nombre = nombre;
-        this.precioInicial = precioInicial;
-        this.precioFinal = precioFinal;
-        this.fecha = fecha;
-        this.activa = activa;
-        this.lote = lote;
-    }
-
-    public Integer getId_subasta() {
-        return id_subasta;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-    private static final Logger LOG = Logger.getLogger(Subasta.class.getName());
-
-    public float getPrecioInicial() {
-        return precioInicial;
-    }
-
-    public float getPrecioFinal() {
-        return precioFinal;
-    }
-
-    public void setPrecioFinal(float preciofinal) {
-        precioFinal = preciofinal;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public boolean isActiva() {
-        return activa;
-    }
-
-    public int getLote() {
-        return lote;
+        this.precio_inicial = precio_inicial;
+        this.precio_final = precio_final;
+        this.fecha_alta = fecha_alta;
+        this.fecha_cierre = fecha_cierre;
+        this.estado = estado;
+        this.id_articulo = id_articulo;
     }
     
+    // Constructor usado cuando se inserta una subasta en la BBDD
+    public Subasta(String nombre, float precio_inicial, float precio_final, LocalDate fecha_alta, LocalDate fecha_cierre, String estado, int id_articulo) {
+        this.id_subasta = null;
+        this.nombre = nombre;
+        this.precio_inicial = precio_inicial;
+        this.precio_final = precio_final;
+        this.fecha_alta = fecha_alta;
+        this.fecha_cierre = fecha_cierre;
+        this.estado = estado;
+        this.id_articulo = id_articulo;
+    }
 }

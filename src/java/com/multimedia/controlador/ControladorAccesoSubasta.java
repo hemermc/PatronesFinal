@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.controlador;
 
+import com.multimedia.modelo.Articulo;
 import com.multimedia.modelo.GestionBBDDLocalhost;
 import com.multimedia.modelo.Subasta;
-import com.multimedia.modelo.crud.CRUDBillete;
-import com.multimedia.modelo.crud.CRUDMoneda;
+import com.multimedia.modelo.crud.CRUDArticulo;
 import com.multimedia.modelo.crud.CRUDSubasta;
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 
 @WebServlet(name = "ControladorAccesoSubasta", urlPatterns = {"/ControladorAccesoSubasta"})
@@ -29,7 +25,7 @@ public class ControladorAccesoSubasta extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        super.init(); //To change body of generated methods, choose Tools | Templates.
+        super.init();
     }
 
     /**
@@ -47,28 +43,22 @@ public class ControladorAccesoSubasta extends HttpServlet {
         if (session.getAttribute("usuario") != null) {//Existe un usuario logueado
             GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
             Connection conexion = gestionDB.establecerConexion();
-            String tipo = request.getParameter("tipo");
+            String categoria = request.getParameter("categoria");
             CRUDSubasta subastas = new CRUDSubasta(conexion);
-            CRUDMoneda monedas = new CRUDMoneda(conexion);
-            CRUDBillete billetes = new CRUDBillete(conexion);
+            CRUDArticulo articulo = new CRUDArticulo(conexion);
 
-            session.setAttribute("lista-subastas", subastas.obtenerTipo(tipo));
-            ArrayList<Subasta> lassubastas= subastas.obtenerTipo(tipo);
-            ArrayList<Object> listalote =new ArrayList();
+            ArrayList<Subasta> listaSubastas = subastas.obtenerCategoria(categoria);
+            ArrayList<Articulo> listaArticulos = new ArrayList();
             
-            if (tipo.equalsIgnoreCase("Monedas")) {//Se accede a una subasta de Monedas
-                session.setAttribute("tipo-subasta", "Monedas");
-                for (Subasta subasta: lassubastas){
-                   listalote.add(monedas.obtenerEspecifico(String.valueOf(subasta.getLote()))); 
-                    }
-            } else if (tipo.equalsIgnoreCase("Billetes")) {//Se acceder a una subasta de Billetes
-                session.setAttribute("tipo-subasta", "Billetes");
-                for (Subasta subasta: lassubastas){
-                    listalote.add(billetes.obtenerEspecifico(String.valueOf(subasta.getLote())));  
-                 }
+            if (categoria.equals("Mobiliario") || categoria.equals("Arte") || categoria.equals("Numismatica")) {
+                for (Subasta subasta: listaSubastas){
+                   listaArticulos.add(articulo.obtenerEspecifico(String.valueOf(subasta.getId_articulo()))); 
+                }
             }
             
-            session.setAttribute("listalote", listalote);
+            session.setAttribute("categoria-subasta", categoria);
+            session.setAttribute("lista-subastas", listaSubastas);
+            session.setAttribute("lista-articulos", listaArticulos);
             response.sendRedirect("./VistaSubastasCliente.jsp");
         } else {//Si el cliente no ha iniciado sesión
             response.sendRedirect("./VistaInicioSesion.jsp");

@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
+@Getter
+@Setter
 public class Cliente extends Usuario{
-    
     private final String nombre;
     private final String apellidos;
     private final String dni;
@@ -18,38 +18,15 @@ public class Cliente extends Usuario{
     private final int telefono;
     private final String email;
 
-    public Cliente(String nombre_usuario, String clave, String email, String nombre, String apellidos, String dni, String direccion_entrega, int telefono) {
+    
+    public Cliente(String nombre, String apellidos, String dni, String direccion_entrega, int telefono, String email, String nombre_usuario, String clave) {
         super(nombre_usuario, clave);
-        this.email = email;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.direccion_entrega = direccion_entrega;
         this.telefono = telefono;
+        this.email = email;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public String getDireccion_entrega() {
-        return direccion_entrega;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-   
+    
 }

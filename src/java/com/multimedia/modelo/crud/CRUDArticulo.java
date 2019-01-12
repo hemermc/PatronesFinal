@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.multimedia.modelo.crud;
 
 import com.multimedia.modelo.Articulo;
@@ -18,49 +14,52 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 public class CRUDArticulo implements ICRUDGeneral<Articulo> {
 
     private final Connection conexion;
-    private Integer idInsercion;
+    private Integer id_articulo;
 
     public CRUDArticulo(Connection conexion) {
         this.conexion = conexion;
-        idInsercion = null;
+        id_articulo = null;
     }
 
-    /*
-    CAMPOS DE LA TABLA(Lote, valor, año, lugar de emisión, conservación, precio, <<foto>>)
-     */
     @Override
     public void insertar(Articulo articulo) {
-        String consultaArticulo = "INSERT INTO Articulos(valor, anio, lugar_emision, conservacion, precio, foto) VALUES (?, ?, ?, ?, ?, ?)";
+        String consultaArticulo = "INSERT INTO Articulos"
+                + "(nombre, descripcion, anio, estado_conservacion, precio, categoria, foto) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consultaArticulo)) {
-            ps.setString(1, articulo.getValor());
-            ps.setInt(2, articulo.getAnio());
-            ps.setString(3, articulo.getLugar_emision());
-            ps.setString(4, articulo.getConservacion());
+            ps.setString(1, articulo.getNombre());
+            ps.setString(2, articulo.getDescripcion());
+            ps.setInt(3, articulo.getAnio());
+            ps.setString(4, articulo.getEstado_conservacion());
             ps.setFloat(5, articulo.getPrecio());
-            ps.setString(6, articulo.getFoto());
+            ps.setString(6, articulo.getCategoria());
+            ps.setString(7, articulo.getFoto());
             ps.executeUpdate();
+            
             Statement st = conexion.createStatement();
+            //Recupera el id_articulo del último articulo insertado para insertar el articulo especifico en su tabla correspondiente
             ResultSet rs = st.executeQuery("SELECT MAX(lote) as lote FROM Articulos");
+            
             if (rs.next()) {
-                idInsercion = rs.getInt("lote");//Recupera el lote del ultimo articulo insertado
+                id_articulo = rs.getInt("id_articulo");
             }
         } catch (SQLException ex) {
             Logger.getLogger(CRUDArticulo.class.getName()).log(Level.SEVERE, "Error al insertar un registro de la tabla ARTICULOS", ex);
         }
     }
 
-    public Integer getIdInsercion() {
-        return idInsercion;
+    public Integer getId_articulo() {
+        return id_articulo;
     }
 
     @Override
     public void eliminar(String lote) {
-        String consulta = "DELETE FROM Articulos WHERE lote = ?";
+        String consulta = "DELETE FROM Articulos WHERE id_articulo = ?";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setInt(1, Integer.parseInt(lote));
             ps.executeUpdate();
@@ -71,15 +70,18 @@ public class CRUDArticulo implements ICRUDGeneral<Articulo> {
 
     @Override
     public void actualizar(Articulo articulo) {
-        String consulta = "UPDATE Articulos SET valor = ?, anio = ?, lugar_emision = ?, conservacion = ?, precio = ?, foto = ? WHERE lote = ?";
+        String consulta = "UPDATE Articulos "
+                + "SET nombre = ?, descripcion = ?, anio = ?, estado_conservacion = ?, precio = ?, categoria = ?, foto = ? "
+                + "WHERE id_articulo = ?";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
-            ps.setString(1, articulo.getValor());
-            ps.setInt(2, articulo.getAnio());
-            ps.setString(3, articulo.getLugar_emision());
-            ps.setString(4, articulo.getConservacion());
+            ps.setString(1, articulo.getNombre());
+            ps.setString(2, articulo.getDescripcion());
+            ps.setInt(3, articulo.getAnio());
+            ps.setString(4, articulo.getEstado_conservacion());
             ps.setFloat(5, articulo.getPrecio());
-            ps.setString(6, articulo.getFoto());
-            ps.setInt(7, articulo.getLote());//Lote especificado
+            ps.setString(6, articulo.getCategoria());
+            ps.setString(7, articulo.getFoto());
+            ps.setInt(8, articulo.getId_articulo());
             ps.executeUpdate();//Envia la consulta a la bbdd
         } catch (SQLException ex) {
             Logger.getLogger(CRUDArticulo.class.getName()).log(Level.SEVERE, "Error al actualizar un registro de la tabla ARTICULOS", ex);
@@ -89,7 +91,8 @@ public class CRUDArticulo implements ICRUDGeneral<Articulo> {
     @Override
     public Articulo obtenerEspecifico(String lote) {
         Articulo articulo = null;
-        String consulta = "SELECT * FROM Articulos WHERE lote = ?";
+        String consulta = "SELECT * FROM Articulos WHERE id_articulo = ?";
+        
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setInt(1, Integer.parseInt(lote));
             try (ResultSet rs = ps.executeQuery()) {
@@ -120,23 +123,25 @@ public class CRUDArticulo implements ICRUDGeneral<Articulo> {
     }
 
     /**
-     * Genera un objeto procedente de los datos que devuelve la BBDD.
+     * Genera un objeto procedente de los datos que devuelve la BBDD
      *
-     * @param rs ResultSet con los datos.
-     * @return Objeto que contiene los datos.
+     * @param rs ResultSet con los datos
+     * @return Objeto que contiene los datos
      */
     @Override
     public Articulo formatearResultado(ResultSet rs) {
         Articulo articulo = null;
         try {
             articulo = new Articulo(
-                    rs.getInt("lote"),
-                    rs.getString("valor"),
+                    rs.getInt("id_articulo"),
+                    rs.getString("nombre"),
+                    rs.getString("descripcion"),
                     rs.getInt("anio"),
-                    rs.getString("lugar_emision"),
-                    rs.getString("conservacion"),
+                    rs.getString("estado_conservacion"),
                     rs.getFloat("precio"),
-                    rs.getString("foto"));
+                    rs.getString("foto"),
+                    rs.getString("categoria")
+            );
         } catch (SQLException ex) {
             Logger.getLogger(CRUDArticulo.class.getName()).log(Level.SEVERE, "No se ha podido formatear la información procedente de la tabla ARTICULOS", ex);
         }
