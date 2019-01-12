@@ -21,8 +21,8 @@
         <title>Numismática UAH</title>
     </head>
     <body>
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
             <h1>Gestión de billetes</h1>
             <div class="insertar">
                 <h2>Añadir Billete</h2>

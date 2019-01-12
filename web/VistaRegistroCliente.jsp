@@ -16,9 +16,9 @@
         <link rel="stylesheet" href="./css/newstyles.css"/>
         <title>Numimástica UAH</title>
     </head>
-    <body>
+    <body style="overflow-x:hidden; overflow-y:scroll;" >
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
             <div class="contenedor-registro">
                 <div class="registro">  
                     <form action="ControladorInicio" method="post" class ='formulario'>
@@ -36,11 +36,22 @@
                     </form>	
                 </div>
             </div>
-            <footer>
-                <ul>
-                    <li>&copy; 2019 Patrones</li>
-                </ul>
-            </footer>
+            
+        </div>
+        <div id="footer">
+            <p id="links">
+                <a href="#">Politica de privacidad</a>
+                <a href="#">Terminos de uso</a>
+            </p>
+            <p>
+                <a href="#">Inicio</a>
+                <a href="#">Subastas</a>
+                <a href="#">Productos subastados</a>
+                <a href="#">Contactanos</a>
+                <a href="#">acerca de nosotros</a>
+
+            </p>
+            <p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
         </div>
     </body>
 </html>

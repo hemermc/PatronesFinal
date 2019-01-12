@@ -3,6 +3,9 @@ Contiene la cabecera y la barra de navegación
 --%>
 
 <%@page import="com.multimedia.modelo.Usuario"%>
+<script src="./js/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="./js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="./js/jquery-func.js" type="text/javascript"></script>
 <div id="header">
     <div class="shell">
         <h1 id="logo"><a href="VistaPrincipal.jsp">Subasta<span>&amp;</span>Antiguedades</a></h1>

@@ -5,12 +5,16 @@
  */
 package com.multimedia.controlador;
 
+import com.multimedia.modelo.Cliente;
 import com.multimedia.modelo.GestionBBDDLocalhost;
 import com.multimedia.modelo.Puja;
 import com.multimedia.modelo.Subasta;
 import com.multimedia.modelo.Usuario;
+import com.multimedia.modelo.crud.CRUDCliente;
 import com.multimedia.modelo.crud.CRUDPujas;
 import com.multimedia.modelo.crud.CRUDSubasta;
+import com.patrones.Observador;
+import com.patrones.Sujeto;
 import java.io.IOException;
 import java.sql.Connection;
 import javax.servlet.ServletException;
@@ -55,6 +59,7 @@ public class ControladorSubastas extends HttpServlet {
         HttpSession session = request.getSession(true);
         Usuario user = (Usuario) session.getAttribute("usuario");
         CRUDSubasta usoSubasta = new CRUDSubasta(conexion);
+        CRUDCliente usoCli = new CRUDCliente(conexion);
         String idsubasta = request.getParameter("id-subasta");
         Subasta subasta = usoSubasta.obtenerEspecifico(idsubasta);
         String tipo = request.getParameter("tipo");
@@ -65,8 +70,14 @@ public class ControladorSubastas extends HttpServlet {
                     Integer.parseInt(request.getParameter("id-subasta")),
                     user.getNombre_usuario(),
                     Float.parseFloat(request.getParameter("puja")));
-
-            if (usoPuja.obtenerEspecifico(idsubasta, user.getNombre_usuario()) != null) {//Si exite la puja la actualiza
+            Puja pujaAntigua = usoPuja.obtenerEspecifico(idsubasta, user.getNombre_usuario());
+            if (pujaAntigua != null) {//Si exite la puja la actualiza
+                Sujeto s = new Sujeto();
+            s.setPuja(pujaAntigua);
+            Cliente antiguo = usoCli.obtenerEspecifico(pujaAntigua.getNombre_usuario());
+            Observador o = new Observador("obs1",puja, antiguo,s);
+            s.notificarObservadores();
+                
                 usoPuja.actualizar(puja);
             } else {//Si no existe la puja se crea
                 usoPuja.insertar(puja);

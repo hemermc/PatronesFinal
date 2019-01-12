@@ -37,15 +37,10 @@ a { outline: 0; color: #304D6F; text-decoration: none; }
 li { list-style: none; }
 li a, img { display: block; }
 
-#wrapper { width: 984px; margin: auto; }
 .clr { clear: both; }
 #logo { float: left; padding: 30px 15px; }
 	#logo h1 a { color: #fff; }
 		#logo h1 a span { color: #808080; }
-#menu { height: 44px; padding: 5px 0 0 4px; }
-	#menu li { float: left; font-size: 1.3em; text-transform: uppercase; }
-		#menu li a { color: #888; margin: 0 50px 0 0; }
-			#menu li a.current, #menu li a:hover { color: #fff; }			
 #pitch { clear: both; background: url(../res/pitch.jpg) no-repeat; height: 228px; margin: 0 0 30px; padding: 60px 360px 0 30px; }
         #pitch h1 { font-size: 2.4em; color: #304D6F; margin: 0 0 20px; }
         #pitch em { font-size: 1.3em; font-weight: bold; line-height: 1.6em; }
@@ -231,7 +226,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 #navigation ul li.last{background:transparent; padding-right:0; margin-right:0; }
 #navigation ul li a{ float:left; color:#fff; text-decoration: none;}
 
-#navigation ul li a em { width:90px; height:20px; background:url(../res/nav-hover.gif) no-repeat 0 -200px; position:absolute; top:33px; left:-55px;}
+#navigation ul li a em { width:90px; height:18px; background:url(../res/nav-hover.gif) no-repeat 0 -200px; position:absolute; top:33px; left:-55px;}
 #navigation ul li.last a em { left:-45px;}
 #navigation ul li a span { font-size:0; line-height:0; width:0; height:0; position:absolute; left:50%;}
 

@@ -5,14 +5,17 @@
  */
 package com.multimedia.modelo;
 
+import com.patrones.Observador;
+import com.patrones.SujetoInterface;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
  *
  * @author amunguia
  */
-public class Subasta {
+public class Subasta{
 
     private final Integer id_subasta;
     private final String nombre;
@@ -80,5 +83,4 @@ public class Subasta {
     public int getLote() {
         return lote;
     }
-    
 }

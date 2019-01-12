@@ -20,8 +20,8 @@
         <title>Numismática UAH</title>
     </head>
     <body>
-        <div class="contenedor-index">
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
+        <div class="contenedor-index">    
             <h1>Gestión de monedas</h1>
             <div class="insertar">
                 <h2>Añadir</h2>

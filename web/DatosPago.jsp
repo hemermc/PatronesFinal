@@ -19,9 +19,9 @@
         <title>Numismática UAH</title>
     </head>
     <body>
+         <jsp:include page="ComponenteHeaderNav.jsp"/>
           <div class="contenedor-index">
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
-                <div class="contenedor-registro">
+               <div class="contenedor-registro">
                 <div class="registro">  
                     <%  
                         Cliente user = (Cliente )session.getAttribute("seguirregistro");
