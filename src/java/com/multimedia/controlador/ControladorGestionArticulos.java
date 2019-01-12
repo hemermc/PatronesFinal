@@ -4,9 +4,13 @@ package com.multimedia.controlador;
 import com.multimedia.modelo.Articulo;
 import com.multimedia.modelo.GestionBBDDLocalhost;
 import com.multimedia.modelo.crud.CRUDArticulo;
+import com.patrones.builder.BuilderArte;
+import com.patrones.builder.BuilderArticulo;
+import com.patrones.builder.BuilderMobiliario;
+import com.patrones.builder.BuilderNumismatica;
+import com.patrones.builder.Director;
 import java.io.IOException;
 import java.sql.Connection;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,30 +59,47 @@ public class ControladorGestionArticulos extends HttpServlet {
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         String accion = request.getParameter("accion");
+        String categoria = request.getParameter("categoria");
         CRUDArticulo gestionArticulos = new CRUDArticulo(conexion);
-
+        Director director = new Director();
+        BuilderArticulo bArticulo = null; 
+        Articulo articulo;
+        
+        switch (categoria) {
+            case "Mobiliario":
+                bArticulo = new BuilderMobiliario();
+                break;
+            case "Arte":
+                bArticulo = new BuilderArte();
+                break;
+            case "Numismatica":
+                bArticulo = new BuilderNumismatica();
+                break;
+            default:
+                break;
+        }
+        
+        director.setBuilderArticulo(bArticulo);
+        director.crearArticulo(
+                Integer.parseInt(request.getParameter("id-articulo")),
+                request.getParameter("nombre"),
+                request.getParameter("descripcion"),
+                Integer.parseInt(request.getParameter("anio")),
+                request.getParameter("estado_conservacion"),
+                Float.parseFloat(request.getParameter("precio")),
+                request.getParameter("foto"),
+                request.getParameter("dimensiones"),
+                request.getParameter("autor"),
+                request.getParameter("procedencia"));
+        articulo = director.getArticulo();
+        
         switch (accion) {
-            case "insertar": {
-                gestionArticulos.insertar(new Articulo(
-                        request.getParameter("nombre"),
-                        request.getParameter("descripcion"),
-                        Integer.parseInt(request.getParameter("anio")),
-                        request.getParameter("estado_conservacion"),
-                        Float.parseFloat(request.getParameter("precio")),
-                        request.getParameter("foto"),
-                        request.getParameter("categoria")));
+            case "insertar": {                           
+                gestionArticulos.insertar(articulo);
                 break;
             }
             case "actualizar": {
-                gestionArticulos.actualizar(new Articulo(
-                        Integer.parseInt(request.getParameter("id_articulo")),
-                        request.getParameter("nombre"),
-                        request.getParameter("descripcion"),
-                        Integer.parseInt(request.getParameter("anio")),
-                        request.getParameter("estado_conservacion"),
-                        Float.parseFloat(request.getParameter("precio")),
-                        request.getParameter("foto"),
-                        request.getParameter("categoria")));
+                gestionArticulos.actualizar(articulo);
                 break;
             }
             case "eliminar":{

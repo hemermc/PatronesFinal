@@ -65,10 +65,11 @@
                             out.println("</div>");
                             out.println("<div class=\"puja\">");
                             out.println("<p>Id Subasta: " + subasta.getId_subasta() + " </p>");
-                            out.println("<p>Fecha: " + subasta.getFecha() + " </p>");
-                            out.println("<p>Precio Inicial: " + subasta.getPrecioInicial() + " </p>");
-                            out.println("<p>Precio final: " + subasta.getPrecioInicial() + " </p>");
-                            out.println("<p>Activa " + subasta.isActiva() + " </p>");
+                            out.println("<p>Fecha alta: " + subasta.getFecha_alta()+ " </p>");
+                            out.println("<p>Fecha cierre: " + subasta.getFecha_cierre()+ " </p>");
+                            out.println("<p>Precio Inicial: " + subasta.getPrecio_inicial()+ " </p>");
+                            out.println("<p>Precio final: " + subasta.getPrecio_final()+ " </p>");
+                            out.println("<p>Estado " + subasta.getEstado()+ " </p>");
                             out.println(" <form action=\"ControladorActivarSubasta\" method=\"Post\" class=\"formulario\">"
                                     + "<input type=\"hidden\" name=\"id-subasta\" value=\"" + subasta.getId_subasta() + "\" class=\"btn-input\">"
                                     + "<input type=\"submit\" value=\"Activar/Desactivar\" class=\"btn-input\">"

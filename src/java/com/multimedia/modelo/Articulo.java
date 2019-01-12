@@ -10,38 +10,16 @@ import lombok.Data;
 @Data
 public class Articulo {
     
-    protected final Integer id_articulo;
-    protected final String nombre;
-    protected final String descripcion;
-    protected final int anio;
-    protected final String estado_conservacion;
-    protected final float precio;
-    protected final String categoria;
-    protected final String foto;
-
-
-    //Constructor usado para cuando se obtiene un articulo de la BBDD
-    public Articulo(Integer id_articulo, String nombre, String descripcion, int anio, String estado_conservacion, float precio, String foto, String categoria) {    
-        this.id_articulo = id_articulo;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.anio = anio;
-        this.estado_conservacion = estado_conservacion;
-        this.precio = precio;
-        this.foto = foto;
-        this.categoria = categoria;
-    }
-
-    // Constructor usado cuando se inserta un articulo en la BBDD
-    public Articulo(String nombre, String descripcion, int anio, String estado_conservacion, float precio, String foto, String categoria) {
-        this.id_articulo = null;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.anio = anio;
-        this.estado_conservacion = estado_conservacion;
-        this.precio = precio;
-        this.foto = foto;
-        this.categoria = categoria;
-    }
+    private int id_articulo;
+    private String nombre;
+    private String descripcion;
+    private int anio;
+    private String estado_conservacion;
+    private float precio;
+    private String categoria;
+    private String foto;
+    private String dimensiones;
+    private String procedencia;
+    private String autor;
     
 }

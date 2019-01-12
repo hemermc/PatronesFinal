@@ -9,13 +9,11 @@ Contiene la cabecera y la barra de navegación
 <div id="header">
     <div class="shell">
         <h1 id="logo"><a href="VistaPrincipal.jsp">Subasta<span>&amp;</span>Antiguedades</a></h1>
-       <!-- <div><img src="res/UAH.png" height = "70"/></div>-->
-
-        <!--div id="content"-->
         <div id="navigation">
             <ul>
-                <li><a href="VistaPrincipal.jsp">Inicio<em></em></a></li>
-
+                <li>
+                    <a href="VistaPrincipal.jsp">Inicio<span><em></em></span></a>
+                </li>
                 <% //Comprueba si es un administrador o un cliente
                     Usuario usuario = (Usuario) session.getAttribute("usuario");
                     Boolean administrador = (Boolean) session.getAttribute("administrador");
@@ -27,7 +25,9 @@ Contiene la cabecera y la barra de navegación
                         }
                     }
                 %>
-                <li><a href="VistaContacto.jsp">Contacto<span><em></em></span></a></li>
+                <li>
+                    <a href="VistaContacto.jsp">Contacto<span><em></em></span></a>
+                </li>
                 <% //Comprueba si ha iniciado sesión
                     if (usuario == null) {
                         out.println("<li><a href=\"VistaInicioSesion.jsp\">Inicio de Sesion<span><em></em></span></a></li>");

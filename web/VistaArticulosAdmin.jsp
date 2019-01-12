@@ -23,6 +23,13 @@
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
             <h1>Gestión de artículos</h1>
+            <h2>Seleccione la categoría del artículo que desea gestionar:</h2>
+            <select name="categoria" class="registro-input" required>
+                <option value="" selected disabled>Categoría</option> 
+                <option value="Arte">Arte</option>
+                <option value="Mobiliario">Mobiliario</option>
+                <option value="Numismatica">Numismática</option>
+            </select>
             <div class="insertar">
                 <h2>Añadir Artículo</h2>
                 <form action="ControladorGestionArticulos" method="post" class ='formulario'>
@@ -86,13 +93,13 @@
                             out.println("<img src=\"./res/monedas.jpg\" alt=\"monedas\" width=\"150px\" height=\"100px\">");
                             out.println("</div>");
                             out.println("<div class=\"puja\">");
-                            out.println("<p>Lote: " + articulo.getLote() + " </p>");
-                            out.println("<p>Conservación: " + articulo.getConservacion() + " </p>");
-                            out.println("<p>Valor: " + articulo.getValor() + " </p>");
-                            out.println("<p>Emisión: " + articulo.getLugar_emision() + " </p>");
-                            out.println("<p>Año: " + articulo.getAnio() + " </p>");
-                            out.println("</div>");
-                            out.println("</div>");
+                            out.println("<p>Nombre " + articulo.getNombre()+ " </p>");
+                            out.println("<p>Descripcion " + articulo.getDescripcion()+ " </p>");
+                            out.println(" <form action=\"ControladorDetalleArticulo\" method=\"Post\" class=\"formulario\">"
+                                    + "<input type=\"hidden\" name=\"id-articulo\" value=\"" + articulo.getId_articulo()+ "\" class=\"btn-input\">"
+                                    + "<input type=\"submit\" value=\"Detalle\" class=\"btn-input\">"
+                                    + "</form>"
+                                    + "</div>");
                         }
                     } else {
                         out.println("<h2>No hay billetes registrados</h2>");

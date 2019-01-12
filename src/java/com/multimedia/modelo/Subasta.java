@@ -1,8 +1,8 @@
 
 package com.multimedia.modelo;
 
-import com.patrones.Observador;
-import com.patrones.SujetoInterface;
+import com.patrones.observer.Observador;
+import com.patrones.observer.SujetoInterface;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -15,14 +15,14 @@ import lombok.Data;
 @Data
 public class Subasta {
 
-    private final Integer id_subasta;
-    private final String nombre;
-    private final float precio_inicial;
+    private Integer id_subasta;
+    private String nombre;
+    private float precio_inicial;
     private float precio_final;
-    private final LocalDate fecha_alta;
-    private final LocalDate fecha_cierre;
+    private LocalDate fecha_alta;
+    private LocalDate fecha_cierre;
     private String estado;
-    private final int id_articulo;
+    private int id_articulo;
 
     
     //Constructor usado para cuando se obtiene una subasta de la BBDD

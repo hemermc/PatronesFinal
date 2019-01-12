@@ -11,12 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Cliente extends Usuario{
-    private final String nombre;
-    private final String apellidos;
-    private final String dni;
-    private final String direccion_entrega;
-    private final int telefono;
-    private final String email;
+    private String nombre;
+    private String apellidos;
+    private String dni;
+    private String direccion_entrega;
+    private int telefono;
+    private String email;
 
     
     public Cliente(String nombre, String apellidos, String dni, String direccion_entrega, int telefono, String email, String nombre_usuario, String clave) {

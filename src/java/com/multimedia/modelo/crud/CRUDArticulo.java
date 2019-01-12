@@ -2,6 +2,11 @@
 package com.multimedia.modelo.crud;
 
 import com.multimedia.modelo.Articulo;
+import com.patrones.builder.BuilderArte;
+import com.patrones.builder.BuilderArticulo;
+import com.patrones.builder.BuilderMobiliario;
+import com.patrones.builder.BuilderNumismatica;
+import com.patrones.builder.Director;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,17 +136,36 @@ public class CRUDArticulo implements ICRUDGeneral<Articulo> {
     @Override
     public Articulo formatearResultado(ResultSet rs) {
         Articulo articulo = null;
+        Director director = new Director();
+        BuilderArticulo bArticulo = null;
+        
         try {
-            articulo = new Articulo(
-                    rs.getInt("id_articulo"),
-                    rs.getString("nombre"),
-                    rs.getString("descripcion"),
-                    rs.getInt("anio"),
-                    rs.getString("estado_conservacion"),
-                    rs.getFloat("precio"),
-                    rs.getString("foto"),
-                    rs.getString("categoria")
-            );
+            switch (rs.getString("categoria")) {
+                case "Mobiliario":
+                    bArticulo = new BuilderMobiliario();
+                    break;
+                case "Arte":
+                    bArticulo = new BuilderArte();
+                    break;
+                case "Numismatica":
+                    bArticulo = new BuilderNumismatica();
+                    break;
+                default:
+                    break;
+            }
+            director.setBuilderArticulo(bArticulo);
+            director.crearArticulo(rs.getInt("id_articulo"),
+                rs.getString("nombre"),
+                rs.getString("descripcion"),
+                rs.getInt("anio"),
+                rs.getString("estado_conservacion"),
+                rs.getFloat("precio"),
+                rs.getString("foto"),
+                rs.getString("dimensiones"),
+                rs.getString("autor"),
+                rs.getString("procedencia"));
+            
+            articulo = director.getArticulo();
         } catch (SQLException ex) {
             Logger.getLogger(CRUDArticulo.class.getName()).log(Level.SEVERE, "No se ha podido formatear la información procedente de la tabla ARTICULOS", ex);
         }

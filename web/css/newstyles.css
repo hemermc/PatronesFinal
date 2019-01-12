@@ -538,5 +538,6 @@ a.more {
     background-color: #1883ba;
     border-radius: 6px;
     background-color: #999;
+    cursor: pointer;
     border: 1px #999;
  }

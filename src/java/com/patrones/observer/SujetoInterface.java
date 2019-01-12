@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.patrones;
+package com.patrones.observer;
 
+import com.patrones.observer.Observador;
 import com.multimedia.modelo.Puja;
 
 /**

@@ -9,10 +9,10 @@ import lombok.Data;
  */
 @Data
 public class Compras {
-    private final Integer id_compra;
-    private final float importe;
-    private final Integer id_subasta;
-    private final String nombre_usuario;
+    private Integer id_compra;
+    private float importe;
+    private Integer id_subasta;
+    private String nombre_usuario;
     
     
     //Constructor usado para cuando se obtiene una compra de la BBDD

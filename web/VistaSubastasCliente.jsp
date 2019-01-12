@@ -5,9 +5,6 @@
 --%>
 
 <%@page import="com.multimedia.modelo.Articulo"%>
-<%@page import="com.multimedia.modelo.Mobiliario"%>
-<%@page import="com.multimedia.modelo.Arte"%>
-<%@page import="com.multimedia.modelo.Numismatica"%>
 <%@page import="com.multimedia.modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.multimedia.modelo.Subasta"%>
@@ -57,7 +54,7 @@
                                     out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
                                     out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
                                     out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    //out.println("<p>Dimensiones " + listaArticulos.get(i).getDimensiones()+ " </p>");
+                                    out.println("<p>Dimensiones " + listaArticulos.get(i).getDimensiones()+ " </p>");
                                } else if(categoriaSubasta.equalsIgnoreCase("Arte")){
                                     out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
                                     out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
@@ -65,7 +62,7 @@
                                     out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
                                     out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
                                     out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    //out.println("<p>Autor " + listaArticulos.get(i).getAutor()+ " </p>");
+                                    out.println("<p>Autor " + listaArticulos.get(i).getAutor()+ " </p>");
                                } else if(categoriaSubasta.equalsIgnoreCase("Numismatica")){
                                     out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
                                     out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
@@ -73,7 +70,7 @@
                                     out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
                                     out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
                                     out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    //out.println("<p>Procedencia " + listaArticulos.get(i).getProcedencia()+ " </p>");
+                                    out.println("<p>Procedencia " + listaArticulos.get(i).getProcedencia()+ " </p>");
                                }
                                 out.println(" <form action=\"ControladorSubastas\" method=\"Post\" class=\"formulario\">"
                                         + "<input type=\"hidden\" name=\"id-subasta\" value=\"" + listaSubastas.get(i).getId_subasta() + "\" class=\"btn-input\">"
