@@ -14,21 +14,22 @@
         <meta name="Grupo11" content="">
         <link rel="icon" href="#"><!-- Favicon -->
         <link rel="stylesheet" href="./css/newstyles.css"/>
+        <link rel="stylesheet" href="./css/styles.css"/>
         <title>Numismática UAH</title>
     </head>
     <body style="overflow-x:hidden; overflow-y:scroll;">
         <jsp:include page="ComponenteHeaderNav.jsp"/>
-        <div class="contenedor-index">
-            <div id="main" class="shell">
-                <div class="acceso">
-                    <form action="ControladorInicio" method="post" class="formulario">
-                        <h1>Inicio de Sesión</h1>
-                        <input type="hidden" name="llamada" value="acceso" class="registro-input">
-                        <input type="text" name="nombre_usuario" class="registro-input" placeholder="Nombre de usuario">
-                        <input type="password" name="clave" class="registro-input" placeholder="Contraseña">
-                        <input type="submit" value="Acceder" class="btn-input">
+        <div class="contenedor">
+            <div class="grid-block">
+               
+                    <form action="ControladorInicio" method="post" class="formulario-inicio">
+                        <h2>Inicio de Sesión</h2>
+                        <input type="hidden" name="llamada" value="acceso" >
+                        <input type="text" name="nombre_usuario"  placeholder="Nombre de usuario">
+                        <input type="password" name="clave" placeholder="Contraseña">
+                        <input type="submit" value="Acceder">
                     </form>	
-                </div>
+               
             </div>
             
         </div>

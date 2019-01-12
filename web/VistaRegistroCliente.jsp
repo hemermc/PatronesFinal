@@ -14,27 +14,27 @@
         <meta name="Grupo11" content="">
         <link rel="icon" href="#"><!-- Favicon -->
         <link rel="stylesheet" href="./css/newstyles.css"/>
+        <link rel="stylesheet" href="./css/styles.css"/>
         <title>Numimástica UAH</title>
     </head>
     <body style="overflow-x:hidden; overflow-y:scroll;" >
         <jsp:include page="ComponenteHeaderNav.jsp"/>
-        <div class="contenedor-index">
-            <div class="contenedor-registro">
-                <div class="registro">  
-                    <form action="ControladorInicio" method="post" class ='formulario'>
-                        <h1>Nueva Cuenta</h1>
-                        <input type="hidden" name="llamada" value="registro" class="registro-input">
-                        <input type="text" name="nombre_usuario" class="registro-input" placeholder="Nombre de usuario">
-                        <input type="password" name="clave" class="registro-input" placeholder="Contraseña">
-                        <input type="email" name="email" class="registro-input" placeholder="Correo electrónico">
-                        <input type="text" name="nombre" class="registro-input" placeholder="Nombre">
-                        <input type="text" name="apellidos" class="registro-input" placeholder="Apellidos">
-                        <input type="text" name="dni" class="registro-input" placeholder="DNI">
-                        <input type="text" name="direccion_entrega" class="registro-input" placeholder="Dirección">
-                        <input type="number" name="telefono" class="registro-input" placeholder="Teléfono">
-                        <input type="submit" value="Registrar" class="btn-input">
+        <div class="contenedor">
+            <div class="bloque-grid"> 
+                    <form action="ControladorInicio" method="post" class ="formulario-inicio">
+                        <h2>Nueva Cuenta</h2>
+                        <input type="hidden" name="llamada" value="registro">
+                        <input type="text" name="nombre_usuario"  placeholder="Nombre de usuario">
+                        <input type="password" name="clave" placeholder="Contraseña">
+                        <input type="email" name="email" placeholder="Correo electrónico">
+                        <input type="text" name="nombre"placeholder="Nombre">
+                        <input type="text" name="apellidos"  placeholder="Apellidos">
+                        <input type="text" name="dni"  placeholder="DNI">
+                        <input type="text" name="direccion_entrega" placeholder="Dirección">
+                        <input type="number" name="telefono" placeholder="Teléfono">
+                        <input type="submit" value="Registrar">
                     </form>	
-                </div>
+               
             </div>
             
         </div>
