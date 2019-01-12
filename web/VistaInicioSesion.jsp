@@ -14,7 +14,7 @@
         <meta name="Grupo11" content="">
         <link rel="icon" href="#"><!-- Favicon -->
         <link rel="stylesheet" href="./css/newstyles.css"/>
-        <link rel="stylesheet" href="./css/styles.css"/>
+        <!--<link rel="stylesheet" href="./css/styles.css"/>-->
         <title>Numismática UAH</title>
     </head>
     <body style="overflow-x:hidden; overflow-y:scroll;">
@@ -29,9 +29,7 @@
                         <input type="password" name="clave" placeholder="Contraseña">
                         <input type="submit" value="Acceder">
                     </form>	
-               
-            </div>
-            
+            </div> 
         </div>
         <div id="footer">
             <p id="links">
@@ -44,7 +42,6 @@
                 <a href="#">Productos subastados</a>
                 <a href="#">Contactanos</a>
                 <a href="#">acerca de nosotros</a>
-
             </p>
             <p>Copyright &copy; 2019 &minus; Subastas&amp;Antiguedades &middot; Diseñadores: Alexander y Juan Antonio</p>
         </div>

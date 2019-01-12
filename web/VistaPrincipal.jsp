@@ -15,48 +15,58 @@
         <title>Numismática UAH</title>
     </head>
     <body>
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">   
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
             <div id="content">
-                <div class="line"></div>
 		<div id="pitch">
-                    <h1>Somos una empresa seria de subastas y antigüedades. <br /></h1>
-                    <p><em>Sabemos que necesitas algo más, el servicio atento de la compañia, conócenos.</em></p>
+                    <h1>Somos una empresa seria de subastas y antigüedades</h1>
+                    <p><em>Sabemos que necesitas algo más, el servicio atento de la compañia, conócenos</em></p>
 		</div>
-		<div class="col">
-                    <h2>Mobiliario</h2>
-                    <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Mobiliario.</p>
-                    <form action="ControladorAccesoSubasta" method="get">
-                        <input type="hidden" name="categoria" value="Mobiliario">
-                        <input class="link" type="submit"  value="Acceder" >
-                    </form>                               
+                <div class="seccion">
+                    <div class="col">
+                        <div class="col-top">
+                           <h2>Mobiliario</h2>    
+                        </div>
+                        <div class="col-mid">
+                           <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Mobiliario</p>     
+                        </div>
+                        <div class="col-bot">
+                            <form action="ControladorAccesoSubasta" method="get">
+                                <input type="hidden" name="categoria" value="Mobiliario">
+                                <input class="btn_acceso" type="submit"  value="Acceder" >
+                            </form>       
+                        </div>                         
+                    </div>
+                    <div class="col">
+                        <div class="col-top">
+                           <h2>Arte</h2>    
+                        </div>
+                        <div class="col-mid">
+                           <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Arte</p>     
+                        </div>
+                        <div class="col-bot">
+                            <form action="ControladorAccesoSubasta" method="get">
+                                <input type="hidden" name="categoria" value="Arte">
+                                <input class="btn_acceso" type="submit" value="Acceder">
+                            </form>       
+                        </div>                         
+                    </div>
+                    <div class="col">
+                        <div class="col-top">
+                           <h2>Numismática</h2>    
+                        </div>
+                        <div class="col-mid">
+                           <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Numismática</p>     
+                        </div>
+                        <div class="col-bot">
+                            <form action="ControladorAccesoSubasta" method="get">
+                                <input type="hidden" name="categoria" value="Numismatica">
+                                <input class="btn_acceso" type="submit" value="Acceder">
+                            </form>       
+                        </div>                         
+                    </div> 
                 </div>
-                <div class="col">
-                    <h2>Arte</h2>
-                    <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Arte.</p>
-                    <form action="ControladorAccesoSubasta" method="get">
-                        <input type="hidden" name="categoria" value="Arte">
-                        <input class="link" type="submit" value="Acceder">
-                    </form>	
-                </div>
-                <div class="col">
-                    <h2>Numismática</h2>
-                    <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Numismática.</p>
-                    <form action="ControladorAccesoSubasta" method="get">
-                        <input type="hidden" name="categoria" value="Numismatica">
-                        <input class="link" type="submit" value="Acceder">
-                    </form>	
-                </div>
-                <div class="col last">
-                    <h2>Tus Pujas</h2>
-                    <p>Gestiona tus pujas.</p>
-                    <form action="ControladorPujas" method="get">
-                        <input class="link" type="submit" value="Acceder">
-                    </form>    
-                </div>
-                <div class="clr"></div>
             </div>
-            <div class="clr"></div>
         </div>
         <div id="footer">
             <p id="links">

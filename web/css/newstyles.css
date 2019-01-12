@@ -1,7 +1,7 @@
 
 /* 
     Created on : 09-ene-2019, 9:34:50
-    Author     : Grupo_12
+    Author     : amunguia
 */
 * {
   margin: 0;
@@ -15,20 +15,34 @@ ul {
     padding: 0;
 }
 
-body { 
-    font: .74em Tahoma, Verdana, Sans-Serif, Arial; 
-    /*background: url(../res/body.gif) repeat; */
-    background-color: lightslategrey;
-    color: black; 
+body {
+    background: url(../res/body.gif) repeat; color: #7f7f7f; 
+    font-family: Arial, sans-serif;
+    font-size:12px;
+    line-height:20px;
+	
 }
 
 h1 { 
     font: normal 3.4em "Trebuchet MS", Helvetica, Arial; 
 }
 
+h1#logo { 
+    float: left; 
+    padding: 25px 10px; 
+}
+
+h1#logo a{  
+    color: #fff; 
+} 
+
+h1#logo a span { 
+    color: #808080; 
+}
+
 h2 { 
     font: normal 1.8em "Trebuchet MS", Helvetica, Arial; 
-    color: black; 
+    color:linen; 
     margin: 0 0 15px; 
 }
 
@@ -39,7 +53,7 @@ h3 {
 
 h4 { 
     font: normal 1.2em "Trebuchet MS", Helvetica, Arial; 
-    color: black; 
+    color: #dfdfdf; 
     margin: 0 0 4px; 
 }
 
@@ -62,15 +76,6 @@ li a, img {
     display: block; 
 }
 
-img { 
-    outline: 0; border: 0; 
-}
-
-#wrapper { 
-    width: 984px; 
-    margin: auto; 
-}
-
 .clr { 
     clear: both; 
 }
@@ -83,37 +88,18 @@ img {
 #logo h1 a { 
     color: #fff; 
 }
+		
 #logo h1 a span { 
     color: #808080; 
 }
 
-#menu { 
-    height: 44px; 
-    padding: 5px 0 0 4px; 
-}
-
-#menu li { 
-    float: left; 
-    font-size: 1.3em; 
-    text-transform: uppercase; 
-}
-
-#menu li a { 
-    color: black; 
-    margin: 0 50px 0 0; 
-}
-			
-#menu li a.current, #menu li a:hover { 
-    color: #fff; 
-}	
-
 #pitch { 
     clear: both; 
-    background: url(../res/pitch.jpg); 
-    background-size: cover;
+    background: url(../res/pitch.jpg) no-repeat;
+    background-size: 100% 100%;
     height: 228px; 
     margin: 0 0 30px; 
-    padding: 60px 360px 0 30px; 
+    padding: 60px 30px; 
 }
 
 #pitch h1 { 
@@ -121,11 +107,18 @@ img {
     color: #304D6F; 
     margin: 0 0 20px; 
 }
-
+        
 #pitch em { 
     font-size: 1.3em; 
     font-weight: bold; 
-    line-height: 1.6em;
+    line-height: 1.6em; 
+}
+
+.seccion{
+    height: 250px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .content { 
@@ -137,21 +130,36 @@ img {
     background: #304D6F; 
     color: #fff; 
     padding: 5px 10px; 
-    font-size: .9em; }
+    font-size: .9em; 
+}
 
 #main { 
     padding: 20px; 
 }
 
 .col { 
-    float: left; 
-    width: 292px; 
-    margin: 0 30px 15px 0; 
+    float:left; 
+    width:210px; 
+    height:210px;
+    margin-left: 30px; 
+    margin-right:60px;
+    text-align: center;
 }
 
-.col.last { 
-    float: right; 
-    margin-right: 0; 
+.col-top{
+    height:40px;
+}
+
+.col-mid{
+    height:120px;
+}
+
+.col-bot{
+    height:50px;
+}
+
+.col-last { 
+    margin-right:0;
 }
 
 .case img { 
@@ -167,9 +175,9 @@ img {
     background: url(../res/line.gif) repeat-x left bottom; 
 }
 
-.case a, .article a { 
-    color: #ddd; 
-    font-weight: bold; 
+.case a, .article a 
+{ color: #ddd; 
+  font-weight: bold; 
 }
 
 .date { 
@@ -213,7 +221,7 @@ img {
     display: flex;
     justify-content:space-around;
     align-items: center;
-    bbackground: rgb(76,76,76); /* Old browsers */
+    background: rgb(76,76,76); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -308,28 +316,22 @@ img {
     position:relative;
     left: 70px;
 }
-
 .texto-subasta{
     margin-left:10px;
 }
-
 .contenedor-index footer{
     height:50px;
     background-color: black;
 }
-
 .contenedor-index #primero{
     background-color: #7CA4FF;
 }
-
 .contenedor-index #segundo{
    background-color: #48B0BD;
 }
-
 .contenedor-index #tercero {
    background-color: #D584F1;
 }
-
 .contenedor-acceso,
 .contenedor-registro{
     position:relative;
@@ -338,7 +340,6 @@ img {
     align-items: center;
     background-color: rgba(177,241,252,0.4);
 }
-
 .acceso,
 .registro{
     position:relative;
@@ -349,31 +350,193 @@ img {
     padding: 10px;
 }
 
-.formulario{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.insertar .formulario{
-    flex-direction: row;
-}
-
-.formulario h1{
-    width:100%;
-    color:white;  
-}
-
-.formulario input{
-    width:100%;
-    border-radius: 4px;
-    padding: 0 4px;
-    margin: 5px 0;
-    text-align: left;  
-}
-
 .btn-input {
     display: flex;
     justify-content: center;
 }
+
+#navigation,
+#slider-navigation,
+#footer { 
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.shell { 
+    width:980px; 
+    margin:0 auto; 
+}
+
+#header { 
+    height:90px; 
+    background:url(../res/header.gif); 
+}
+
+#navigation { 
+    float:right; 
+}
+
+#navigation ul{ 
+    float:left; 
+    list-style-type: none; 
+    padding-top:37px; 
+    font-size:14px;
+}
+
+#navigation ul li{ 
+    float:left; 
+    display:inline; 
+    height:21px; 
+    background:url(../res/nav-border.gif) repeat-y right 0; 
+    padding:0 20px 0 0; 
+    margin-right:20px; 
+    position:relative; 
+}
+
+#navigation ul li.last{
+    background:transparent; 
+    padding-right:0; 
+    margin-right:0; 
+}
+
+#navigation ul li a{ 
+    float:left; 
+    color:#fff; 
+    text-decoration: none;
+}
+
+#navigation ul li a em { 
+    width:90px; 
+    height:18px; 
+    background:url(../res/nav-hover.gif) no-repeat 0 -200px; 
+    position:absolute; 
+    top:33px; 
+    left:-55px;
+}
+
+#navigation ul li.last a em { 
+    left:-45px;
+}
+
+#navigation ul li a span { 
+    font-size:0; 
+    line-height:0; 
+    width:0; 
+    height:0; 
+    position:absolute; 
+    left:50%;
+}
+
+#navigation ul li a.hover{ 
+    color:#f6cb44;
+}
+
+#navigation ul li a.hover em{ 
+    background-position:0 0;
+}
+
+#main {
+    width:100%; 
+    background:#d3d4ce; 
+    padding:50px 0;
+}
+
+#main h3{ 
+    padding-bottom:10px; 
+}
+
+#main p{ 
+    padding-bottom:15px; 
+}
+
+a.more { 
+    font-size:10px; 
+    background:url(../res/more.gif) no-repeat 0 center; 
+    padding-left:10px; 
+}
+
+/* Formulario buscar viaje inicio */			
+.formulario-inicio{
+    /* Centrar formulario*/
+    margin:0 auto;
+	margin-left: 20px;
+    width: 400px;
+    /* Borde formulario */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background:#F2F2FD;
+} 
+
+.formulario-inicio div + div {
+    margin-top: 2px;
+}
+
+.formulario-inicio label {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+
+.formulario-inicio input {
+    /* Para asegurarse de que todos los campos de texto tienen las mismas propiedades de fuente
+       Por defecto, las areas de texto tienen una fuente con monospace */
+    font: 1em sans-serif;
+
+    /* Para darle el mismo tamaño a todos los campos de texto */
+    width: 300px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* Para armonizar el look&feel del borde en los campos de texto */
+    border: 1px solid #999;
+}
+
+.boton-inicio{
+    /* Para posicionar los botones a la misma posición que los campos de texto */
+    padding-left: 90px; /* mismo tamaño a todos los elementos label */
+}
+
+.boton-inicio {
+    /* Este margen extra representa aproximadamente el mismo espacio que el espacio
+       entre los labels y sus campos de texto */
+    margin-left: 0 auto;
+    margin-top: 30px;
+}
+
+.contenedor {
+    width: 95%;
+    max-width:1000px;
+    margin:0 auto;
+    margin-top: 10px;
+}
+
+.contenedor p {
+    margin-bottom:40px;
+}
+
+.grid-block{
+    width: 1000px; 
+    height: 350px; 
+}
+
+#user-avatar{
+    color: #fff;
+}
+
+.btn_acceso{
+    text-decoration: none;
+    padding: 10px 40px;
+    color: #eee;
+    background-color: #999;
+    border: 1px #999;
+    border-radius: 6px;
+ }
+ .btn_acceso:hover{
+    text-decoration: none;
+    padding: 10px 40px;
+    color: #eee;
+    background-color: #1883ba;
+    border-radius: 6px;
+    background-color: #999;
+    border: 1px #999;
+ }

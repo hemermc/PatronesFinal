@@ -20,8 +20,8 @@
         <title>Numismática UAH</title>
     </head>
     <body>
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
             <h1>Gestión de artículos</h1>
             <div class="insertar">
                 <h2>Añadir Artículo</h2>

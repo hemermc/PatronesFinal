@@ -1,7 +1,11 @@
-
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
 /* 
     Created on : 09-ene-2019, 9:35:19
-    Author     : Grupo_12
+    Author     : amunguia
 */
 /* RESETEO DE ESTILOS */
 *{
@@ -175,4 +179,4 @@ form > h1{
 .grid-block{
 	 width: 1000px; 
 	 height: 350px; 
-}   
+}
