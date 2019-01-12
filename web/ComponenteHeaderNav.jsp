@@ -3,13 +3,13 @@ Contiene la cabecera y la barra de navegación
 --%>
 
 <%@page import="com.multimedia.modelo.Usuario"%>
-<header>
-    <div id="logo"><h1><a href="VistaPrincipal.jsp">Subasta<span>&amp;</span>Antiguedades</a></h1></div>
-    <div><img src="res/UAH.png" height = "70"/></div>
-</header>
-<div id="content">
-    <ul id="menu">
-	<li class="current"><a href="VistaPrincipal.jsp">Inicio</a></li>
+<script src="./js/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="./js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="./js/jquery-func.js" type="text/javascript"></script>
+<div id="header">
+    <div class="shell">
+        <h1 id="logo"><a href="VistaPrincipal.jsp">Subasta<span>&amp;</span>Antiguedades</a></h1>
+       <!-- <div><img src="res/UAH.png" height = "70"/></div>-->
 
         <% //Comprueba si es un administrador o un cliente
             Usuario usuario = (Usuario) session.getAttribute("usuario");

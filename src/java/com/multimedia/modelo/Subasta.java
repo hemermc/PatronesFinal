@@ -1,7 +1,10 @@
 
 package com.multimedia.modelo;
 
+import com.patrones.Observador;
+import com.patrones.SujetoInterface;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import lombok.Data;
 

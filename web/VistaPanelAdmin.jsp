@@ -16,8 +16,8 @@
         <title>Numismática UAH</title>
     </head>
     <body>
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <jsp:include page="ComponenteHeaderNav.jsp"/>
             <div id ="contenedor-panel">
                 <div class ="bloque" id ="gestion_articulos">
                     <%out.println("<a href =\"" + request.getContextPath() + "/ControladorGestionArticulos\"> Gestión Artículos</a>");%>
