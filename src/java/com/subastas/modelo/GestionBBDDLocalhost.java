@@ -5,10 +5,6 @@ import com.subastas.patrones.command.ComandoConectar;
 import com.subastas.patrones.command.ComandoInterface;
 import com.subastas.patrones.command.Invocador;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,14 +13,9 @@ import java.util.logging.Logger;
 public class GestionBBDDLocalhost {
 
     private static GestionBBDDLocalhost firstInstance = null; //Singleton
-    private final String driver;
-    private final String urlConexion;
     private Connection conexion;
 
     private GestionBBDDLocalhost() {
-        driver = "com.mysql.cj.jdbc.Driver";
-        urlConexion = "jdbc:mysql://mysqlpatrones.cve0d1ffdtii.eu-west-3.rds.amazonaws.com:3306/mydb";
-        conexion = null;
     }
 
     public static GestionBBDDLocalhost getInstance() {
