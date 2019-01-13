@@ -39,7 +39,6 @@ public class GestionBBDDLocalhost {
        try {
             
             ComandoInterface comando = new ComandoConectar();
-            comando.setConexion(conexion);
             // Invocador
             Invocador inv = new Invocador();
             // Establece y ejecuta el comando

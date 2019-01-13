@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  * @author amunguia
  */
 public class ComandoConectar  implements ComandoInterface{
-    private Connection conexion;
     @Override
     public Connection ejecutar() {
         String driver = "com.mysql.cj.jdbc.Driver";
@@ -31,15 +30,4 @@ public class ComandoConectar  implements ComandoInterface{
         }
         return con;
     }
-
-    @Override
-    public void setConexion(Connection conexion) {
-        this.conexion = conexion;
-    }
-
-    @Override
-    public Connection getConexion() {
-        return this.conexion;
-    }
-    
 }

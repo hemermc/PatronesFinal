@@ -12,18 +12,6 @@ import java.sql.Connection;
  * @author amunguia
  */
 public interface ComandoInterface {
-    public void setConexion(Connection conexion);
-
-    /**
-     *
-     * @return
-     */
-    public Connection getConexion();
-    /**
-     * Método con las acciones a realizar.
-     *
-     * @return conexion
-     */
     
     public Connection ejecutar();  
 }
