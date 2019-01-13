@@ -26,11 +26,7 @@
                     <%out.println("<a href =\"" + request.getContextPath() + "/ControladorGestionSubastas\"> Gestión Subastas</a>");%>
                 </div>
             </div>
-            <footer>
-                <ul>
-                    <li>&copy; 2019 Patrones</li>
-                </ul>
-            </footer>
+            <jsp:include page="ComponenteFooter.jsp"/>
         </div>
     </body>
 </html>

@@ -107,11 +107,7 @@
                     out.println("</div>");
                 %>
             </div>
-            <footer>
-                <ul>
-                    <li>&copy; 2019 Patrones</li>
-                </ul>
-            </footer>
+            <jsp:include page="ComponenteFooter.jsp"/>
         </div>
     </body>
 </html>

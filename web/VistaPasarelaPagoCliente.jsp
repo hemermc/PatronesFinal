@@ -19,10 +19,6 @@
     <body>
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <h1>Pasarela de Pago</h1>
-        <footer>
-            <ul>
-                <li>&copy; 2019 Patrones</li>
-            </ul>
-        </footer>
+        <jsp:include page="ComponenteFooter.jsp"/>
     </body>
 </html>

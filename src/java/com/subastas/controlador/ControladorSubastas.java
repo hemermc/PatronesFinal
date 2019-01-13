@@ -11,6 +11,7 @@ import com.subastas.modelo.crud.CRUDPujas;
 import com.subastas.modelo.crud.CRUDSubasta;
 import com.subastas.patrones.observer.Observador;
 import com.subastas.patrones.observer.Sujeto;
+import com.subastas.patrones.proxy.ProxyProteccion;
 import java.io.IOException;
 import java.sql.Connection;
 import javax.servlet.ServletException;
@@ -54,45 +55,43 @@ public class ControladorSubastas extends HttpServlet {
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         Usuario user = (Usuario) session.getAttribute("usuario");
+        ProxyProteccion proxy = new ProxyProteccion();
         
-        CRUDSubasta usoSubasta = new CRUDSubasta(conexion);
-        CRUDCliente usoCli = new CRUDCliente(conexion);
-        String idsubasta = request.getParameter("id-subasta");
-        Subasta subasta = usoSubasta.obtenerEspecifico(idsubasta);
-        String categoria = request.getParameter("categoria");
+        if (proxy.permitirAcceso(session)) {//Existe un usuario logueado
+            CRUDSubasta usoSubasta = new CRUDSubasta(conexion);
+            CRUDCliente usoCli = new CRUDCliente(conexion);
+            String idsubasta = request.getParameter("id-subasta");
+            Subasta subasta = usoSubasta.obtenerEspecifico(idsubasta);
+            String categoria = request.getParameter("categoria");
 
-        if (Float.parseFloat(request.getParameter("puja")) > subasta.getPrecio_final()) {
-            CRUDPujas usoPuja = new CRUDPujas(conexion);
-            Puja puja = new Puja(
-                    Integer.parseInt(request.getParameter("id-subasta")),
-                    user.getNombre_usuario(),
-                    Float.parseFloat(request.getParameter("puja")));
-            Puja pujaAntigua = usoPuja.obtenerEspecifico(idsubasta, user.getNombre_usuario());
-            if (pujaAntigua != null) {//Si exite la puja la actualiza
-                Sujeto s = new Sujeto();
-            s.setPuja(pujaAntigua);
-            Cliente antiguo = usoCli.obtenerEspecifico(pujaAntigua.getNombre_usuario());
-            Observador o = new Observador("obs1",puja, antiguo,s);
-            s.notificarObservadores();
-                
-                usoPuja.actualizar(puja);
-            } else {//Si no existe la puja se crea
-                usoPuja.insertar(puja);
+            if (Float.parseFloat(request.getParameter("puja")) > subasta.getPrecio_final()) {
+                CRUDPujas usoPuja = new CRUDPujas(conexion);
+                Puja puja = new Puja(
+                        Integer.parseInt(request.getParameter("id-subasta")),
+                        user.getNombre_usuario(),
+                        Float.parseFloat(request.getParameter("puja")));
+                Puja pujaAntigua = usoPuja.obtenerEspecifico(idsubasta, user.getNombre_usuario());
+                if (pujaAntigua != null) {//Si exite la puja la actualiza
+                    Sujeto s = new Sujeto();
+                s.setPuja(pujaAntigua);
+                Cliente antiguo = usoCli.obtenerEspecifico(pujaAntigua.getNombre_usuario());
+                Observador o = new Observador("obs1",puja, antiguo,s);
+                s.notificarObservadores();
+
+                    usoPuja.actualizar(puja);
+                } else {//Si no existe la puja se crea
+                    usoPuja.insertar(puja);
+                }
+                subasta.setPrecio_final(Float.parseFloat(request.getParameter("puja")));
+                usoSubasta.actualizar(subasta);//Se actualiza la puja más alta
+                session.setAttribute("lista-subastas", usoSubasta.obtenerCategoria(categoria));
+                response.sendRedirect("./VistaSubastasCliente.jsp");
             }
-            subasta.setPrecio_final(Float.parseFloat(request.getParameter("puja")));
-            usoSubasta.actualizar(subasta);//Se actualiza la puja más alta
+        }
+        else {//Si el cliente no ha iniciado sesión
+            response.sendRedirect("./VistaInicioSesion.jsp");
         }
        
-        session.setAttribute("lista-subastas", usoSubasta.obtenerCategoria(categoria));
-        /*DEVUELVE TAMBIEN LOS DATOS DEL ARTICULO
-        if (tipo.equalsIgnoreCase("Monedas")) {
-            CRUDMoneda usoMoneda = new CRUDMoneda(conexion);
-            session.setAttribute("lista-articulos", usoMoneda);
-        } else if (tipo.equalsIgnoreCase("Billetes")) {
-            CRUDBillete usoBillete = new CRUDBillete(conexion);
-            session.setAttribute("lista-articulos", usoBillete);
-        }*/
-        response.sendRedirect("./VistaSubastasCliente.jsp");
     }
 
     /**

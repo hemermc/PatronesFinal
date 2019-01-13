@@ -1,35 +1,26 @@
 
 package com.subastas.controlador;
 
-import com.subastas.commons.Constantes;
 import com.subastas.modelo.Articulo;
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.Subasta;
 import com.subastas.modelo.crud.CRUDArticulo;
 import com.subastas.modelo.crud.CRUDSubasta;
-import com.subastas.patrones.proxy.ProxyProteccion;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author Grupo_12
  */
-
-@WebServlet(name = "ControladorAccesoSubasta", urlPatterns = {"/ControladorAccesoSubasta"})
-public class ControladorAccesoSubasta extends HttpServlet {
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
+@WebServlet(name = "ControladorDetalleSubasta", urlPatterns = {"/ControladorDetalleSubasta"})
+public class ControladorDetalleSubasta extends HttpServlet{
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -40,27 +31,6 @@ public class ControladorAccesoSubasta extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
-        Connection conexion = gestionDB.establecerConexion();
-        String categoria = request.getParameter(Constantes.CATEGORIA);
-        CRUDSubasta subastas = new CRUDSubasta(conexion);
-        CRUDArticulo articulo = new CRUDArticulo(conexion);
-
-        ArrayList<Subasta> listaSubastas = subastas.obtenerCategoria(categoria);
-        ArrayList<Articulo> listaArticulos = new ArrayList();
-
-        if (categoria.equals(Constantes.MOBILIARIO) || categoria.equals(Constantes.ARTE) || categoria.equals(Constantes.NUMISMATICA)) {
-            for (Subasta subasta: listaSubastas){
-               listaArticulos.add(articulo.obtenerEspecifico(String.valueOf(subasta.getId_articulo()))); 
-            }
-        }
-
-        session.setAttribute("categoria-subasta", categoria);
-        session.setAttribute("lista-subastas", listaSubastas);
-        session.setAttribute("lista-articulos", listaArticulos);
-        response.sendRedirect("./VistaSubastasCliente.jsp");
-        
     }
 
     /**
@@ -73,7 +43,20 @@ public class ControladorAccesoSubasta extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        Connection conexion = gestionDB.establecerConexion();
+        HttpSession session = request.getSession(true);
+        String id_subasta = request.getParameter("id_subasta");
+        
+        CRUDSubasta gestionSubasta = new CRUDSubasta(conexion);
+        Subasta subasta = gestionSubasta.obtenerEspecifico(id_subasta);
+        
+        CRUDArticulo gestionArticulo = new CRUDArticulo(conexion);
+        Articulo articulo = gestionArticulo.obtenerEspecifico(id_subasta);
 
+        session.setAttribute("subasta-detalle", subasta);
+        session.setAttribute("articulo-detalle", articulo);
+        response.sendRedirect("VistaDetalleSubasta.jsp");
     }
 
     /**
@@ -85,11 +68,4 @@ public class ControladorAccesoSubasta extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
-    @Override
-    public void destroy() {
-        super.destroy(); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
-
