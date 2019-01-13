@@ -4,6 +4,7 @@
     Author     : amunguia
 --%>
 
+<%@page import="com.subastas.patrones.iterator.*"%>
 <%@page import="com.subastas.modelo.Puja"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.subastas.modelo.Usuario"%>
@@ -30,10 +31,13 @@
                         out.println("<h2>Pujas sobre subastas ganadas</h2>");
                         if (listaPujasGanadas != null) {//Si el cliente ha realizado pujas
                             out.println("<h3>Número de subastas sobre las que se ha pujado: " + listaPujasGanadas.size() + "</h3>");
-                            for (int i = 0; i < listaPujasGanadas.size(); i++) {
+                            Agregado agregado = new AgregadoConcreto(listaPujasGanadas);
+                            Iterador ite = agregado.crearIterador();
+                            while(ite.hayMas()){
+                                Puja actual = (Puja)ite.elementoActual();
                                 out.println("<div class=\"subasta-elemento\">"
-                                        + "<p>Id puja: " + listaPujasGanadas.get(i).getId_subasta() + "</p>"
-                                        + "<p>Cantidad pujada: " + listaPujasGanadas.get(i).getCantidad() + "</p>"
+                                        + "<p>Id puja: " + actual.getId_subasta() + "</p>"
+                                        + "<p>Cantidad pujada: " + actual.getCantidad() + "</p>"
                                         + "</div>");
                             }
                         } else {
@@ -46,10 +50,13 @@
                         out.println("<h2>Pujas sobre subastas no ganadas</h2>");
                         if (listaPujasPerdidas != null) {//Si el cliente ha realizado pujas
                             out.println("<h3>Número de subastas sobre las que se ha pujado: " + listaPujasPerdidas.size() + "</h3>");
-                            for (int i = 0; i < listaPujasPerdidas.size(); i++) {
+                            Agregado agregado = new AgregadoConcreto(listaPujasPerdidas);
+                            Iterador ite = agregado.crearIterador();
+                            while(ite.hayMas()){
+                                Puja actual = (Puja)ite.elementoActual();
                                 out.println("<div class=\"subasta-elemento\">"
-                                        + "<p>Id puja: " + listaPujasPerdidas.get(i).getId_subasta() + "</p>"
-                                        + "<p>Cantidad pujada: " + listaPujasPerdidas.get(i).getCantidad() + "</p>"
+                                        + "<p>Id puja: " + actual.getId_subasta() + "</p>"
+                                        + "<p>Cantidad pujada: " + actual.getCantidad() + "</p>"
                                         + "</div>");
                             }
                         } else {

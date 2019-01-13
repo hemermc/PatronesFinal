@@ -4,6 +4,7 @@
     Author     : amunguia
 --%>
 
+<%@page import="com.subastas.patrones.iterator.*"%>
 <%@page import="com.subastas.modelo.Articulo"%>
 <%@page import="com.subastas.modelo.Usuario"%>
 <%@page import="com.subastas.modelo.Subasta"%>
@@ -33,14 +34,16 @@
                         if (listaSubastas != null) {//Si hay subastas activas de ese tipo
                             out.println("<h1> Subastas de " + categoriaSubasta + "</h1>");
                             out.println("<h3>Número de subastas activas:" + listaSubastas.size() + "</h3>");
-                            
-                            for (int i = 0; i < listaSubastas.size(); i++) {
+                            Agregado agregado = new AgregadoConcreto(listaSubastas);
+                            Iterador ite = agregado.crearIterador();
+                            while(ite.hayMas()){
+                                Subasta actual = (Subasta)ite.elementoActual();
                                 out.println("<div class=\"subasta-elemento\">");
-                                out.println("<p>Nombre subasta: " + listaSubastas.get(i).getNombre() + "</p>"
-                                        + "<p>Precio: " + listaSubastas.get(i).getPrecio_final()+ "</p>"
-                                        + "<p>Fecha Cierre: " + listaSubastas.get(i).getFecha_cierre()+ "</p>");
+                                out.println("<p>Nombre subasta: " + actual.getNombre() + "</p>"
+                                        + "<p>Precio: " + actual.getPrecio_final()+ "</p>"
+                                        + "<p>Fecha Cierre: " + actual.getFecha_cierre()+ "</p>");
                                 out.println(" <form action=\"ControladorDetalleSubasta\" method=\"Post\" class=\"formulario\">"
-                                        + "<input type=\"hidden\" name=\"id_subasta\" value=\"" + listaSubastas.get(i).getId_subasta() + "\" class=\"btn-input\">"                                       
+                                        + "<input type=\"hidden\" name=\"id_subasta\" value=\"" + actual.getId_subasta() + "\" class=\"btn-input\">"                                       
                                         + "<input type=\"submit\" value=\"Detalle\" class=\"btn-input\">"
                                         + "</form>"
                                         + "</div>");
