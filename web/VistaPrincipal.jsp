@@ -54,7 +54,7 @@
                     </div>
                     <div class="col">
                         <div class="col-top">
-                            <h2>Numism?tica</h2>    
+                            <h2>Numismática</h2>    
                         </div>
                         <div class="col-mid">
                             <p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de Numismática</p>     
