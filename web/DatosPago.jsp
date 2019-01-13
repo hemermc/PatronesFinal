@@ -19,13 +19,13 @@
         <title>Numismática UAH</title>
     </head>
     <body>
-         <jsp:include page="ComponenteHeaderNav.jsp"/>
-          <div class="contenedor-index">
-               <div class="contenedor-registro">
+        <jsp:include page="ComponenteHeaderNav.jsp"/>
+        <div class="contenedor-index">
+            <div class="contenedor-registro">
                 <div class="registro">  
                     <%  
                         Cliente user = (Cliente )session.getAttribute("seguirregistro");
-                        %>
+                    %>
                     <form action="ControladorDatosPago" method="post" class ='formulario'>
                         <h1>Tarjeta</h1>
                         <input type="hidden" name="tipo" value="tarjeta" class="registro-input">
@@ -39,11 +39,7 @@
                     </form>	
                 </div> 
             </div>
-            </div>
-             <footer>
-                <ul>
-                    <li>&copy; 2018 <span>Grupo11</span> Arquitectura y Diseño de Sistemas Web y C/S</li>
-                </ul>
-            </footer>
+        </div>
+        <jsp:include page="ComponenteFooter.jsp"/>
     </body>
 </html>

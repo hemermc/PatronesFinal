@@ -58,11 +58,7 @@
                     %>
                 </div>
             </main>
-            <footer>
-                <ul>
-                    <li>&copy; 2019 patrones</li>
-                </ul>
-            </footer>
+            <jsp:include page="ComponenteFooter.jsp"/>
         </div>
     </body>
 </html>

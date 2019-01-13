@@ -6,8 +6,9 @@
 
 <%@page import="com.subastas.modelo.Articulo"%>
 <%@page import="com.subastas.modelo.Usuario"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.subastas.modelo.Subasta"%>
+<%@page import="com.subastas.commons.Constantes"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,17 +29,8 @@
                     <%
                         ArrayList<Subasta> listaSubastas = (ArrayList) session.getAttribute("lista-subastas");
                         String categoriaSubasta = (String) session.getAttribute("categoria-subasta");
-                        ArrayList<Articulo> listaArticulos = null;
                        
                         if (listaSubastas != null) {//Si hay subastas activas de ese tipo
-                            if(categoriaSubasta.equalsIgnoreCase("Mobiliario")){
-                                listaArticulos = (ArrayList) session.getAttribute("lista-articulos");
-                            }
-                            else if(categoriaSubasta.equalsIgnoreCase("Arte")){ 
-                                listaArticulos = (ArrayList) session.getAttribute("lista-articulos");
-                            } else if(categoriaSubasta.equalsIgnoreCase("Numismatica")){ 
-                                listaArticulos = (ArrayList) session.getAttribute("lista-articulos");
-                            }
                             out.println("<h1> Subastas de " + categoriaSubasta + "</h1>");
                             out.println("<h3>Número de subastas activas:" + listaSubastas.size() + "</h3>");
                             
@@ -46,37 +38,10 @@
                                 out.println("<div class=\"subasta-elemento\">");
                                 out.println("<p>Nombre subasta: " + listaSubastas.get(i).getNombre() + "</p>"
                                         + "<p>Precio: " + listaSubastas.get(i).getPrecio_final()+ "</p>"
-                                        + "<p>Fecha: " + listaSubastas.get(i).getPrecio_inicial()+ "</p>");
-                               if(categoriaSubasta.equalsIgnoreCase("Mobiliario")){
-                                    out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
-                                    out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
-                                    out.println("<p>Año: " + listaArticulos.get(i).getAnio()+ " </p>");
-                                    out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
-                                    out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    out.println("<p>Dimensiones " + listaArticulos.get(i).getDimensiones()+ " </p>");
-                               } else if(categoriaSubasta.equalsIgnoreCase("Arte")){
-                                    out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
-                                    out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
-                                    out.println("<p>Año: " + listaArticulos.get(i).getAnio()+ " </p>");
-                                    out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
-                                    out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    out.println("<p>Autor " + listaArticulos.get(i).getAutor()+ " </p>");
-                               } else if(categoriaSubasta.equalsIgnoreCase("Numismatica")){
-                                    out.println("<p>Nombre: " + listaArticulos.get(i).getNombre()+ " </p>");
-                                    out.println("<p>Descripción: " + listaArticulos.get(i).getDescripcion()+ " </p>");
-                                    out.println("<p>Año: " + listaArticulos.get(i).getAnio()+ " </p>");
-                                    out.println("<p>Estado de conservación: " + listaArticulos.get(i).getEstado_conservacion()+ " </p>");
-                                    out.println("<p>Precio: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    out.println("<p>Foto: " + listaArticulos.get(i).getAnio() + " </p>");
-                                    out.println("<p>Procedencia " + listaArticulos.get(i).getProcedencia()+ " </p>");
-                               }
-                                out.println(" <form action=\"ControladorSubastas\" method=\"Post\" class=\"formulario\">"
-                                        + "<input type=\"hidden\" name=\"id-subasta\" value=\"" + listaSubastas.get(i).getId_subasta() + "\" class=\"btn-input\">"
-                                        + "<input type=\"hidden\" name=\"categoria\" value=\"" + categoriaSubasta + "\" class=\"btn-input\">"
-                                        + "<input type=\"text\" name=\"puja\" class=\"btn-input\" placeholder=\"Precio\" required>"
-                                        + "<input type=\"submit\" value=\"Pujar\" class=\"btn-input\">"
+                                        + "<p>Fecha Cierre: " + listaSubastas.get(i).getFecha_cierre()+ "</p>");
+                                out.println(" <form action=\"ControladorDetalleSubasta\" method=\"Post\" class=\"formulario\">"
+                                        + "<input type=\"hidden\" name=\"id_subasta\" value=\"" + listaSubastas.get(i).getId_subasta() + "\" class=\"btn-input\">"                                       
+                                        + "<input type=\"submit\" value=\"Detalle\" class=\"btn-input\">"
                                         + "</form>"
                                         + "</div>");
                             }
@@ -86,11 +51,7 @@
                     %>  
                 </div>
             </main>
-            <footer>
-                <ul>
-                    <li>&copy; 2019 Patrones</li>
-                </ul>
-            </footer>
+            <jsp:include page="ComponenteFooter.jsp"/>
         </div>
     </body>
 </html>

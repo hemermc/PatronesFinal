@@ -80,6 +80,12 @@ li a, img {
     clear: both; 
 }
 
+.titulo2 { 
+    font: normal 1.8em "Trebuchet MS", Helvetica, Arial; 
+    color: grey; 
+    margin: 0 0 15px; 
+}
+
 #logo { 
     float: left; 
     padding: 30px 15px; 
@@ -499,7 +505,7 @@ a.more {
 .boton-inicio {
     /* Este margen extra representa aproximadamente el mismo espacio que el espacio
        entre los labels y sus campos de texto */
-    margin-left: 0 auto;
+    margin-left: 0;
     margin-top: 30px;
 }
 
