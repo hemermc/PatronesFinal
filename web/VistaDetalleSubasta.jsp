@@ -24,14 +24,14 @@
     <body>
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <main>
-                <div class="contenedor-pujas">
+            <div class="content">
+                <div class="contenedor-centrado">
                     <%
                         Subasta subasta = (Subasta)session.getAttribute("subasta-detalle");
                         Articulo articulo = (Articulo)session.getAttribute("articulo-detalle");
 
-                        out.println("<h1>Detalle de la subasta</h1>");
-                        out.println("<div class=\"subasta-elemento\">");
+                        out.println("<h2>Detalle de la subasta</h2>");
+                        out.println("<div class=\"col col-detalle\">");
                         out.println("<p>Nombre subasta: " + subasta.getNombre() + "</p>"
                                 + "<p>Precio Actual: " + subasta.getPrecio_final()+ "</p>"
                                 + "<p>Fecha Cierre: " + subasta.getFecha_cierre()+ "</p>");
@@ -57,8 +57,8 @@
                                 + "</div>");
                     %>  
                 </div>
-            </main>
-            <jsp:include page="ComponenteFooter.jsp"/>
+            </div>
         </div>
+        <jsp:include page="ComponenteFooter.jsp"/>
     </body>
 </html>

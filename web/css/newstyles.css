@@ -1,8 +1,8 @@
-
 /* 
     Created on : 09-ene-2019, 9:34:50
     Author     : amunguia
 */
+
 * {
   margin: 0;
   padding: 0;
@@ -15,43 +15,46 @@ ul {
     padding: 0;
 }
 
+body, html{
+    height: 100%;
+}
+
 body {
-    background: url(../res/body.gif) repeat; color: #7f7f7f; 
+    /*background: url(../res/body.gif) repeat; color: #7f7f7f; */
     font-family: Arial, sans-serif;
     font-size:12px;
     line-height:20px;
-	
 }
 
-h1 { 
+h1 {
     font: normal 3.4em "Trebuchet MS", Helvetica, Arial; 
 }
 
-h1#logo { 
+h1#logo {
     float: left; 
     padding: 25px 10px; 
 }
 
-h1#logo a{  
+h1#logo a{
     color: #fff; 
 } 
 
-h1#logo a span { 
+h1#logo a span {
     color: #808080; 
 }
 
-h2 { 
+h2 {
     font: normal 1.8em "Trebuchet MS", Helvetica, Arial; 
     color:linen; 
     margin: 0 0 15px; 
 }
 
-h3 { 
+h3 {
     font: normal 1.4em "Trebuchet MS", Helvetica, Arial; 
     margin: 0 0 20px; 
 }
 
-h4 { 
+h4 {
     font: normal 1.2em "Trebuchet MS", Helvetica, Arial; 
     color: #dfdfdf; 
     margin: 0 0 4px; 
@@ -99,8 +102,7 @@ li a, img {
     color: #808080; 
 }
 
-#pitch { 
-    clear: both; 
+#pitch {  
     background: url(../res/pitch.jpg) no-repeat;
     background-size: 100% 100%;
     height: 228px; 
@@ -121,16 +123,26 @@ li a, img {
 }
 
 .seccion{
-    height: 250px;
+    height: 350px;
     display:flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 50px 50px;
 }
 
-.content { 
+.oculto{
+    display: none;
+}
+
+.accion{
+    margin: 60px 0;
+}
+
+/*.content { 
+    height: 100%;
     background: url(../res/content.gif) repeat; 
     padding: 20px; 
-}
+}*/
 
 .link { 
     background: #304D6F; 
@@ -145,23 +157,43 @@ li a, img {
 
 .col { 
     float:left; 
-    width:210px; 
-    height:210px;
-    margin-left: 30px; 
-    margin-right:60px;
+    width:250px; 
+    height:220px;
+    margin: 0 30px; 
     text-align: center;
+    background-color: #1883ba;
+    color: black;
+    border-radius: 1em; 
+}
+
+.col-panel { 
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
 }
 
 .col-top{
     height:40px;
+    margin-top: 10px;
 }
 
 .col-mid{
     height:120px;
+    font-size: 14px;
+    font-weight: 200;
+    padding: 10px 30px;
+    text-align: justify;    
 }
 
 .col-bot{
     height:50px;
+    margin: 0 auto;
+}
+
+.col-detalle{
+    width:350px; 
+    height:400px;
 }
 
 .col-last { 
@@ -217,9 +249,19 @@ li a, img {
     margin: 0 0 8px; 
 }
 
-.contenedor-index, .contenedor-pujas{
+.contenedor-index{
     width: 70%;
     margin: 0 auto;
+    height: 100%;
+    position: relative;
+    background: url(../res/body.gif) repeat; color: #7f7f7f;
+}
+
+.contenedor-centrado{
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
 }
 
 .contenedor-index header{

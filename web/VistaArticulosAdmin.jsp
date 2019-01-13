@@ -16,22 +16,33 @@
         <meta name="Página de subastas - Práctica final Multimedia" content="">
         <meta name="Grupo11" content="">
         <link rel="icon" href="#"><!-- Favicon -->
-        <link rel="stylesheet" href="./css/newstyles.css"/>
+        <link rel="stylesheet" href="./css/newstyles.css"/>       
         <title>Numismática UAH</title>
     </head>
     <body>
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <h1>Gestión de artículos</h1>
-            <h2>Seleccione la categoría del artículo que desea gestionar:</h2>
-            <select name="categoria" class="registro-input" required>
-                <option value="" selected disabled>Categoría</option> 
-                <option value="Arte">Arte</option>
-                <option value="Mobiliario">Mobiliario</option>
-                <option value="Numismatica">Numismática</option>
-            </select>
-            <div class="insertar">
-                <h2>Añadir Artículo</h2>
+            <h2>Gestión de artículos</h2>
+            <div>
+                <h3>Seleccione la categoría del artículo que desea gestionar:</h3>
+                <select name="categoria" class="registro-input" required>
+                    <option value="" selected disabled>Categoría</option> 
+                    <option value="Arte">Arte</option>
+                    <option value="Mobiliario">Mobiliario</option>
+                    <option value="Numismatica">Numismática</option>
+                </select>
+            </div>
+            <div>
+                <h3>Seleccione la acción que desea gestionar:</h3>
+                <select name="accion" id="selector-accion" class="registro-input" required>
+                    <option value="" selected disabled>Acción</option> 
+                    <option value="insertar">Insertar</option>
+                    <option value="actualizar">Actualizar</option>
+                    <option value="eliminar">Eliminar</option>
+                </select>
+                </div>
+            <div class="accion oculto" id="insertar">
+                <h3>Añadir Artículo</h3>
                 <form action="ControladorGestionArticulos" method="post" class ='formulario'>
                     <input type="hidden" name="accion" value="insertar" class="registro-input" required>
                     <input type="text" name="nombre" class="registro-input" placeholder="Nombre" required>
@@ -51,8 +62,8 @@
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
-            <div class="insertar">
-                <h2>Modificar Artículo</h2>
+            <div class="accion oculto" id="actualizar">
+                <h3>Modificar Artículo</h3>
                 <form action="ControladorGestionArticulos" method="post" class ='formulario'>
                     <input type="hidden" name="accion" value="actualizar" class="registro-input" required>
                     <input type="text" name="nombre" class="registro-input" placeholder="Nombre" required>
@@ -72,8 +83,8 @@
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
-            <div class="insertar">
-                <h2>Eliminar Artículo</h2>
+            <div class="accion oculto" id="eliminar">
+                <h3>Eliminar Artículo</h3>
                 <form action="ControladorGestionArticulos" method="post" class ='formulario'>
                     <input type="hidden" name="accion" value="eliminar" class="registro-input">
                     <input type="text" name="id_articulo" class="registro-input" placeholder="Articulo" required>
@@ -81,8 +92,8 @@
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
-            <h2>Artículos registrados</h2>	
-            <div id ="contenedor-panel">
+            <div id ="content">
+                <h3>Artículos registrados</h3>	
                 <%
                     ArrayList<Articulo> listaArticulos = (ArrayList<Articulo>) session.getAttribute("articulos");
                     out.println("<div class =\"bloque-grid\">");
@@ -102,12 +113,14 @@
                                     + "</div>");
                         }
                     } else {
-                        out.println("<h2>No hay billetes registrados</h2>");
+                        out.println("<h2>No hay artículos registrados</h2>");
                     }
                     out.println("</div>");
                 %>
             </div>
             <jsp:include page="ComponenteFooter.jsp"/>
         </div>
+        <script src="./js/jquery-1.4.1.min.js" type="text/javascript"></script>
+        <script src="./js/main.js" type="text/javascript"></script>
     </body>
 </html>

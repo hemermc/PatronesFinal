@@ -18,12 +18,14 @@
     <body>
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <div id ="contenedor-panel">
-                <div class ="bloque" id ="gestion_articulos">
-                    <%out.println("<a href =\"" + request.getContextPath() + "/ControladorGestionArticulos\"> Gestión Artículos</a>");%>
-                </div>
-                <div class ="bloque" id ="gestion_Subastas">
-                    <%out.println("<a href =\"" + request.getContextPath() + "/ControladorGestionSubastas\"> Gestión Subastas</a>");%>
+            <div class="content">
+                <div class="seccion">
+                    <div class ="col col-panel" id ="gestion_articulos">
+                        <%out.println("<h3><a href =\"" + request.getContextPath() + "/ControladorGestionArticulos\"> Gestión Artículos</a></h3>");%>
+                    </div>
+                    <div class ="col col-panel" id ="gestion_Subastas">
+                        <%out.println("<h3><a href =\"" + request.getContextPath() + "/ControladorGestionSubastas\"> Gestión Subastas</a></h3>");%>
+                    </div>
                 </div>
             </div>
             <jsp:include page="ComponenteFooter.jsp"/>
