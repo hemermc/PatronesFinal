@@ -80,6 +80,7 @@
                                     + "</form>"
                                     + "</div>");
                             out.println("</div>");
+                            ite.siguiente();
                         }
                         
                     }else{

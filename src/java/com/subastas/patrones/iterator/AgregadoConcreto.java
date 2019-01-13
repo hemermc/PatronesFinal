@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *
  * @author amunguia
  */
+
 public class AgregadoConcreto implements Agregado {
 
     // Lista de elementos a recorrer.

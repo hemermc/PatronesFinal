@@ -39,6 +39,7 @@
                                         + "<p>Id puja: " + actual.getId_subasta() + "</p>"
                                         + "<p>Cantidad pujada: " + actual.getCantidad() + "</p>"
                                         + "</div>");
+                                 ite.siguiente();
                             }
                         } else {
                             out.println("<h3>No has ganado ninguna subasta</h3>");
@@ -58,6 +59,7 @@
                                         + "<p>Id puja: " + actual.getId_subasta() + "</p>"
                                         + "<p>Cantidad pujada: " + actual.getCantidad() + "</p>"
                                         + "</div>");
+                                ite.siguiente();
                             }
                         } else {
                             out.println("<h3>No has realizado ninguna puja</h3>");

@@ -47,6 +47,7 @@
                                         + "<input type=\"submit\" value=\"Detalle\" class=\"btn-input\">"
                                         + "</form>"
                                         + "</div>");
+                                ite.siguiente();
                             }
                         } else {
                             out.println("<h3>No existe subastas de este tipo");
