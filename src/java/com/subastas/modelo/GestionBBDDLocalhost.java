@@ -1,6 +1,9 @@
 
 package com.subastas.modelo;
 
+import com.subastas.patrones.command.ComandoConectar;
+import com.subastas.patrones.command.ComandoInterface;
+import com.subastas.patrones.command.Invocador;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -32,11 +35,19 @@ public class GestionBBDDLocalhost {
     }
 
     public Connection establecerConexion() {
-        try {
-            Class.forName(driver);
-            conexion = DriverManager.getConnection(urlConexion,"patrones2018","patrones2018");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(GestionBBDDLocalhost.class.getName()).log(Level.SEVERE, "Error al conectar con la BBDD", ex);
+       conexion = null;
+       try {
+            
+            ComandoInterface comando = new ComandoConectar();
+            comando.setConexion(conexion);
+            // Invocador
+            Invocador inv = new Invocador();
+            // Establece y ejecuta el comando
+            inv.setComando(comando);
+            conexion = inv.ejecutaComando();
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
         return conexion;
     }
