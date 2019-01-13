@@ -3,7 +3,8 @@
     Author     : Grupo_12
 --%>
 
-<%@page import="com.multimedia.modelo.*"%>
+<%@page import="com.subastas.modelo.*"%>
+<%@page import="com.subastas.commons.*"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -33,6 +34,7 @@
                         <div class="col-bot">
                             <form action="ControladorAccesoSubasta" method="get">
                                 <input type="hidden" name="categoria" value="Mobiliario">
+                                <%out.println("<input type=\"hidden\" name=\"categoria\" value=\""+Constantes.MOBILIARIO+"\">");%>
                                 <input class="btn_acceso" type="submit"  value="Acceder" >
                             </form>       
                         </div>                         
@@ -46,7 +48,7 @@
                         </div>
                         <div class="col-bot">
                             <form action="ControladorAccesoSubasta" method="get">
-                                <input type="hidden" name="categoria" value="Arte">
+                                <%out.println("<input type=\"hidden\" name=\"categoria\" value=\""+Constantes.ARTE+"\">");%>
                                 <input class="btn_acceso" type="submit" value="Acceder">
                             </form>       
                         </div>                         
@@ -60,7 +62,7 @@
                         </div>
                         <div class="col-bot">
                             <form action="ControladorAccesoSubasta" method="get">
-                                <input type="hidden" name="categoria" value="Numismatica">
+                                <%out.println("<input type=\"hidden\" name=\"categoria\" value=\""+Constantes.NUMISMATICA+"\">");%>
                                 <input class="btn_acceso" type="submit" value="Acceder">
                             </form>       
                         </div>                         

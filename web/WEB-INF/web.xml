@@ -5,7 +5,7 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>ControladorLogout</servlet-name>
-        <servlet-class>com.multimedia.controlador.ControladorLogout</servlet-class>
+        <servlet-class>com.subastas.controlador.ControladorLogout</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControladorLogout</servlet-name>
@@ -13,7 +13,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ControladorPujas</servlet-name>
-        <servlet-class>com.multimedia.controlador.ControladorPujas</servlet-class>
+        <servlet-class>com.subastas.controlador.ControladorPujas</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControladorPujas</servlet-name>
@@ -26,7 +26,7 @@
     </session-config>
     <servlet>
         <servlet-name>ControladorInicio.jsp</servlet-name>
-        <servlet-class>com.multimedia.controlador.ControladorInicio</servlet-class>
+        <servlet-class>com.subastas.controlador.ControladorInicio</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 </web-app>

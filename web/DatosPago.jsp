@@ -4,8 +4,8 @@
     Author     : amunguia
 --%>
 
-<%@page import="com.multimedia.modelo.Cliente"%>
-<%@page import="com.multimedia.modelo.Usuario"%>
+<%@page import="com.subastas.modelo.Cliente"%>
+<%@page import="com.subastas.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

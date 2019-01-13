@@ -2,7 +2,7 @@
     Author: Grupo_12
 --%>
 
-<%@page import="com.multimedia.modelo.Usuario"%>
+<%@page import="com.subastas.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -4,10 +4,10 @@
     Author     : amunguia
 --%>
 
-<%@page import="com.multimedia.modelo.Articulo"%>
-<%@page import="com.multimedia.modelo.Usuario"%>
+<%@page import="com.subastas.modelo.Articulo"%>
+<%@page import="com.subastas.modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.multimedia.modelo.Subasta"%>
+<%@page import="com.subastas.modelo.Subasta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

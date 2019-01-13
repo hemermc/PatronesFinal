@@ -4,7 +4,7 @@
     Author     : amunguia
 --%>
 
-<%@page import="com.multimedia.modelo.*"%>
+<%@page import="com.subastas.modelo.*"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
