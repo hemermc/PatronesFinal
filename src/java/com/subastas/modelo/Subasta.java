@@ -19,14 +19,14 @@ public class Subasta {
     private String nombre;
     private float precio_inicial;
     private float precio_final;
-    private LocalDate fecha_alta;
-    private LocalDate fecha_cierre;
+    private String fecha_alta;
+    private String fecha_cierre;
     private String estado;
-    private int id_articulo;
+    private Integer id_articulo;
 
     
     //Constructor usado para cuando se obtiene una subasta de la BBDD
-    public Subasta(Integer id_subasta, String nombre, float precio_inicial, float precio_final, LocalDate fecha_alta, LocalDate fecha_cierre, String estado, int id_articulo) {
+    public Subasta(Integer id_subasta, String nombre, float precio_inicial, float precio_final, String fecha_alta, String fecha_cierre, String estado, Integer id_articulo) {
         this.id_subasta = id_subasta;
         this.nombre = nombre;
         this.precio_inicial = precio_inicial;
@@ -38,7 +38,7 @@ public class Subasta {
     }
     
     // Constructor usado cuando se inserta una subasta en la BBDD
-    public Subasta(String nombre, float precio_inicial, float precio_final, LocalDate fecha_alta, LocalDate fecha_cierre, String estado, int id_articulo) {
+    public Subasta(String nombre, float precio_inicial, float precio_final, String fecha_alta, String fecha_cierre, String estado, Integer id_articulo) {
         this.id_subasta = null;
         this.nombre = nombre;
         this.precio_inicial = precio_inicial;

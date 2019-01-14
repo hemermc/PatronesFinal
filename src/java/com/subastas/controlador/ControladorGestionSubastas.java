@@ -1,9 +1,11 @@
 
 package com.subastas.controlador;
 
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.Subasta;
-import com.subastas.modelo.crud.CRUDSubasta;
+import com.subastas.patrones.adapter.AdapterFecha;
+import com.subastas.patrones.adapter.FechaUS;
+import com.subastas.patrones.factory.CRUDSubasta;
 import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -35,7 +37,7 @@ public class ControladorGestionSubastas extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("usuario") != null) {//Existe un usuario logueado
-            GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+            GestionBBDD gestionDB = GestionBBDD.getInstance();
             Connection conexion = gestionDB.establecerConexion();
             CRUDSubasta subastas = new CRUDSubasta(conexion);
             session.setAttribute("subastas", subastas.obtenerTodos());
@@ -55,7 +57,7 @@ public class ControladorGestionSubastas extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        GestionBBDD gestionDB = GestionBBDD.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         String accion = request.getParameter("accion");
@@ -64,24 +66,32 @@ public class ControladorGestionSubastas extends HttpServlet {
         
         switch (accion) {
             case "insertar": {
+                AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(request.getParameter("FechaAlta")));
+                AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(request.getParameter("FechaCierre")));
+                
                 usoSubasta.insertar(new Subasta(
                         request.getParameter("Nombre"),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
-                        Float.parseFloat(request.getParameter("PrecioInicial")),
-                        LocalDate.parse(request.getParameter("FechaAlta")),
-                        LocalDate.parse(request.getParameter("FechaCierre")),
+                        Float.parseFloat(request.getParameter("PrecioFinal")),
+                        adapterAlta.obtenerFechaString(),
+                        adapterCierre.obtenerFechaString(),
                         request.getParameter("estado"),
                         Integer.parseInt(request.getParameter("Lote"))));
+                break;
             }
             case "actualizar": {
+                AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(request.getParameter("FechaAlta")));
+                AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(request.getParameter("FechaCierre")));
+                
                 usoSubasta.insertar(new Subasta(
                         request.getParameter("Nombre"),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
-                        Float.parseFloat(request.getParameter("PrecioInicial")),
-                        LocalDate.parse(request.getParameter("FechaAlta")),
-                        LocalDate.parse(request.getParameter("FechaCierre")),
+                        Float.parseFloat(request.getParameter("PrecioFinal")),
+                        adapterAlta.obtenerFechaString(),
+                        adapterCierre.obtenerFechaString(),
                         request.getParameter("estado"),
                         Integer.parseInt(request.getParameter("Lote"))));
+                break;
             }
             case "eliminar": {
                 usoSubasta.eliminar(request.getParameter("id_subasta"));

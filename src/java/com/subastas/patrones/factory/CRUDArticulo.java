@@ -1,4 +1,4 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.Articulo;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Grupo_12
  */
-public class CRUDArticulo implements ICRUDGeneral<Articulo> {
+public class CRUDArticulo extends ICRUDGeneral<Articulo> {
 
     private final Connection conexion;
 

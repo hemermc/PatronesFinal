@@ -1,22 +1,28 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.ExceptionManager;
 import com.subastas.modelo.FormateaFecha;
 import com.subastas.modelo.Subasta;
+import com.subastas.patrones.adapter.AdapterFecha;
+import com.subastas.patrones.adapter.Fecha;
+import com.subastas.patrones.adapter.FechaUS;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.converter.LocalDateStringConverter;
 
 /**
  *
  * @author Grupo_12
  */
-public class CRUDSubasta implements ICRUDGeneral<Subasta> {
+public class CRUDSubasta extends ICRUDGeneral<Subasta> {
 
     private final Connection conexion;
 
@@ -38,11 +44,15 @@ public class CRUDSubasta implements ICRUDGeneral<Subasta> {
                 + Constantes.ESTADO + ", " + Constantes.ID_ARTICULO + ") "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
+            
+            AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(subasta.getFecha_alta()));
+            AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(subasta.getFecha_cierre()));
+            
             ps.setString(1, subasta.getNombre());
             ps.setFloat(2, subasta.getPrecio_inicial());
             ps.setFloat(3, subasta.getPrecio_final());
-            ps.setDate(4, FormateaFecha.comoDate(subasta.getFecha_alta()));
-            ps.setDate(5, FormateaFecha.comoDate(subasta.getFecha_cierre()));
+            ps.setDate(4, adapterAlta.obtenerFechaDate());
+            ps.setDate(5, adapterCierre.obtenerFechaDate());
             ps.setString(6, subasta.getEstado());
             ps.setInt(7, subasta.getId_articulo());
             ps.executeUpdate();
@@ -59,6 +69,10 @@ public class CRUDSubasta implements ICRUDGeneral<Subasta> {
      */
     @Override
     public void actualizar(Subasta subasta) throws ExceptionManager {
+        
+        AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(subasta.getFecha_alta()));
+        AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(subasta.getFecha_cierre()));
+        
         String consulta = "UPDATE Subastas SET " + Constantes.NOMBRE + " = ?, "
                 + Constantes.PRECIO_INICIAL + " = ?, " + Constantes.PRECIO_FINAL
                 + " = ?, " + Constantes.FECHA_ALTA + ", " + Constantes.FECHA_CIERRE
@@ -68,8 +82,8 @@ public class CRUDSubasta implements ICRUDGeneral<Subasta> {
             ps.setString(1, subasta.getNombre());
             ps.setFloat(2, subasta.getPrecio_inicial());
             ps.setFloat(3, subasta.getPrecio_final());
-            ps.setDate(4, FormateaFecha.comoDate(subasta.getFecha_alta()));
-            ps.setDate(5, FormateaFecha.comoDate(subasta.getFecha_cierre()));
+            ps.setDate(4, adapterAlta.obtenerFechaDate());
+            ps.setDate(5, adapterCierre.obtenerFechaDate());
             ps.setString(6, subasta.getEstado());
             ps.setInt(7, subasta.getId_articulo());
             ps.setInt(8, subasta.getId_subasta());
@@ -178,15 +192,18 @@ public class CRUDSubasta implements ICRUDGeneral<Subasta> {
     @Override
     public Subasta formatearResultado(ResultSet rs) throws SQLException {
         Subasta subasta = null;
-
+        
         try {
+            AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(rs.getDate(Constantes.FECHA_ALTA).toString()));
+            AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(rs.getDate(Constantes.FECHA_CIERRE).toString()));
+                    
             subasta = new Subasta(
                     rs.getInt(Constantes.ID_SUBASTA),
                     rs.getString(Constantes.NOMBRE),
                     rs.getFloat(Constantes.PRECIO_INICIAL),
                     rs.getFloat(Constantes.PRECIO_FINAL),
-                    FormateaFecha.comoLocalDate(rs.getDate(Constantes.FECHA_ALTA)),
-                    FormateaFecha.comoLocalDate(rs.getDate(Constantes.FECHA_CIERRE)),
+                    adapterAlta.obtenerFechaString(),
+                    adapterCierre.obtenerFechaString(),
                     rs.getString(Constantes.ESTADO),
                     rs.getInt(Constantes.ID_ARTICULO));
         } catch (SQLException ex) {

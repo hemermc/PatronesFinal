@@ -1,4 +1,4 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.Compras;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Grupo_12
  */
-public abstract class CRUDCompras implements ICRUDGeneral<Compras> {
+public class CRUDCompras extends ICRUDGeneral<Compras> {
 
     private final Connection conexion;
 
@@ -41,10 +41,11 @@ public abstract class CRUDCompras implements ICRUDGeneral<Compras> {
         }
     }
 
-    public void eliminar(Integer id_compra) {
+    @Override
+    public void eliminar(String id_compra) {
         String consulta = "DELETE FROM Compras WHERE " + Constantes.ID_COMPRA + " = ?";//Genera la consulta
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
-            ps.setInt(1, id_compra);
+            ps.setInt(1, Integer.parseInt(id_compra));
             ps.executeUpdate();//Envia la consulta a la bbdd
         } catch (SQLException ex) {
             Logger.getLogger(CRUDCompras.class.getName()).log(Level.SEVERE, "Error al eliminar un registro de la tabla COMPRAS", ex);
@@ -116,4 +117,5 @@ public abstract class CRUDCompras implements ICRUDGeneral<Compras> {
         }
         return compra;
     }
+
 }

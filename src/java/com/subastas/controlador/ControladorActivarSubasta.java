@@ -1,9 +1,9 @@
 
 package com.subastas.controlador;
 
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.Subasta;
-import com.subastas.modelo.crud.CRUDSubasta;
+import com.subastas.patrones.factory.CRUDSubasta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -75,7 +75,7 @@ public class ControladorActivarSubasta extends HttpServlet {
        HttpSession session = request.getSession();
         
         if (session.getAttribute("usuario") != null) {//Existe un usuario logueado
-            GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+            GestionBBDD gestionDB = GestionBBDD.getInstance();
             Connection conexion = gestionDB.establecerConexion();
             String id = request.getParameter("id-subasta");
             CRUDSubasta subastas = new CRUDSubasta(conexion);

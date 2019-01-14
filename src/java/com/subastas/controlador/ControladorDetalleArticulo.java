@@ -1,9 +1,11 @@
 
 package com.subastas.controlador;
 
+import com.subastas.commons.Constantes;
 import com.subastas.modelo.Articulo;
-import com.subastas.modelo.GestionBBDDLocalhost;
-import com.subastas.modelo.crud.CRUDArticulo;
+import com.subastas.modelo.GestionBBDD;
+import com.subastas.patrones.factory.CRUDFactory;
+import com.subastas.patrones.factory.ICRUDGeneral;
 import java.io.IOException;
 import java.sql.Connection;
 import javax.servlet.ServletException;
@@ -41,12 +43,14 @@ public class ControladorDetalleArticulo extends HttpServlet{
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        GestionBBDD gestionDB = GestionBBDD.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         String id_articulo = request.getParameter("id-articulo");
-        CRUDArticulo gestionArticulos = new CRUDArticulo(conexion);
-        Articulo articulo = gestionArticulos.obtenerEspecifico(id_articulo);
+        CRUDFactory factory = new CRUDFactory();
+        
+        ICRUDGeneral general = factory.getCRUD(Constantes.CRUD_ARTICULO, conexion); 
+        Articulo articulo = (Articulo) general.obtenerEspecifico(id_articulo);
 
         session.setAttribute("articulo-detalle", articulo);
         response.sendRedirect("VistaDetalleArticulo.jsp");

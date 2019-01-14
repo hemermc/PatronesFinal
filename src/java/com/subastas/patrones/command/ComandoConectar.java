@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.subastas.patrones.command;
 
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,20 +10,21 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 public class ComandoConectar  implements ComandoInterface{
     @Override
     public Connection ejecutar() {
         String driver = "com.mysql.cj.jdbc.Driver";
         String urlConexion = "jdbc:mysql://mysqlpatrones.cve0d1ffdtii.eu-west-3.rds.amazonaws.com:3306/mydb";
-        Connection con = null;
+        Connection conexion = null;
+        
         try {
             Class.forName(driver);
-            con = DriverManager.getConnection(urlConexion,"patrones2018","patrones2018");
+            conexion = DriverManager.getConnection(urlConexion,"patrones2018","patrones2018");
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(GestionBBDDLocalhost.class.getName()).log(Level.SEVERE, "Error al conectar con la BBDD", ex);
+            Logger.getLogger(GestionBBDD.class.getName()).log(Level.SEVERE, "Error al conectar con la BBDD", ex);
         }
-        return con;
+        return conexion;
     }
 }

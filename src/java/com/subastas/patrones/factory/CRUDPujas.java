@@ -1,4 +1,4 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.ExceptionManager;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Grupo_12
  */
-public class CRUDPujas {
+public class CRUDPujas  extends ICRUDGeneral<Puja> {
 
     private final Connection conexion;
 
@@ -23,6 +23,7 @@ public class CRUDPujas {
         this.conexion = conexion;
     }
 
+    @Override
     public void insertar(Puja puja) throws ExceptionManager {
 
         String consulta = "INSERT INTO Pujas VALUES (?, ?, ?)";
@@ -47,6 +48,7 @@ public class CRUDPujas {
         }
     }
 
+    @Override
     public void actualizar(Puja puja) throws ExceptionManager {
         String consulta = "UPDATE Pujas SET " + Constantes.CANTIDAD
                 + " = ? WHERE " + Constantes.ID_SUBASTA + " = ? AND "
@@ -139,6 +141,7 @@ public class CRUDPujas {
         return listaPujas;
     }
 
+    @Override
     public ArrayList<Puja> obtenerTodos() {
         ArrayList<Puja> listaPujas = null;
         String consulta = "SELECT * FROM Pujas";
@@ -154,6 +157,7 @@ public class CRUDPujas {
         return listaPujas;
     }
 
+    @Override
     public Puja formatearResultado(ResultSet rs) throws SQLException {
         Puja puja = null;
         try {
@@ -165,5 +169,14 @@ public class CRUDPujas {
             Logger.getLogger(CRUDPujas.class.getName()).log(Level.SEVERE, "No se ha podido formatear la información procedente de la tabla PUJAS", ex);
         }
         return puja;
+    }
+
+    @Override
+    public void eliminar(String id) throws ExceptionManager {
+    }
+
+    @Override
+    public Puja obtenerEspecifico(String id) throws ExceptionManager {
+        return null;
     }
 }

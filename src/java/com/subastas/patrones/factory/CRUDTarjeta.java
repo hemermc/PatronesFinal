@@ -1,4 +1,4 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.ExceptionManager;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Grupo_12
  */
-public class CRUDTarjeta implements ICRUDGeneral<TarjetaCredito> {
+public class CRUDTarjeta extends ICRUDGeneral<TarjetaCredito> {
 
     private final Connection conexion;
 

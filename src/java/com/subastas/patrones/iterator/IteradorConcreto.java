@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.subastas.patrones.iterator;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 public class IteradorConcreto implements Iterador {
-
     // Referencia al agregado concreto.
     private AgregadoConcreto agregado;
     // Indica la posición actual en la lista.
@@ -69,4 +64,3 @@ public class IteradorConcreto implements Iterador {
         return objeto;
     }
 }
-

@@ -2,13 +2,13 @@
 package com.subastas.controlador;
 
 import com.subastas.modelo.Cliente;
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.Puja;
 import com.subastas.modelo.Subasta;
 import com.subastas.modelo.Usuario;
-import com.subastas.modelo.crud.CRUDCliente;
-import com.subastas.modelo.crud.CRUDPujas;
-import com.subastas.modelo.crud.CRUDSubasta;
+import com.subastas.patrones.factory.CRUDCliente;
+import com.subastas.patrones.factory.CRUDPujas;
+import com.subastas.patrones.factory.CRUDSubasta;
 import com.subastas.patrones.observer.Observador;
 import com.subastas.patrones.observer.Sujeto;
 import com.subastas.patrones.proxy.ProxyProteccion;
@@ -51,7 +51,7 @@ public class ControladorSubastas extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        GestionBBDD gestionDB = GestionBBDD.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         Usuario user = (Usuario) session.getAttribute("usuario");

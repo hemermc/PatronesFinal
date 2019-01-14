@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.subastas.patrones.command;
 
 import java.sql.Connection;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
 
 public class Invocador {
 
-    //Comando al que le pediremos que ejecute la petición.
+    //Comando al que le pediremos que ejecute la petición
     private ComandoInterface comando;
 
     /**
@@ -29,7 +25,7 @@ public class Invocador {
     /**
      * Ejecuta el comando.
      *
-     * @param param
+     * @return Connection Conexion con la BBDD
      */
     public Connection ejecutaComando() {
         return comando.ejecutar();

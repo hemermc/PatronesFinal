@@ -1,5 +1,5 @@
 
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.modelo.Usuario;
 
