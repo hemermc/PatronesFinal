@@ -1,4 +1,4 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.Cliente;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Grupo_12
  */
-public class CRUDCliente implements ICRUDGeneral<Cliente>, ICRUDUsuario {
+public class CRUDCliente extends ICRUDGeneral<Cliente> implements ICRUDUsuario {
 
     private final Connection conexion;
 

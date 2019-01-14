@@ -4,8 +4,8 @@ package com.subastas.controlador;
 import com.subastas.modelo.Cliente;
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.Usuario;
-import com.subastas.modelo.crud.CRUDAdministrador;
-import com.subastas.modelo.crud.CRUDCliente;
+import com.subastas.patrones.factory.CRUDAdministrador;
+import com.subastas.patrones.factory.CRUDCliente;
 
 import java.io.IOException;
 import java.sql.Connection;

@@ -5,9 +5,10 @@ import com.subastas.commons.Constantes;
 import com.subastas.modelo.Articulo;
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.Subasta;
-import com.subastas.modelo.crud.CRUDArticulo;
-import com.subastas.modelo.crud.CRUDSubasta;
-import com.subastas.patrones.proxy.ProxyProteccion;
+import com.subastas.patrones.factory.CRUDArticulo;
+import com.subastas.patrones.factory.CRUDSubasta;
+import com.subastas.patrones.factory.CRUDFactory;
+import com.subastas.patrones.factory.ICRUDGeneral;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -44,15 +45,17 @@ public class ControladorAccesoSubasta extends HttpServlet {
         GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         String categoria = request.getParameter(Constantes.CATEGORIA);
+        CRUDFactory factory = new CRUDFactory();
+        
+        ICRUDGeneral general = factory.getCRUD(Constantes.CRUD_ARTICULO, conexion); 
         CRUDSubasta subastas = new CRUDSubasta(conexion);
-        CRUDArticulo articulo = new CRUDArticulo(conexion);
 
         ArrayList<Subasta> listaSubastas = subastas.obtenerCategoria(categoria);
-        ArrayList<Articulo> listaArticulos = new ArrayList();
+        ArrayList<Object> listaArticulos = new ArrayList();
 
         if (categoria.equals(Constantes.MOBILIARIO) || categoria.equals(Constantes.ARTE) || categoria.equals(Constantes.NUMISMATICA)) {
             for (Subasta subasta: listaSubastas){
-               listaArticulos.add(articulo.obtenerEspecifico(String.valueOf(subasta.getId_articulo()))); 
+               listaArticulos.add(general.obtenerEspecifico(String.valueOf(subasta.getId_articulo()))); 
             }
         }
 

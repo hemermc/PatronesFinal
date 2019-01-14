@@ -7,7 +7,7 @@ package com.subastas.controlador;
 
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.Usuario;
-import com.subastas.modelo.crud.CRUDPujas;
+import com.subastas.patrones.factory.CRUDPujas;
 import java.io.IOException;
 import java.sql.Connection;
 import javax.servlet.ServletException;

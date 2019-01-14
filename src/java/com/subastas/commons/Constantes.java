@@ -9,6 +9,7 @@ public class Constantes {
     public static final String USUARIO = "usuario";
     public static final String ADMINISTRADOR = "administrador";
     public static final String ID_SUBASTA = "id_subasta";
+    public static final String ID_PUJA = "id_puja";
     public static final String ID_ARTICULO = "id_articulo";
     public static final String NOMBRE = "nombre";
     public static final String DESCRIPCION = "descripcion";
@@ -46,4 +47,14 @@ public class Constantes {
     public static final String MOBILIARIO = "Mobiliario";
     public static final String ARTE = "Arte";
     public static final String NUMISMATICA = "Numismatica";
+    
+    //CRUD
+    public static final String CRUD_ADMINISTRADOR = "crud_administrador";
+    public static final String CRUD_ARTICULO = "crud_articulo";
+    public static final String CRUD_CLIENTE = "crud_cliente";
+    public static final String CRUD_COMPRAS = "crud_compras";
+    public static final String CRUD_PUJAS = "crud_pujas";
+    public static final String CRUD_SUBASTA = "crud_subasta";
+    public static final String CRUD_TARJETA = "crud_tarjeta";
+    
 }

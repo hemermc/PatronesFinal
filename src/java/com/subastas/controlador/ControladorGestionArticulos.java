@@ -3,7 +3,7 @@ package com.subastas.controlador;
 
 import com.subastas.modelo.Articulo;
 import com.subastas.modelo.GestionBBDDLocalhost;
-import com.subastas.modelo.crud.CRUDArticulo;
+import com.subastas.patrones.factory.CRUDArticulo;
 import com.subastas.patrones.builder.BuilderArte;
 import com.subastas.patrones.builder.BuilderArticulo;
 import com.subastas.patrones.builder.BuilderMobiliario;

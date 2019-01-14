@@ -4,8 +4,8 @@ package com.subastas.controlador;
 import com.subastas.modelo.Articulo;
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.Subasta;
-import com.subastas.modelo.crud.CRUDArticulo;
-import com.subastas.modelo.crud.CRUDSubasta;
+import com.subastas.patrones.factory.CRUDArticulo;
+import com.subastas.patrones.factory.CRUDSubasta;
 import java.io.IOException;
 import java.sql.Connection;
 import javax.servlet.ServletException;
@@ -52,7 +52,7 @@ public class ControladorDetalleSubasta extends HttpServlet{
         Subasta subasta = gestionSubasta.obtenerEspecifico(id_subasta);
         
         CRUDArticulo gestionArticulo = new CRUDArticulo(conexion);
-        Articulo articulo = gestionArticulo.obtenerEspecifico(id_subasta);
+        Articulo articulo = gestionArticulo.obtenerEspecifico(subasta.getId_articulo().toString());
 
         session.setAttribute("subasta-detalle", subasta);
         session.setAttribute("articulo-detalle", articulo);

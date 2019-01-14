@@ -3,7 +3,7 @@ package com.subastas.controlador;
 
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.TarjetaCredito;
-import com.subastas.modelo.crud.CRUDTarjeta;
+import com.subastas.patrones.factory.CRUDTarjeta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;

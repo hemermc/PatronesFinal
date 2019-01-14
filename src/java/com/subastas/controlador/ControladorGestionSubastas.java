@@ -3,7 +3,7 @@ package com.subastas.controlador;
 
 import com.subastas.modelo.GestionBBDDLocalhost;
 import com.subastas.modelo.Subasta;
-import com.subastas.modelo.crud.CRUDSubasta;
+import com.subastas.patrones.factory.CRUDSubasta;
 import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.subastas.modelo.crud;
+package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.Administrador;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Grupo_12
  */
-public class CRUDAdministrador implements ICRUDGeneral<Administrador>, ICRUDUsuario {
+public class CRUDAdministrador extends ICRUDGeneral<Administrador> implements ICRUDUsuario {
 
     private final Connection conexion;
 
