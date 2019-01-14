@@ -5,7 +5,7 @@
  */
 package com.subastas.controlador;
 
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.Usuario;
 import com.subastas.patrones.factory.CRUDPujas;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class ControladorPujas extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        GestionBBDD gestionDB = GestionBBDD.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         CRUDPujas usarPujas = new CRUDPujas(conexion);
         HttpSession session = request.getSession(true);

@@ -10,21 +10,22 @@ import java.sql.Connection;
  *
  * @author Grupo_12
  */
-public class GestionBBDDLocalhost {
+public class GestionBBDD implements IConexion<Connection>{
 
-    private static GestionBBDDLocalhost firstInstance = null; //Singleton
+    private static GestionBBDD firstInstance = null; //Singleton
     private Connection conexion;
 
-    private GestionBBDDLocalhost() {
+    private GestionBBDD() {
     }
 
-    public static GestionBBDDLocalhost getInstance() {
+    public static GestionBBDD getInstance() {
         if (firstInstance == null) {
-            firstInstance = new GestionBBDDLocalhost();
+            firstInstance = new GestionBBDD();
         }
         return firstInstance;
     }
 
+    @Override
     public Connection establecerConexion() {
        conexion = null;
        try {
@@ -42,11 +43,12 @@ public class GestionBBDDLocalhost {
         return conexion;
     }
 
-    public void cerrarBBDD() {
+    @Override
+    public void cerrarConexion() {
         /*try {
             DriverManager.getConnection("jdbc:derby:;shutdown=true");
         } catch (SQLException ex) {
-            Logger.getLogger(GestionBBDDLocalhost.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionBBDD.class.getName()).log(Level.SEVERE, null, ex);
         }*/
     }
 }

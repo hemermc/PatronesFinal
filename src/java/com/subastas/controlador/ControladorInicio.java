@@ -2,7 +2,7 @@
 package com.subastas.controlador;
 
 import com.subastas.modelo.Cliente;
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.Usuario;
 import com.subastas.patrones.factory.CRUDAdministrador;
 import com.subastas.patrones.factory.CRUDCliente;
@@ -55,7 +55,7 @@ public class ControladorInicio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+            GestionBBDD gestionDB = GestionBBDD.getInstance();
             Connection conexion = gestionDB.establecerConexion();
             String tipoAcceso = request.getParameter("llamada");
         HttpSession session = request.getSession(); 

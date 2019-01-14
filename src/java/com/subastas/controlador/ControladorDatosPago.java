@@ -1,7 +1,7 @@
 
 package com.subastas.controlador;
 
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.TarjetaCredito;
 import com.subastas.patrones.factory.CRUDTarjeta;
 import java.io.IOException;
@@ -74,7 +74,7 @@ public class ControladorDatosPago extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        GestionBBDD gestionDB = GestionBBDD.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         

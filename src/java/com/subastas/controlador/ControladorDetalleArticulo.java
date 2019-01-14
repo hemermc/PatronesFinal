@@ -3,7 +3,7 @@ package com.subastas.controlador;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.Articulo;
-import com.subastas.modelo.GestionBBDDLocalhost;
+import com.subastas.modelo.GestionBBDD;
 import com.subastas.patrones.factory.CRUDFactory;
 import com.subastas.patrones.factory.ICRUDGeneral;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class ControladorDetalleArticulo extends HttpServlet{
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GestionBBDDLocalhost gestionDB = GestionBBDDLocalhost.getInstance();
+        GestionBBDD gestionDB = GestionBBDD.getInstance();
         Connection conexion = gestionDB.establecerConexion();
         HttpSession session = request.getSession(true);
         String id_articulo = request.getParameter("id-articulo");
