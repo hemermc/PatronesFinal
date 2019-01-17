@@ -13,7 +13,7 @@
         <meta name="Página de subastas - Práctica final Multimedia" content="">
         <meta name="Grupo11" content="">
         <link rel="icon" href="#"><!-- Favicon -->
-        <link rel="stylesheet" href="./css/newstyles.css"/>
+        <link rel="stylesheet" href="./css/styles.css"/>
         <title>Numismática UAH</title>
     </head>
     <body>

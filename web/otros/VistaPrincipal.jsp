@@ -6,65 +6,83 @@ puede acceder a su perfil de usuario, etc.
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+    <title>Subastas | El desván del abuelo</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="Página de subastas - Práctica final Multimedia" content="">
-    <meta name="Grupo11" content="">
-    <link rel="icon" href="#">
-    <!-- Favicon -->
-    <link href="./css/styles.css" rel="stylesheet">
-
-    <title>Subastas</title>
-    <%
-       
-    %>
-        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <div class="contenedor-principal">
-        <header>           
-            <a href="#"><img id="logo" src="./res/logo.jpg" alt="logo"></a>
-            <ul class="lista-nav">
-                <li class="elemento-nav"><a href="#">Inicio</a></li>
-                <li class="elemento-nav"><a href="#">Subastas</a></li>
-                <li class="elemento-nav"><a href="#">Contacto</a></li>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>My First Bootstrap 4 Page</h1>
+        <p>Resize this responsive page to see the effect!</p> 
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>    
             </ul>
-        </header>
-        <main>
-            <h1>Página principal de subastas</h1>
-            <section class="fila">
-                <article class="columna">
-                    <h2>Billetes</h2>
-                    <img src="./res/billete.jpg" alt="billete" width="250px" height="170px">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fuga quas corporis velit explicabo cum dolorem excepturi
-                    neque earum nostrum? Harum perferendis accusamus sequi qui earum impedit vel ducimus eligendi?</p>
-                </article>
-                <article class="columna">
-                    <h2>Monedas</h2>
-                    <img src="./res/monedas.jpg" alt="moneda" width="250px" height="170px">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates deleniti impedit, ullam officia unde, assumenda,
-                    quas perspiciatis similique accusamus totam numquam reprehenderit non pariatur animi reiciendis vero nobis eius
-                    maiores. Doloremque quas optio earum at unde repellat sequi molestias ex.</p>
-                </article>
-                <article class="columna">
-                    <h2>Elemento</h2>
-                    <img src="./res/monedas.jpg" alt="moneda" width="250px" height="170px">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates deleniti impedit, ullam officia unde, assumenda,
-                    quas perspiciatis similique accusamus totam numquam reprehenderit non pariatur animi reiciendis vero nobis eius
-                    maiores. Doloremque quas optio earum at unde repellat sequi molestias ex.</p>
-                </article>
-            </section>
-        </main>
-        <footer>
-            <p>&copy;2019</p>
-        </footer>  
-    </div> 
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/main.js"></script>
+        </div>  
+    </nav>
+    <div class="container" style="margin-top:30px">
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>About Me</h2>
+                <h5>Photo of me:</h5>
+                <div class="fakeimg">Fake Image</div>
+                <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+                <h3>Some Links</h3>
+                <p>Lorem ipsum dolor sit ame.</p>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <hr class="d-sm-none">
+            </div>
+            <div class="col-sm-8">
+                <h2>TITLE HEADING</h2>
+                <h5>Title description, Dec 7, 2017</h5>
+                <div class="fakeimg">Fake Image</div>
+                <p>Some text..</p>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                <br>
+                <h2>TITLE HEADING</h2>
+                <h5>Title description, Sep 2, 2017</h5>
+                <div class="fakeimg">Fake Image</div>
+                <p>Some text..</p>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <p>Footer</p>
+    </div>
 </body>
-
 </html>
 
