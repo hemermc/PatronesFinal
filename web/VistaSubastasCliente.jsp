@@ -70,7 +70,7 @@
                                     <%out.println("<p class=\"card-text\">" + actual.getNombre() + "</p>");%>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="ControladorDetalleSubasta" method="Post" class="formulario" id="myform">
+                                            <form action="ControladorDetalleSubasta" method="post" class="formulario" id="myform">
                                                 <%out.println("<input type=\"hidden\" name=\"id_subasta\" value=\"" + actual.getId_subasta() + "\" class=\"btn-input\">");%>
                                                 <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('myform').submit()">Detalles</button>
                                                 <button type="button" class="btn btn-sm btn-success" onclick="document.getElementById('myform').submit()">Pujar</button>

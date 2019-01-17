@@ -39,27 +39,27 @@
                         <img class="logo-section" src="./res/mobiliario.jpg">
                         <h2>Mobiliario</h2>
                         <%out.println("<p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de " + Constantes.MOBILIARIO + "</p>");%>
-                        <form action="ControladorAccesoSubasta" method="get" id="myform">
+                        <form action="ControladorAccesoSubasta" method="get" id="form-mobiliario">
                             <%out.println("<input type=\"hidden\" name=\"categoria\" value=\"" + Constantes.MOBILIARIO + "\">");%>
-                            <p><a class="btn btn-success" href="#" onclick="document.getElementById('myform').submit()" role="button">Acceder&raquo;</a></p>
+                            <p><a class="btn btn-success" href="#" onclick="document.getElementById('form-mobiliario').submit()" role="button">Acceder&raquo;</a></p>
                         </form>
                     </div>
                     <div class="col-md-4">
                         <img class="logo-section" src="./res/arte.jpeg">
                         <h2>Arte</h2>
                         <%out.println("<p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de " + Constantes.ARTE + "</p>");%>
-                        <form action="ControladorAccesoSubasta" method="get" id="myform">
+                        <form action="ControladorAccesoSubasta" method="get" id="form-arte">
                             <%out.println("<input type=\"hidden\" name=\"categoria\" value=\"" + Constantes.ARTE + "\">");%>
-                            <p><a class="btn btn-success" href="#" onclick="document.getElementById('myform').submit()" role="button">Acceder&raquo;</a></p>
+                            <p><a class="btn btn-success" href="#" onclick="document.getElementById('form-arte').submit()" role="button">Acceder&raquo;</a></p>
                         </form>
                     </div>
                     <div class="col-md-4">
                         <img class="logo-section" src="./res/numismatica.jpg">
                         <h2>Numismática</h2>
                         <%out.println("<p>En esta sección podrás encontrar diferentes subastas de artículos relacionados con la categoría de " + Constantes.NUMISMATICA + "</p>");%>
-                        <form action="ControladorAccesoSubasta" method="get" id="myform">
+                        <form action="ControladorAccesoSubasta" method="get" id="form-numis">
                             <%out.println("<input type=\"hidden\" name=\"categoria\" value=\"" + Constantes.NUMISMATICA + "\">");%>
-                            <p><a class="btn btn-success" href="#" onclick="document.getElementById('myform').submit()" role="button">Acceder&raquo;</a></p>
+                            <p><a class="btn btn-success" href="#" onclick="document.getElementById('form-numis').submit()" role="button">Acceder&raquo;</a></p>
                         </form>
                     </div>
                 </div>
