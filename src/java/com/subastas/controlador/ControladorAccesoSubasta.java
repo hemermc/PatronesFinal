@@ -51,7 +51,7 @@ public class ControladorAccesoSubasta extends HttpServlet {
         CRUDSubasta subastas = new CRUDSubasta(conexion);
 
         ArrayList<Subasta> listaSubastas = subastas.obtenerCategoria(categoria);
-        ArrayList<Object> listaArticulos = new ArrayList();
+        ArrayList<Object> listaArticulos = new ArrayList(); 
 
         if (categoria.equals(Constantes.MOBILIARIO) || categoria.equals(Constantes.ARTE) || categoria.equals(Constantes.NUMISMATICA)) {
             for (Subasta subasta: listaSubastas){
