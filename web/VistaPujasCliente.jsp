@@ -1,7 +1,7 @@
 <%-- 
-    Document   : VistaPujasCliente
-    Created on : 09-ene-2019, 12:28:25
-    Author     : amunguia
+    Document   :    VistaPujasCliente
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
 <%@page import="com.subastas.patrones.iterator.*"%>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : DatosPago
-    Created on : 09-ene-2019, 9:45:15
-    Author     : amunguia
+    Document   :    DatosPago
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
 <%@page import="com.subastas.modelo.Cliente"%>

@@ -1,4 +1,3 @@
-
 package com.subastas.controlador;
 
 import com.subastas.modelo.Cliente;
@@ -56,15 +55,16 @@ public class ControladorSubastas extends HttpServlet {
         HttpSession session = request.getSession(true);
         Usuario user = (Usuario) session.getAttribute("usuario");
         ProxyProteccion proxy = new ProxyProteccion();
-        
+
         if (proxy.permitirAcceso(session)) {//Existe un usuario logueado
             CRUDSubasta usoSubasta = new CRUDSubasta(conexion);
             CRUDCliente usoCli = new CRUDCliente(conexion);
             String idsubasta = request.getParameter("id-subasta");
             Subasta subasta = usoSubasta.obtenerEspecifico(idsubasta);
             String categoria = request.getParameter("categoria");
+            Float pujaVista = Float.parseFloat(request.getParameter("puja"));
 
-            if (Float.parseFloat(request.getParameter("puja")) > subasta.getPrecio_final()) {
+            if (pujaVista > subasta.getPrecio_final()) {
                 CRUDPujas usoPuja = new CRUDPujas(conexion);
                 Puja puja = new Puja(
                         Integer.parseInt(request.getParameter("id-subasta")),
@@ -73,10 +73,10 @@ public class ControladorSubastas extends HttpServlet {
                 Puja pujaAntigua = usoPuja.obtenerEspecifico(idsubasta, user.getNombre_usuario());
                 if (pujaAntigua != null) {//Si exite la puja la actualiza
                     Sujeto s = new Sujeto();
-                s.setPuja(pujaAntigua);
-                Cliente antiguo = usoCli.obtenerEspecifico(pujaAntigua.getNombre_usuario());
-                Observador o = new Observador("obs1",puja, antiguo,s);
-                s.notificarObservadores();
+                    s.setPuja(pujaAntigua);
+                    Cliente antiguo = usoCli.obtenerEspecifico(pujaAntigua.getNombre_usuario());
+                    Observador o = new Observador("obs1", puja, antiguo, s);
+                    s.notificarObservadores();
 
                     usoPuja.actualizar(puja);
                 } else {//Si no existe la puja se crea
@@ -84,14 +84,14 @@ public class ControladorSubastas extends HttpServlet {
                 }
                 subasta.setPrecio_final(Float.parseFloat(request.getParameter("puja")));
                 usoSubasta.actualizar(subasta);//Se actualiza la puja más alta
+                //Recarga la página con la subasta realizada
                 session.setAttribute("lista-subastas", usoSubasta.obtenerCategoria(categoria));
                 response.sendRedirect("./VistaSubastasCliente.jsp");
             }
-        }
-        else {//Si el cliente no ha iniciado sesión
+        } else {//Si el cliente no ha iniciado sesión
             response.sendRedirect("./VistaInicioSesion.jsp");
         }
-       
+
     }
 
     /**

@@ -1,5 +1,7 @@
 <%-- 
-Contiene la cabecera y la barra de navegación
+    Document   :    ComponenteHeaderNav
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
 <%@page import="com.subastas.modelo.Usuario"%>
@@ -23,9 +25,9 @@ Contiene la cabecera y la barra de navegación
                 Boolean administrador = (Boolean) session.getAttribute(Constantes.ADMINISTRADOR);
                 if (usuario != null) {//Si el usuario no ha iniciado sesion se muestran los botones de inicio
                     if (administrador) {
-                        out.println("<li class=\"nav-item\"><a class=\"nav-link\" href =\"VistaPanelAdmin.jsp\">Panel</li>");
+                        out.println("<li class=\"nav-item\"><a class=\"nav-link\" href =\"VistaPanelAdmin.jsp\">Panel</a></li>");
                     } else {
-                        out.println("<li class=\"nav-item\"><a class=\"nav-item\" href=\"" + request.getContextPath() + "/ControladorPujas\">Mis pujas</li>");
+                        out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + request.getContextPath() + "/ControladorPujas\">Mis pujas</a></li>");
                     }
                 }
             %>

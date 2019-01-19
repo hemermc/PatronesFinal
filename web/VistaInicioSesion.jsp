@@ -1,7 +1,7 @@
 <%-- 
-    Document   : VistaInicioSesion
-    Created on : 09-ene-2019, 12:21:20
-    Author     : amunguia
+    Document   :    VistaInicioSesion
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,9 +25,9 @@
     <body class="text-center">
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <form action="ControladorInicio" method="post" class="form-signin">
-            <img class="mb-4 logo" src="./res/signin2.png" alt="">
-            <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
-            <input type="hidden" name="llamada" value="acceso" >
+            <img class="mb-4 logo" src="./res/signin2.png" alt="avatar">
+            <h3 class="mb-3 font-weight-normal">Iniciar Sesión</h3>
+            <input type="hidden" name="llamada" value="acceso">
             <label for="inputEmail" class="sr-only">Nombre de usuario</label>
             <input type="text" name="nombre_usuario" id="inputEmail" class="form-control" placeholder="Nombre de usuario" required autofocus>
             <label for="inputPassword" class="sr-only">Contraseña</label>

@@ -1,9 +1,12 @@
 <%-- 
-    Document   : VistaBilletesAdmin
-    Created on : 09-ene-2019, 12:18:18
-    Author     : amunguia
+    Document   :    VistaArticulosAdmin
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
+<%@page import="com.subastas.patrones.iterator.Agregado"%>
+<%@page import="com.subastas.patrones.iterator.Iterador"%>
+<%@page import="com.subastas.patrones.iterator.AgregadoConcreto"%>
 <%@page import="com.subastas.modelo.Usuario"%>
 <%@page import="com.subastas.modelo.Articulo"%>
 <%@page import="java.util.ArrayList"%>
@@ -22,25 +25,13 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style>
         <!-- Custom styles for this template <link href="jumbotron.css" rel="stylesheet">-->
-        <link href="jumbotron.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/jumbotron.css"/>
     </head>
     <body>
         <jsp:include page="ComponenteHeaderNav.jsp"/>
         <div class="contenedor-index">
-            <h2>Gestión de artículos</h2>
+            <h1>Gestión de artículos</h1>
             <div>
                 <h3>Seleccione la categoría del artículo que desea gestionar:</h3>
                 <select name="categoria" class="registro-input" required>
@@ -110,31 +101,88 @@
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
             </div>
-            <div id ="content">
-                <h3>Artículos registrados</h3>	
-                <%
-                    ArrayList<Articulo> listaArticulos = (ArrayList<Articulo>) session.getAttribute("articulos");
-                    out.println("<div class =\"bloque-grid\">");
-                    if (listaArticulos != null) {
-                        for (Articulo articulo : listaArticulos) {
-                            out.println("<div class =\"bloque\">");
-                            out.println("<div class=\"informacion-subasta\">");
-                            out.println("<img src=\"./res/monedas.jpg\" alt=\"monedas\" width=\"150px\" height=\"100px\">");
-                            out.println("</div>");
-                            out.println("<div class=\"puja\">");
-                            out.println("<p>Nombre " + articulo.getNombre() + " </p>");
-                            out.println("<p>Descripcion " + articulo.getDescripcion() + " </p>");
-                            out.println(" <form action=\"ControladorDetalleArticulo\" method=\"Post\" class=\"formulario\">"
-                                    + "<input type=\"hidden\" name=\"id-articulo\" value=\"" + articulo.getId_articulo() + "\" class=\"btn-input\">"
-                                    + "<input type=\"submit\" value=\"Detalle\" class=\"btn-input\">"
-                                    + "</form>"
-                                    + "</div>");
-                        }
-                    } else {
-                        out.println("<h2>No hay artículos registrados</h2>");
-                    }
-                    out.println("</div>");
-                %>
+            <%
+                ArrayList<Articulo> listaArticulos = (ArrayList) session.getAttribute("articulos");
+            %>
+            <div class="album py-5 bg-light">
+                <%out.println("<h3>Articulos registrados: <span class=\"badge badge-primary badge-pill\">" + listaArticulos.size() + "</span></h3>");%>
+                <div class="container">
+                    <div class="row scroll">
+                        <%
+                            if (listaArticulos != null) {//Si hay subastas activas de ese tipo
+                                Agregado agregado = new AgregadoConcreto(listaArticulos);
+                                Iterador ite = agregado.crearIterador();
+
+                                while (ite.hayMas()) {
+                                    Articulo actual = (Articulo) ite.elementoActual();
+                        %>
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <img class="bd-placeholder-img card-img-top box-shadow" src="./res/billete.jpg" height="200">
+                                <div class="card-body">
+                                    <%out.println("<p class=\"card-text\">" + actual.getNombre() + "</p>");%>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">  
+                                            <%out.println("<button class=\"btn btn-sm btn-secondary\" onclick=\"setDetalleArticuloAdmin('" + actual.datosArticulo() + "')\" data-toggle=\"modal\" data-target=\"#modalDetalle\">Detalle</button>");%>                                    
+                                        </div>
+                                        <div class="alert alert-info" role="alert">
+                                            <%out.println("<strong>" + actual.getPrecio() + " &euro;</strong>");%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%ite.siguiente();
+                                }
+                            } else {
+                                out.println("<h3>No existe subastas de este tipo");
+                            }
+                        %>  
+                    </div>
+                    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Detalle de la subasta</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card mb-4 shadow-sm">
+                                        <img class="bd-placeholder-img card-img-top box-shadow" src="./res/billete.jpg" height="200">
+                                        <div class="card-body">                                               
+                                            <div class="d-flex justify-content-center align-items-center" id="detalle-articulo-admin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Desea confirmar el cambio de estado?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <jsp:include page="ComponenteFooter.jsp"/>
         </div>

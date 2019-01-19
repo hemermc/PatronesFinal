@@ -25,18 +25,6 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style>
         <!-- Custom styles for this template <link href="jumbotron.css" rel="stylesheet">-->
         <link rel="stylesheet" href="./css/jumbotron.css"/>
     </head>
@@ -50,16 +38,18 @@
                 <div class="container">
                     <%out.println("<h1 class=\"jumbotron-heading\"> Subastas de " + categoriaSubasta + "</h1>");%>
                     <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-                    <p><a href="#" class="btn btn-primary my-2">Página  de Inicio</a></p>
+                    <p><a href="VistaPrincipal.jsp" class="btn btn-primary my-2">Página  de Inicio</a></p>
                 </div>
             </section>
             <div class="album py-5 bg-light">
+                <%out.println("<h3>Subastas disponibles: <span class=\"badge badge-primary badge-pill\">" + listaSubastas.size() + "</span></h3>");%>
                 <div class="container">
-                    <div class="row">
+                    <div class="row scroll">
                         <%
                             if (listaSubastas != null) {//Si hay subastas activas de ese tipo
                                 Agregado agregado = new AgregadoConcreto(listaSubastas);
                                 Iterador ite = agregado.crearIterador();
+
                                 while (ite.hayMas()) {
                                     Subasta actual = (Subasta) ite.elementoActual();
                         %>
@@ -69,12 +59,9 @@
                                 <div class="card-body">
                                     <%out.println("<p class=\"card-text\">" + actual.getNombre() + "</p>");%>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <form action="ControladorDetalleSubasta" method="post" class="formulario" id="myform">
-                                                <%out.println("<input type=\"hidden\" name=\"id_subasta\" value=\"" + actual.getId_subasta() + "\" class=\"btn-input\">");%>
-                                                <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('myform').submit()">Detalles</button>
-                                                <button type="button" class="btn btn-sm btn-success" onclick="document.getElementById('myform').submit()">Pujar</button>
-                                            </form>
+                                        <div class="btn-group">  
+                                            <%out.println("<button class=\"btn btn-sm btn-secondary\" name=\"btnDetalle\" value=\"Submit\" onclick=\"setDetalleSubastaCliente('" + actual.datosSubasta() + "')\" data-toggle=\"modal\" data-target=\"#modalDetalle\">Detalle</button>");%>
+                                            <%out.println("<button type=\"button\" class=\"btn btn-sm btn-success\" id=\"btnPuja\" onclick=\"setIdSubastaPuja('" + actual.getId_subasta() + "')\" data-toggle=\"modal\" data-target=\"#modalPuja\">Pujar</button>");%>                                 
                                         </div>
                                         <div class="alert alert-info" role="alert">
                                             <%out.println("<strong>" + actual.getPrecio_final() + " &euro;</strong>");%>
@@ -90,10 +77,64 @@
                             }
                         %>  
                     </div>
+                    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Detalle de la subasta</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card mb-4 shadow-sm">
+                                        <img class="bd-placeholder-img card-img-top box-shadow" src="./res/billete.jpg" height="200">
+                                        <div class="card-body" id="detalle-subasta">                                               
+                                            <div class="d-flex justify-content-center align-items-center">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modalPuja" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Inserte la cantidad que desea pujar
+                                    <div class="input-group">
+                                        <form action="ControladorSubastas" method="post" id="form-puja">
+                                            <%out.println("<input type=\"hidden\" name=\"categoria\" value=\"" + categoriaSubasta + "\">");%>
+                                            <input type="number" class="form-control" name="puja" aria-label="Cantidad de la puja que se va a realizar">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">€</span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success" onclick="document.getElementById('form-puja').submit()" data-dismiss="modal">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
         <jsp:include page="ComponenteFooter.jsp"/>
+        <script src="./js/jquery-1.4.1.min.js" type="text/javascript"></script>
+        <script src="./js/main.js" type="text/javascript"></script>
     </div>
 </body>
 </html>

@@ -1,12 +1,8 @@
 
 package com.subastas.modelo;
 
-import com.subastas.patrones.observer.Observador;
-import com.subastas.patrones.observer.SujetoInterface;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.logging.Logger;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  *
@@ -47,5 +43,9 @@ public class Subasta {
         this.fecha_cierre = fecha_cierre;
         this.estado = estado;
         this.id_articulo = id_articulo;
+    }
+    
+    public String datosSubasta(){
+        return nombre+";"+precio_inicial+";"+precio_final+";"+fecha_alta+";"+fecha_cierre+";"+estado+";"+id_articulo+";";
     }
 }
