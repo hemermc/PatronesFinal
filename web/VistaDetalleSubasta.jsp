@@ -57,7 +57,7 @@
                         out.println("<p>Descripción: " + articulo.getDescripcion() + " </p>");
                         out.println("<p>Año: " + articulo.getAnio() + " </p>");
                         out.println("<p>Estado de conservación: " + articulo.getEstado_conservacion() + " </p>");
-                        out.println("<p>Foto: " + articulo.getFoto() + " </p>");
+                        out.println("<p>Foto: " + "."+articulo.getFoto() + " </p>");
 
                         if (articulo.getCategoria().equalsIgnoreCase(Constantes.MOBILIARIO)) {
                             out.println("<p>Dimensiones: " + articulo.getDimensiones() + " </p>");

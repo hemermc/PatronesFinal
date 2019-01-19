@@ -178,7 +178,7 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
             ps.setString(2, "Activa");
 
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
+                while (rs.next()) {
                     listaSubastas.add(formatearResultado(rs));
                 }
             }

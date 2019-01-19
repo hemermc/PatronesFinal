@@ -55,6 +55,14 @@
             </section>
             <div class="album py-5 bg-light">
                 <div class="container">
+                    <form action="ControladorSubastas" method="post" class="formulario" id="myform">
+                        <select onchange="this.form.submit()" name="estrategia">
+                            <option value="">Elige filtro</option>
+                            <option value="reciente">Mas Recientes</option>
+                            <option value="caduca">Poco tiempo para cerrar</option>
+                        </select>
+                        
+                    </form>
                     <div class="row">
                         <%
                             if (listaSubastas != null) {//Si hay subastas activas de ese tipo
@@ -67,7 +75,9 @@
                             <div class="card mb-4 shadow-sm">
                                 <img class="bd-placeholder-img card-img-top box-shadow" src="./res/billete.jpg" height="200">
                                 <div class="card-body">
-                                    <%out.println("<p class=\"card-text\">" + actual.getNombre() + "</p>");%>
+                                    <%out.println("<p class=\"card-text\">" + actual.getNombre()+ "</p>");%>
+                                    <%out.println("<p class=\"card-text\">" + actual.getFecha_alta() + "</p>");%>
+                                    <%out.println("<p class=\"card-text\">" + actual.getFecha_cierre() + "</p>");%>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="ControladorDetalleSubasta" method="post" class="formulario" id="myform">

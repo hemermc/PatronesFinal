@@ -32,7 +32,7 @@ public class EstrategiaConcretaFinalizar implements Estrategia {
 
         //Ordenamos los objetos del array por el atributo nombre
         Collections.sort(subastas, ReciComp);
-       
+        Collections.reverse(subastas);
            
     }
 
