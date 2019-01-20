@@ -1,7 +1,7 @@
 <%-- 
-    Document   : VistaPasarelaPagoCliente
-    Created on : 09-ene-2019, 12:28:05
-    Author     : amunguia
+    Document   :    VistaPasarelaPagoCliente
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

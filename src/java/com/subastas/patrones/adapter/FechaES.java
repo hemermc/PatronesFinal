@@ -1,3 +1,4 @@
+
 package com.subastas.patrones.adapter;
 
 import java.util.StringTokenizer;
@@ -8,20 +9,20 @@ import lombok.Data;
  * @author Grupo_12
  */
 @Data
-public class FechaUS {
+public class FechaES {
 
     private int dia;
     private int mes;
     private int anio;
 
-    public FechaUS(int dia, int mes, int anio) {
+    public FechaES(int dia, int mes, int anio) {
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
     }
 
-    public FechaUS(String date) {
-        StringTokenizer st = new StringTokenizer(date, "-");
+    public FechaES(String date) {
+        StringTokenizer st = new StringTokenizer(date, "/");
 
         if (st.countTokens() == 3) {
             try {
@@ -37,5 +38,4 @@ public class FechaUS {
             this.dia = 0;
         }
     }
-
 }

@@ -2,21 +2,16 @@ package com.subastas.patrones.factory;
 
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.ExceptionManager;
-import com.subastas.modelo.FormateaFecha;
 import com.subastas.modelo.Subasta;
-import com.subastas.patrones.adapter.AdapterFecha;
-import com.subastas.patrones.adapter.Fecha;
+import com.subastas.patrones.adapter.AdapterFechaUSToES;
 import com.subastas.patrones.adapter.FechaUS;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.converter.LocalDateStringConverter;
 
 /**
  *
@@ -44,10 +39,10 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
                 + Constantes.ESTADO + ", " + Constantes.ID_ARTICULO + ") "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
-            
-            AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(subasta.getFecha_alta()));
-            AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(subasta.getFecha_cierre()));
-            
+
+            AdapterFechaUSToES adapterAlta = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_alta()));
+            AdapterFechaUSToES adapterCierre = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_cierre()));
+
             ps.setString(1, subasta.getNombre());
             ps.setFloat(2, subasta.getPrecio_inicial());
             ps.setFloat(3, subasta.getPrecio_final());
@@ -69,14 +64,18 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
      */
     @Override
     public void actualizar(Subasta subasta) throws ExceptionManager {
-        
-        AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(subasta.getFecha_alta()));
-        AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(subasta.getFecha_cierre()));
-        
-        String consulta = "UPDATE Subastas SET " + Constantes.NOMBRE + " = ?, "
-                + Constantes.PRECIO_INICIAL + " = ?, " + Constantes.PRECIO_FINAL
-                + " = ?, " + Constantes.FECHA_ALTA + ", " + Constantes.FECHA_CIERRE
-                + ", " + Constantes.ESTADO + ", " + Constantes.ID_ARTICULO + " "
+
+        AdapterFechaUSToES adapterAlta = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_alta()));
+        AdapterFechaUSToES adapterCierre = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_cierre()));
+
+        String consulta = "UPDATE Subastas SET " 
+                + Constantes.NOMBRE + " = ?, "
+                + Constantes.PRECIO_INICIAL + " = ?, "
+                + Constantes.PRECIO_FINAL + " = ?, "
+                + Constantes.FECHA_ALTA + " = ?, "
+                + Constantes.FECHA_CIERRE + " = ?, "
+                + Constantes.ESTADO + " = ?, "
+                + Constantes.ID_ARTICULO + " = ? "
                 + "WHERE " + Constantes.ID_SUBASTA + " = ?";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setString(1, subasta.getNombre());
@@ -90,7 +89,7 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
 
             ps.executeUpdate();//Envia la consulta a la bbdd
         } catch (SQLException ex) {
-            Logger.getLogger(CRUDSubasta.class.getName()).log(Level.SEVERE, "Error al actualizar un registro de la tabla SUBASTAS", ex);
+            Logger.getLogger(CRUDSubasta.class.getName()+"\n").log(Level.SEVERE, "Error al actualizar un registro de la tabla SUBASTAS\n", ex);
         }
     }
 
@@ -102,7 +101,8 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
      */
     @Override
     public void eliminar(String id) throws ExceptionManager {
-        String consulta = "DELETE FROM Subastas WHERE " + Constantes.ID_SUBASTA + " = ?";//Genera la consulta
+        String consulta = "DELETE FROM Subastas WHERE "
+                + Constantes.ID_SUBASTA + " = ?";//Genera la consulta
 
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setInt(1, Integer.parseInt(id));
@@ -122,7 +122,8 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
     @Override
     public Subasta obtenerEspecifico(String id) throws ExceptionManager {
         Subasta subasta = null;
-        String consulta = "SELECT * FROM Subastas WHERE " + Constantes.ID_SUBASTA + " = ?";
+        String consulta = "SELECT * FROM Subastas WHERE "
+                + Constantes.ID_SUBASTA + " = ?";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
             ps.setInt(1, Integer.parseInt(id));
             try (ResultSet rs = ps.executeQuery()) {
@@ -192,11 +193,11 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
     @Override
     public Subasta formatearResultado(ResultSet rs) throws SQLException {
         Subasta subasta = null;
-        
+
         try {
-            AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(rs.getDate(Constantes.FECHA_ALTA).toString()));
-            AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(rs.getDate(Constantes.FECHA_CIERRE).toString()));
-                    
+            AdapterFechaUSToES adapterAlta = new AdapterFechaUSToES(new FechaUS(rs.getDate(Constantes.FECHA_ALTA).toString()));
+            AdapterFechaUSToES adapterCierre = new AdapterFechaUSToES(new FechaUS(rs.getDate(Constantes.FECHA_CIERRE).toString()));
+
             subasta = new Subasta(
                     rs.getInt(Constantes.ID_SUBASTA),
                     rs.getString(Constantes.NOMBRE),

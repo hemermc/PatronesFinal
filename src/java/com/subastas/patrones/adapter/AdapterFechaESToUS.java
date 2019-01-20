@@ -1,4 +1,3 @@
-
 package com.subastas.patrones.adapter;
 
 import java.sql.Date;
@@ -7,52 +6,53 @@ import java.sql.Date;
  *
  * @author Grupo_12
  */
-public class AdapterFecha implements Fecha{
-    private final FechaUS fechaUS;
-    
-    public AdapterFecha(FechaUS fechaUS){
-        this.fechaUS = fechaUS;
+public class AdapterFechaESToUS implements Fecha {
+
+    private final FechaES fechaES;
+
+    public AdapterFechaESToUS(FechaES fechaES) {
+        this.fechaES = fechaES;
     }
-    
+
     @Override
     public int getAnio() {
-        return fechaUS.getAnio();
+        return fechaES.getAnio();
     }
 
     @Override
     public void setAnio(int anio) {
-        this.fechaUS.setAnio(anio); 
+        this.fechaES.setAnio(anio);
     }
 
     @Override
     public int getMes() {
-        return fechaUS.getMes();
+        return fechaES.getMes();
     }
 
     @Override
     public void setMes(int mes) {
-        this.fechaUS.setMes(mes); 
+        this.fechaES.setMes(mes);
     }
 
     @Override
     public int getDia() {
-        return fechaUS.getDia();
+        return fechaES.getDia();
     }
 
     @Override
     public void setDia(int dia) {
-        this.fechaUS.setDia(dia); 
+        this.fechaES.setDia(dia);
     }
 
     @Override
     public String obtenerFechaString() {
-        return fechaUS.getDia() + "/" + fechaUS.getMes() + "/" + fechaUS.getAnio();
+        return fechaES.getMes() + "-" + fechaES.getDia() + "-" + fechaES.getAnio();
     }
 
     @Override
     public Date obtenerFechaDate() {
-        Date fecha = new Date(fechaUS.getDia(), fechaUS.getMes(), fechaUS.getAnio());
+        Date fecha = new Date(fechaES.getDia(), fechaES.getMes(), fechaES.getAnio());
         return fecha;
     }
-    
+
 }

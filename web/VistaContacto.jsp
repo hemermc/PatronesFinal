@@ -1,7 +1,7 @@
 <%-- 
-    Document   : VistaContacto
-    Created on : 09-ene-2019, 12:19:47
-    Author     : amunguia
+    Document   :    VistaContacto
+    Author     :    Juan Antonio Moscoso Chacaltana
+                    Alexander Munguia Clemente
 --%>
 
 <%@page import="com.subastas.modelo.*"%>

@@ -1,39 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.subastas.patrones.observer;
 
 import com.subastas.modelo.Puja;
 
 /**
  *
- * @author amunguia
+ * @author Grupo_12
  */
-public class Sujeto implements SujetoInterface{
-    // Lista de observadores de un valor.
-    private Observador observador;
-    //Valor monitorizado.
-    private Puja puja;
+public class Sujeto implements SujetoInterface {
+
+    private Observador observador;// Lista de observadores de un objeto
+    private Puja puja;//Objeto monitorizado
+
     @Override
-    public void setPuja(Puja v) {
-        this.puja = v;
+    public void setPuja(Puja puja) {
+        this.puja = puja;
     }
 
     @Override
     public Puja getPuja() {
-         return this.puja;
+        return this.puja;
     }
 
     @Override
-    public void añadirObservador(Observador o) {
-        this.observador = o;
+    public void anadirObservador(Observador observador) {
+        this.observador = observador;
     }
 
     @Override
     public void notificarObservadores() {
         observador.actualizar();
     }
-    
+
 }

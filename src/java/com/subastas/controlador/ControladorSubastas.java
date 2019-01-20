@@ -1,4 +1,3 @@
-
 package com.subastas.controlador;
 
 import com.subastas.modelo.*;
@@ -87,12 +86,15 @@ public class ControladorSubastas extends HttpServlet {
                     //request.getRequestDispatcher("/VistaSubastasCliente.jsp").forward(request, response);
                     response.sendRedirect("./VistaSubastasCliente.jsp");
                 }
-            }else {//Si el cliente no ha iniciado sesión
+                subasta.setPrecio_final(Float.parseFloat(request.getParameter("puja")));
+                usoSubasta.actualizar(subasta);//Se actualiza la puja más alta
+                //Recarga la página con la subasta realizada
+                session.setAttribute("lista-subastas", usoSubasta.obtenerCategoria(categoria));
+                response.sendRedirect("./VistaSubastasCliente.jsp");
+            } else {//Si el cliente no ha iniciado sesión
                 response.sendRedirect("./VistaInicioSesion.jsp");
             }
         }
-        
-       
     }
    
      public void filtrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

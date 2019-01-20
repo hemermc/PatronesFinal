@@ -14,8 +14,21 @@ body {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
 }
 
+.oculto{
+    display: none;
+}
+
+.estado-align{
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .logo-section {
         max-width: 300px;
     }
+}
+
+.scroll{
+    overflow: auto;
+    height: 450px;
 }

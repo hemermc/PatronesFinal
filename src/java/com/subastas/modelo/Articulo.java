@@ -22,4 +22,8 @@ public class Articulo {
     private String procedencia;
     private String autor;
     
+    public String datosArticulo(){
+        return nombre+";"+descripcion+";"+anio+";"+estado_conservacion+";"+precio+";"+categoria+";"+dimensiones+";"+procedencia+";"+autor+";";
+    }
+    
 }

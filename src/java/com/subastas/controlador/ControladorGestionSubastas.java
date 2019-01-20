@@ -3,7 +3,9 @@ package com.subastas.controlador;
 
 import com.subastas.modelo.GestionBBDD;
 import com.subastas.modelo.Subasta;
-import com.subastas.patrones.adapter.AdapterFecha;
+import com.subastas.patrones.adapter.AdapterFechaESToUS;
+import com.subastas.patrones.adapter.AdapterFechaUSToES;
+import com.subastas.patrones.adapter.FechaES;
 import com.subastas.patrones.adapter.FechaUS;
 import com.subastas.patrones.factory.CRUDSubasta;
 import java.io.IOException;
@@ -66,8 +68,8 @@ public class ControladorGestionSubastas extends HttpServlet {
         
         switch (accion) {
             case "insertar": {
-                AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(request.getParameter("FechaAlta")));
-                AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(request.getParameter("FechaCierre")));
+                AdapterFechaESToUS adapterAlta = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaAlta")));
+                AdapterFechaESToUS adapterCierre = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaCierre")));
                 
                 usoSubasta.insertar(new Subasta(
                         request.getParameter("Nombre"),
@@ -80,8 +82,8 @@ public class ControladorGestionSubastas extends HttpServlet {
                 break;
             }
             case "actualizar": {
-                AdapterFecha adapterAlta = new AdapterFecha(new FechaUS(request.getParameter("FechaAlta")));
-                AdapterFecha adapterCierre = new AdapterFecha(new FechaUS(request.getParameter("FechaCierre")));
+                AdapterFechaESToUS adapterAlta = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaAlta")));
+                AdapterFechaESToUS adapterCierre = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaCierre")));
                 
                 usoSubasta.insertar(new Subasta(
                         request.getParameter("Nombre"),
@@ -101,7 +103,6 @@ public class ControladorGestionSubastas extends HttpServlet {
         ArrayList<Subasta> subastas = usoSubasta.obtenerTodos();
         session.setAttribute("subastas", subastas);
         response.sendRedirect(request.getContextPath() + "/ControladorGestionSubastas");
-
     }
 
     /**
