@@ -3,12 +3,14 @@ package com.subastas.controlador;
 
 import com.subastas.modelo.Articulo;
 import com.subastas.modelo.GestionBBDD;
+import com.subastas.modelo.Subasta;
 import com.subastas.patrones.factory.CRUDArticulo;
 import com.subastas.patrones.builder.BuilderArte;
 import com.subastas.patrones.builder.BuilderArticulo;
 import com.subastas.patrones.builder.BuilderMobiliario;
 import com.subastas.patrones.builder.BuilderNumismatica;
 import com.subastas.patrones.builder.Director;
+import com.subastas.patrones.factory.CRUDSubasta;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -64,25 +66,29 @@ public class ControladorGestionArticulos extends HttpServlet {
         Director director = new Director();
         BuilderArticulo bArticulo = null; 
         Articulo articulo;
+       CRUDSubasta usoSubasta = new CRUDSubasta(conexion);
         
-        switch (categoria) {
-            case "Mobiliario":
-                bArticulo = new BuilderMobiliario();
-                break;
-            case "Arte":
-                bArticulo = new BuilderArte();
-                break;
-            case "Numismatica":
-                bArticulo = new BuilderNumismatica();
-                break;
-            default:
-                break;
-        }
         
-        director.setBuilderArticulo(bArticulo);
-        director.crearArticulo(
-                Integer.parseInt(request.getParameter("id-articulo")),
-                request.getParameter("nombre"),
+        
+        
+        switch (accion) {
+            case "insertar": { 
+                switch (categoria) {
+                    case "Mobiliario":
+                        bArticulo = new BuilderMobiliario();
+                        break;
+                    case "Arte":
+                        bArticulo = new BuilderArte();
+                        break;
+                    case "Numismatica":
+                        bArticulo = new BuilderNumismatica();
+                        break;
+                    default:
+                        break;
+                }
+        
+                director.setBuilderArticulo(bArticulo);
+                director.crearArticulo(request.getParameter("nombre"),
                 request.getParameter("descripcion"),
                 Integer.parseInt(request.getParameter("anio")),
                 request.getParameter("estado_conservacion"),
@@ -91,18 +97,21 @@ public class ControladorGestionArticulos extends HttpServlet {
                 request.getParameter("dimensiones"),
                 request.getParameter("autor"),
                 request.getParameter("procedencia"));
-        articulo = director.getArticulo();
-        
-        switch (accion) {
-            case "insertar": {                           
+                articulo = director.getArticulo();
                 gestionArticulos.insertar(articulo);
                 break;
             }
             case "actualizar": {
-                gestionArticulos.actualizar(articulo);
+                //gestionArticulos.actualizar(articulo);
                 break;
             }
             case "eliminar":{
+                Subasta subelm = usoSubasta.obtenerEspecificoArticulo(request.getParameter("id_articulo"));
+                if(subelm != null){
+                    usoSubasta.eliminar(String.valueOf(subelm.getId_subasta()));
+                }
+                
+               
                 gestionArticulos.eliminar(request.getParameter("id_articulo"));
                 break;
             }

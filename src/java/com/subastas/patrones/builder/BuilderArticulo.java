@@ -18,7 +18,7 @@ public abstract class BuilderArticulo {
         this.articulo = new Articulo();
     }
     
-    public abstract void crearGeneral(Integer id_articulo, String Nombre, String Descripcion, int anio, 
+    public abstract void crearGeneral(String Nombre, String Descripcion, int anio, 
             String estado_conservacion, float precio, String foto);
     public abstract void crearCategoria();
     public abstract void crearEspecifico(String dimensiones, String autor, String procedencia);

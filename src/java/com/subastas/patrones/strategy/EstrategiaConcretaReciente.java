@@ -18,7 +18,6 @@ public class EstrategiaConcretaReciente implements Estrategia {
 
     @Override
     public void ordena(ArrayList<Subasta> subastas) {
-        //Comparador para ordenar los alumnos por su nombre
         Comparator ReciComp = new Comparator() {
 
             @Override
@@ -30,7 +29,6 @@ public class EstrategiaConcretaReciente implements Estrategia {
             }
         };
 
-        //Ordenamos los objetos del array por el atributo nombre
         Collections.sort(subastas, ReciComp);
     }
 

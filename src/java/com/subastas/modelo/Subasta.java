@@ -1,6 +1,10 @@
 
 package com.subastas.modelo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import lombok.Data;
 import lombok.ToString;
 
@@ -22,10 +26,10 @@ public class Subasta {
 
     
     //Constructor usado para cuando se obtiene una subasta de la BBDD
-    public Subasta(Integer id_subasta, String nombre, float precio_inicial, float precio_final, String fecha_alta, String fecha_cierre, String estado, Integer id_articulo) {
+    public Subasta(Integer id_subasta, String nombre, float precio_inicial, float precio_final,String fecha_alta, String fecha_cierre, String estado, Integer id_articulo) {
         this.id_subasta = id_subasta;
         this.nombre = nombre;
-        this.precio_inicial = precio_inicial;
+        this.precio_inicial = 
         this.precio_final = precio_final;
         this.fecha_alta = fecha_alta;
         this.fecha_cierre = fecha_cierre;
@@ -34,12 +38,12 @@ public class Subasta {
     }
     
     // Constructor usado cuando se inserta una subasta en la BBDD
-    public Subasta(String nombre, float precio_inicial, float precio_final, String fecha_alta, String fecha_cierre, String estado, Integer id_articulo) {
+    public Subasta(String nombre, float precio_inicial, float precio_final, String fecha_cierre, String estado, Integer id_articulo) {
         this.id_subasta = null;
         this.nombre = nombre;
         this.precio_inicial = precio_inicial;
         this.precio_final = precio_final;
-        this.fecha_alta = fecha_alta;
+        this.fecha_alta = String.valueOf(LocalDate.now());
         this.fecha_cierre = fecha_cierre;
         this.estado = estado;
         this.id_articulo = id_articulo;

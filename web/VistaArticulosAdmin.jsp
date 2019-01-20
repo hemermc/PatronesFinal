@@ -34,12 +34,7 @@
             <h1>Gestión de artículos</h1>
             <div>
                 <h3>Seleccione la categoría del artículo que desea gestionar:</h3>
-                <select name="categoria" class="registro-input" required>
-                    <option value="" selected disabled>Categoría</option> 
-                    <option value="Arte">Arte</option>
-                    <option value="Mobiliario">Mobiliario</option>
-                    <option value="Numismatica">Numismática</option>
-                </select>
+                
             </div>
             <div>
                 <h3>Seleccione la acción que desea gestionar:</h3>
@@ -57,8 +52,7 @@
                     <input type="text" name="nombre" class="registro-input" placeholder="Nombre" required>
                     <input type="text" name="descripcion" class="registro-input" placeholder="Descripción" required>
                     <input type="text" name="anio" class="registro-input" placeholder="Año" required>
-                    <input type="date" name="categoria" class="registro-input" placeholder="Categoria" required>
-                    <input type="date" name="precio" class="registro-input" placeholder="Precio" required>
+                    <input type="text" name="precio" class="registro-input" placeholder="Precio" required>
                     <select name="estado_conservacion" class="registro-input" required>
                         <option value="" selected disabled>Estado Conservación</option> 
                         <option value="*">Mal estado</option>
@@ -67,6 +61,12 @@
                         <option value="****">Excelente conservación</option>
                         <option value="*****">Sin uso</option>
                     </select>
+                    <select name="categoria" class="registro-input" required>
+                    <option value="" selected disabled>Categoría</option> 
+                    <option value="Arte">Arte</option>
+                    <option value="Mobiliario">Mobiliario</option>
+                    <option value="Numismatica">Numismática</option>
+                </select>
                     <input type="text" name="foto" class="registro-input" placeholder="Foto" required>
                     <input type="submit" value="Registrar" class="btn-input">
                 </form>
@@ -79,7 +79,7 @@
                     <input type="text" name="descripcion" class="registro-input" placeholder="Descripción" required>
                     <input type="text" name="anio" class="registro-input" placeholder="Año" required>
                     <input type="date" name="categoria" class="registro-input" placeholder="Categoria" required>
-                    <input type="date" name="precio" class="registro-input" placeholder="Precio" required>
+                    <input type="text" name="precio" class="registro-input" placeholder="Precio" required>
                     <select name="estado_conservacion" class="registro-input" required>
                         <option value="" selected disabled>Estado Conservación</option> 
                         <option value="*">Mal estado</option>
@@ -120,7 +120,8 @@
                             <div class="card mb-4 shadow-sm">
                                 <img class="bd-placeholder-img card-img-top box-shadow" src="./res/billete.jpg" height="200">
                                 <div class="card-body">
-                                    <%out.println("<p class=\"card-text\">" + actual.getNombre() + "</p>");%>
+                                    <%out.println("<p class=\"card-text\">Id Articulo: " + actual.getId_articulo() + "</p>");%>
+                                    <%out.println("<p class=\"card-text\">Nombre: " + actual.getNombre() + "</p>");%>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">  
                                             <%out.println("<button class=\"btn btn-sm btn-secondary\" onclick=\"setDetalleArticuloAdmin('" + actual.datosArticulo() + "')\" data-toggle=\"modal\" data-target=\"#modalDetalle\">Detalle</button>");%>                                    

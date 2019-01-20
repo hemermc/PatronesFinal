@@ -9,10 +9,10 @@ public class BuilderMobiliario extends BuilderArticulo{
     private final String MOBILIARIO = "Mobiliario";
     
     @Override
-    public void crearGeneral(Integer id_articulo, String Nombre, String Descripcion, int anio, 
+    public void crearGeneral(String Nombre, String Descripcion, int anio, 
             String estado_conservacion, float precio,  
             String foto) {
-        articulo.setId_articulo(id_articulo);
+
         articulo.setNombre(Nombre);
         articulo.setDescripcion(Descripcion);
         articulo.setAnio(anio);

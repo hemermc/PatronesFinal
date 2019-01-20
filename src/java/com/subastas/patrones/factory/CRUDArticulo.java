@@ -33,8 +33,8 @@ public class CRUDArticulo extends ICRUDGeneral<Articulo> {
         String consultaArticulo = "INSERT INTO Articulos"
                 + "(" + Constantes.NOMBRE + ", " + Constantes.DESCRIPCION + ", "
                 + Constantes.ANIO + ", " + Constantes.ESTADO_CONSERVACION + ", "
-                + Constantes.PRECIO + ", " + Constantes.CATEGORIA + ", " + Constantes.FOTO + ") "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                + Constantes.PRECIO + ", " + Constantes.CATEGORIA + ", " + Constantes.FOTO + ",dimensiones,procedencia,autor) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)";
         try (PreparedStatement ps = conexion.prepareStatement(consultaArticulo)) {
             ps.setString(1, articulo.getNombre());
             ps.setString(2, articulo.getDescripcion());
@@ -43,6 +43,9 @@ public class CRUDArticulo extends ICRUDGeneral<Articulo> {
             ps.setFloat(5, articulo.getPrecio());
             ps.setString(6, articulo.getCategoria());
             ps.setString(7, articulo.getFoto());
+            ps.setString(8, articulo.getDimensiones());
+            ps.setString(9, articulo.getProcedencia());
+            ps.setString(10, articulo.getAutor());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUDArticulo.class.getName()).log(Level.SEVERE, "Error al insertar un registro de la tabla ARTICULOS", ex);
@@ -126,36 +129,24 @@ public class CRUDArticulo extends ICRUDGeneral<Articulo> {
     @Override
     public Articulo formatearResultado(ResultSet rs) {
         Articulo articulo = null;
-        Director director = new Director();
-        BuilderArticulo bArticulo = null;
-
         try {
-            switch (rs.getString(Constantes.CATEGORIA)) {
-                case Constantes.MOBILIARIO:
-                    bArticulo = new BuilderMobiliario();
-                    break;
-                case Constantes.ARTE:
-                    bArticulo = new BuilderArte();
-                    break;
-                case Constantes.NUMISMATICA:
-                    bArticulo = new BuilderNumismatica();
-                    break;
-                default:
-                    break;
-            }
-            director.setBuilderArticulo(bArticulo);
-            director.crearArticulo(rs.getInt(Constantes.ID_ARTICULO),
+            articulo = new Articulo(rs.getInt(Constantes.ID_ARTICULO),
                     rs.getString(Constantes.NOMBRE),
                     rs.getString(Constantes.DESCRIPCION),
                     rs.getInt(Constantes.ANIO),
                     rs.getString(Constantes.ESTADO_CONSERVACION),
+                    
                     rs.getFloat(Constantes.PRECIO),
+                    rs.getString("categoria"),
                     rs.getString(Constantes.FOTO),
                     rs.getString(Constantes.DIMENSIONES),
-                    rs.getString(Constantes.AUTOR),
-                    rs.getString(Constantes.PROCEDENCIA));
+                    
+                    rs.getString(Constantes.PROCEDENCIA),
+                    rs.getString(Constantes.AUTOR));
+      
+            
 
-            articulo = director.getArticulo();
+      
         } catch (SQLException ex) {
             Logger.getLogger(CRUDArticulo.class.getName()).log(Level.SEVERE, "No se ha podido formatear la información procedente de la tabla ARTICULOS", ex);
         }

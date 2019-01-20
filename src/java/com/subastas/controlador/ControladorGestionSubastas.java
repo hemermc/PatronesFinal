@@ -68,28 +68,26 @@ public class ControladorGestionSubastas extends HttpServlet {
         
         switch (accion) {
             case "insertar": {
-                AdapterFechaESToUS adapterAlta = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaAlta")));
+            
                 AdapterFechaESToUS adapterCierre = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaCierre")));
                 
                 usoSubasta.insertar(new Subasta(
                         request.getParameter("Nombre"),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
                         Float.parseFloat(request.getParameter("PrecioFinal")),
-                        adapterAlta.obtenerFechaString(),
                         adapterCierre.obtenerFechaString(),
-                        request.getParameter("estado"),
-                        Integer.parseInt(request.getParameter("Lote"))));
+                        request.getParameter("Estado"),
+                        Integer.parseInt(request.getParameter("id_articulo"))));
                 break;
             }
             case "actualizar": {
-                AdapterFechaESToUS adapterAlta = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaAlta")));
+               
                 AdapterFechaESToUS adapterCierre = new AdapterFechaESToUS(new FechaES(request.getParameter("FechaCierre")));
                 
                 usoSubasta.insertar(new Subasta(
                         request.getParameter("Nombre"),
                         Float.parseFloat(request.getParameter("PrecioInicial")),
                         Float.parseFloat(request.getParameter("PrecioFinal")),
-                        adapterAlta.obtenerFechaString(),
                         adapterCierre.obtenerFechaString(),
                         request.getParameter("estado"),
                         Integer.parseInt(request.getParameter("Lote"))));

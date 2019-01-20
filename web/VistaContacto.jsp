@@ -34,31 +34,55 @@
         <!-- Custom styles for this template <link href="jumbotron.css" rel="stylesheet">-->
         <link href="jumbotron.css" rel="stylesheet">
     </head>
+    <jsp:include page="ComponenteHeaderNav.jsp"/>
     <body>
-        <jsp:include page="ComponenteHeaderNav.jsp"/>
-        <div class="contenedor-index">
-            <div id="pitch">
-                <h1>Nosotros somos una empresa seria de subastas y antiguedades<br /></h1>
-                <p><em>sabemos que necesitas algo mas, el servicio atento de la compañia, conócenos.</em></p>
-            </div>
+        
+        <div class="row">
+        <div class="col-md-12">
+           <!-- <div class="well well-sm"> !-->            
+                <form align="center" class="formulario-contacto" action="ControladorContacto" method="post" class="form-signin">
+                    <img class="mb-4 logo" src="./res/signin2.png" alt="avatar">
+            
+                    <fieldset>
+                        <legend class="text-center header">Contáctanos</legend>
+                        <div align="center">
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="fname" name="nombre" type="text" placeholder="Nombre" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="email" name="correo" type="text" placeholder="Email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="phone" name="telefono" type="text" placeholder="Telefono" class="form-control">
+                            </div>
+                        </div>
 
-            <div class="col">
-                <h2>Attorneys</h2>
-                <p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-                <a class="link" href="#">MORE</a>
-            </div>
-            <div class="col">
-                <h2>Accidents</h2>
-                <p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-                <a class="link" href="#">MORE</a>
-            </div>
-            <div class="col last">
-                <h2>Practice</h2>
-                <p>Sed at elit non est auctor lobortis sed nec turpis. Vivamus nec odio eget lacus semper ultrices. Cras rhoncus purus id lectus congue eu faucibus leo bibendum. Curabitur fermentum lobortis nunc, at ornare ante tristique quis.</p>
-                <a class="link" href="#">MORE</a>
-            </div>
-            <div class="clr"></div>
-        </div>		
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="message" name="mensaje" placeholder="Introduzca su mensaje. Nos pondremos en contacto con la mayor brevedad posible" rows="7"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </fieldset>
+                </form>
+           <!-- </div>!-->
+        </div>
+    </div>
         <jsp:include page="ComponenteFooter.jsp"/>
     </body>
 </html>

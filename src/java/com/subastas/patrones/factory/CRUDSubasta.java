@@ -3,7 +3,9 @@ package com.subastas.patrones.factory;
 import com.subastas.commons.Constantes;
 import com.subastas.modelo.ExceptionManager;
 import com.subastas.modelo.Subasta;
+import com.subastas.patrones.adapter.AdapterFechaESToUS;
 import com.subastas.patrones.adapter.AdapterFechaUSToES;
+import com.subastas.patrones.adapter.FechaES;
 import com.subastas.patrones.adapter.FechaUS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,8 +42,8 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
 
-            AdapterFechaUSToES adapterAlta = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_alta()));
-            AdapterFechaUSToES adapterCierre = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_cierre()));
+            AdapterFechaESToUS adapterAlta = new AdapterFechaESToUS(new FechaES(subasta.getFecha_alta()));
+            AdapterFechaESToUS adapterCierre = new AdapterFechaESToUS(new FechaES(subasta.getFecha_cierre()));
 
             ps.setString(1, subasta.getNombre());
             ps.setFloat(2, subasta.getPrecio_inicial());
@@ -65,8 +67,8 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
     @Override
     public void actualizar(Subasta subasta) throws ExceptionManager {
 
-        AdapterFechaUSToES adapterAlta = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_alta()));
-        AdapterFechaUSToES adapterCierre = new AdapterFechaUSToES(new FechaUS(subasta.getFecha_cierre()));
+        AdapterFechaESToUS adapterAlta = new AdapterFechaESToUS(new FechaES(subasta.getFecha_alta()));
+            AdapterFechaESToUS adapterCierre = new AdapterFechaESToUS(new FechaES(subasta.getFecha_cierre()));
 
         String consulta = "UPDATE Subastas SET " 
                 + Constantes.NOMBRE + " = ?, "
@@ -213,4 +215,26 @@ public class CRUDSubasta extends ICRUDGeneral<Subasta> {
         return subasta;
     }
 
+    /**
+     * 
+     * @param id
+     * @return
+     * @throws ExceptionManager 
+     */
+    public Subasta obtenerEspecificoArticulo(String id) throws ExceptionManager {
+        Subasta subasta = null;
+        String consulta = "SELECT * FROM Subastas WHERE "
+                + Constantes.ID_ARTICULO + " = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
+            ps.setInt(1, Integer.parseInt(id));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    subasta = formatearResultado(rs);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUDSubasta.class.getName()).log(Level.SEVERE, "Error al obtener un registro de la tabla SUBASTAS", ex);
+        }
+        return subasta;
+    }
 }

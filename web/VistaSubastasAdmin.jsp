@@ -36,15 +36,7 @@
                     <p>Sabemos que necesitas algo más, el servicio atento de la compañia, conócenos</p>
                 </div>
             </div>
-            <div>
-                <h3>Seleccione la categoría de la subasta que desea gestionar:</h3>
-                <select name="categoria" class="registro-input" required>
-                    <option value="" selected disabled>Categoría</option> 
-                    <option value="Arte">Arte</option>
-                    <option value="Mobiliario">Mobiliario</option>
-                    <option value="Numismatica">Numismática</option>
-                </select>
-            </div>
+            
             <div>
                 <h3>Seleccione la acción que desea gestionar:</h3>
                 <select name="accion" id="selector-accion" class="registro-input" required>
@@ -58,20 +50,24 @@
                 <div class="accion oculto" id="insertar">
                     <h3>Añadir Subasta</h3>
                     <form action="ControladorGestionSubastas" method="post" class ="formulario">
-                        <input type="text" name="Lote" class="registro-input" placeholder="Lote" required>
+                        <input type="hidden" name="accion" value="insertar">
                         <input type="text" name="Nombre" class="registro-input" placeholder="Nombre" required>
                         <input type="text" name="PrecioInicial" class="registro-input" placeholder="Precio Inicial" required>
-                        <input type="date" name="Fecha" class="registro-input" placeholder="Fecha" required>
+                        <input type="text" name="PrecioFinal" class="registro-input" placeholder="Precio Final" required>
+                        <input type="date" name="FechaCierre" class="registro-input" placeholder="Fecha cierre YYYY/MM/DD" required>
+                        <input type="text" name="Estado" class="registro-input" placeholder="Estado" required>
+                        <input type="text" name="id_articulo" class="registro-input" placeholder="id articulo" required>
                         <input type="submit" value="Insertar" class="btn-input">
                     </form>
                 </div>
                 <div class="accion oculto" id="actualizar">
                     <h3>Modificar Subasta</h3>
                     <form action="ControladorGestionSubastas" method="post" class ="formulario">
-                        <input type="text" name="Lote" class="registro-input" placeholder="Lote" required>
+                        <input type="hidden" name="accion" value="actualizar">
                         <input type="text" name="Nombre" class="registro-input" placeholder="Nombre" required>
                         <input type="text" name="PrecioInicial" class="registro-input" placeholder="Precio Inicial" required>
-                        <input type="date" name="Fecha" class="registro-input" placeholder="Fecha" required>
+                        <input type="date" name="FechaCierre" class="registro-input" placeholder="Fecha cierre YYYY-MM-DD" required>
+                        <input type="text" name="id_articulo" class="registro-input" placeholder="id articulo" required>
                         <input type="submit" value="Actualizar" class="btn-input">
                     </form>
                 </div>
@@ -80,6 +76,7 @@
                     <form action="ControladorGestionSubastas" method="post" class ="formulario">
                         <input type="hidden" name="accion" value="eliminar" class="registro-input">
                         <input type="text" name="id_subasta" class="registro-input" placeholder="id subasta" required>
+                        
                         <input type="submit" value="Eliminar" class="btn-input">
                     </form>
                 </div>
@@ -102,7 +99,9 @@
                                 <div class="card mb-4 shadow-sm">
                                     <img class="bd-placeholder-img card-img-top box-shadow" src="./res/billete.jpg" height="200">
                                     <div class="card-body">
-                                        <%out.println("<p class=\"card-text\">" + actual.getNombre() + "</p>");%>
+                                        <%out.println("<p class=\"card-text\">Id Subasta: "+ actual.getId_subasta() + "</p>");
+                                        out.println("<p class=\"card-text\">Nombre: "+ actual.getNombre() + "</p>");%>
+                                        
                                         <div class="alert alert-danger estado-align" role="alert">
                                             <%out.println("<strong>" + actual.getEstado() + "</strong>");%>
                                         </div>

@@ -21,7 +21,7 @@ public class Contexto {
      * Constructor.
      *
      * @param e Estrategia que se usa.
-     * @param u Lista de alumnos.
+     * @param u Lista de subastas.
      */
     public Contexto(Estrategia e, ArrayList<Subasta> u) {
         this.estrategia = e;

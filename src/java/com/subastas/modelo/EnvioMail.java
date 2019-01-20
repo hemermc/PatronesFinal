@@ -44,4 +44,32 @@ public class EnvioMail {
             Logger.getLogger(EnvioMail.class.getName()+"\n").log(Level.SEVERE, "Error al enviar el correo electrónico\n", ex);
         }
     }
+    
+    public void envioContacto(String destinatario, String nombre, String mensaje) {
+
+        Properties properties = System.getProperties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");//El servidor SMTP de Google
+        properties.put("mail.smtp.user", USER_REMITENTE);
+        properties.put("mail.smtp.clave", PASS_REMITENTE);
+        properties.put("mail.smtp.auth", "true");//Usar autenticación mediante usuario y clave
+        properties.put("mail.smtp.starttls.enable", "true");//Para conectar de manera segura al servidor SMTP
+        properties.put("mail.smtp.port", "587");//El puerto SMTP seguro de Google
+        Session session = Session.getDefaultInstance(properties);
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            
+            message.setFrom(new InternetAddress(USER_REMITENTE));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+            message.setSubject("Notificación - "+ nombre);
+            message.setText(mensaje);
+
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", USER_REMITENTE, PASS_REMITENTE);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        } catch (MessagingException ex) {
+            Logger.getLogger(EnvioMail.class.getName()+"\n").log(Level.SEVERE, "Error al enviar el correo electrónico\n", ex);
+        }
+    }
 }

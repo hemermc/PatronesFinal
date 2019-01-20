@@ -18,11 +18,11 @@ public class Director {
         return builderArticulo.getArticulo();
     }
     
-    public void crearArticulo(Integer id_articulo, String nombre, String descripcion, int anio, 
+    public void crearArticulo(String nombre, String descripcion, int anio, 
             String estado_conservacion, float precio, String foto, 
             String dimensiones, String autor, String procedencia){
         builderArticulo.crearArticulo();       
-        builderArticulo.crearGeneral(id_articulo, nombre, descripcion, anio, 
+        builderArticulo.crearGeneral(nombre, descripcion, anio, 
             estado_conservacion, precio, foto);
         builderArticulo.crearCategoria();
         builderArticulo.crearEspecifico(dimensiones, autor, procedencia);
